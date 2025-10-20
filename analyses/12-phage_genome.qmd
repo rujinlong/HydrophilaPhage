@@ -50,12 +50,18 @@ suppressPackageStartupMessages({
   library(here)
   library(conflicted)
   library(tidyverse)
+  library(data.table)
+  devtools::load_all()
 })
 ```
 
 ## Tasks
 
 The first task is ...
+
+```{r}
+df_vcontact3 <- parse_vcontact3(here(path_data, "hp3-vcontact3.csv"))
+```
 
 ## Files written
 

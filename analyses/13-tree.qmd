@@ -1,0 +1,99 @@
+---
+title: "13-tree"
+title-block-banner: true
+author:
+  - name: Jinlong Ru
+    orcid: 0000-0002-6757-6018
+date: 2025-10-02
+toc: true
+toc-depth: 4
+number-sections: true
+code-fold: true
+code-line-numbers: true
+code-tools: true
+format: 
+  html:
+    embed-resources: true
+    smooth-scroll: true
+    page-layout: full
+reference-location: section
+citation-location: document
+params:
+  name: "13-tree"
+---
+
+**Updated: `r format(Sys.time(), '%Y-%m-%d %H:%M:%S', tz = 'CET')` CET.**
+
+The purpose of this document is to visualize the phylogenetic tree built using the Terminase Large Subunit (TerL) protein sequences.
+
+```{r}
+#| label: setup
+#| message: false
+#| include: false
+#| warning: false
+wd <- "analyses"
+if (basename(getwd()) != wd) {
+  setwd(here::here(wd))
+}
+params <- list(name = "13-tree")
+here::i_am(paste0(params$name, ".qmd"), uuid = "f37b82f2-f35f-4958-9211-3fc37c4b4f2e")
+projthis::proj_create_dir_target(params$name, clean = FALSE)
+path_target <- projthis::proj_path_target(params$name)
+path_source <- projthis::proj_path_source(params$name)
+path_raw <- path_source("00-raw")
+path_resource <- here::here(path_raw, "d00-resource")
+path_data <- here::here(path_raw, paste0("d", params$name))
+dir.create(path_raw, recursive = TRUE, showWarnings = FALSE)
+dir.create(path_data, recursive = TRUE, showWarnings = FALSE)
+dir.create(path_resource, recursive = TRUE, showWarnings = FALSE)
+```
+
+```{r}
+#| label: packages
+#| message: false
+suppressPackageStartupMessages({
+  library(here)
+  library(conflicted)
+  library(tidyverse)
+  library(data.table)
+  library(ggtree)
+  library(ape)
+  devtools::load_all()
+})
+```
+
+## Tasks
+
+The first task is to import the NWK file containing the phylogenetic tree. The NWK file is downloaded from [NCBI BLAST Tree View](https://www.ncbi.nlm.nih.gov/blast/treeview/treeView.cgi?request=page&blastRID=FPB2S564014&queryID=lcl|Query_9661658&entrezLim=&ex=&exl=&exh=&ns=100&screenWidth=3440&screenHeight=1440).
+
+```{r}
+#| label: import-nwk
+tree <- read.tree(here(path_data, "TLS_tree.nwk"))
+
+# save the node data as an excel file, so that user can modify the node data manually and then import to the tree again
+library(openxlsx)
+tip_data <- as.data.frame(tree$tip.label)
+write.xlsx(tip_data, here(path_data, "tip_data.xlsx"), rowNames = TRUE)
+
+# import the modified node data
+modified_tip_data <- read.xlsx(here(path_data, "tip_data.xlsx"), rowNames = TRUE)
+tree$tip.label <- modified_tip_data[, "name2"]
+
+# plot new tree with the modified node labels
+ggtree(tree) + geom_tiplab(aes(color =  str_detect(label, "vB_AhyM_Hp3"))) +
+  scale_color_manual(values=c("black", "red")) + 
+  xlim(0, 1.6) +
+  theme(legend.position = "none")
+
+# save the modified tree
+ggsave(path_target( "TLS_tree.png"), width = 6.5, height = 4)
+```
+
+## Files written
+
+These files have been written to the target directory, `r paste0("data/", params$name)`:
+
+```{r}
+#| label: list-files-target
+projthis::proj_dir_info(path_target(), tz = "CET")
+```

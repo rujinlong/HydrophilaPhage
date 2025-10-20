@@ -1,0 +1,303 @@
+---
+title: "21-figs"
+title-block-banner: true
+author:
+  - name: Jinlong Ru
+    orcid: 0000-0002-6757-6018
+date: 2025-10-23
+toc: true
+toc-depth: 4
+number-sections: true
+code-fold: true
+code-line-numbers: true
+code-tools: true
+format: 
+  html:
+    embed-resources: true
+    smooth-scroll: true
+    page-layout: full
+reference-location: section
+citation-location: document
+params:
+  name: "21-figs"
+---
+
+**Updated: `r format(Sys.time(), '%Y-%m-%d %H:%M:%S', tz = 'CET')` CET.**
+
+The purpose of this document is to create figures based on the bacteriophage infection experiments.
+
+```{r}
+#| label: setup
+#| message: false
+#| include: false
+#| warning: false
+wd <- "analyses"
+if (basename(getwd()) != wd) {
+  setwd(here::here(wd))
+}
+params <- list(name = "21-figs")
+here::i_am(paste0(params$name, ".qmd"), uuid = "a439e682-f799-4817-8772-5adc8157c4dd")
+projthis::proj_create_dir_target(params$name, clean = FALSE)
+path_target <- projthis::proj_path_target(params$name)
+path_source <- projthis::proj_path_source(params$name)
+path_raw <- path_source("00-raw")
+path_resource <- here::here(path_raw, "d00-resource")
+path_data <- here::here(path_raw, paste0("d", params$name))
+dir.create(path_raw, recursive = TRUE, showWarnings = FALSE)
+dir.create(path_data, recursive = TRUE, showWarnings = FALSE)
+dir.create(path_resource, recursive = TRUE, showWarnings = FALSE)
+```
+
+```{r}
+#| label: packages
+#| message: false
+suppressPackageStartupMessages({
+  library(here)
+  library(conflicted)
+  library(tidyverse)
+  library(data.table)
+  library(openxlsx)
+  library(svglite)
+  devtools::load_all()
+})
+
+update_figure_theme <- function(plot) {
+  plot + theme_classic(base_size = 13)
+}
+```
+
+## Tasks
+
+### One-step growth curve
+
+```{r}
+df_onestep <- openxlsx::read.xlsx(here(path_data, "supp1.xlsx"), sheet = "growth_curve") %>% 
+  dplyr::rowwise() %>%
+  dplyr::mutate(mean_log = log10(mean(c(sample_1, sample_2, sample_3))),
+         sd_log = sd(log10(c(sample_1, sample_2, sample_3)))
+         )
+
+plt_onestep <- ggplot(df_onestep, aes(x = time, y = mean_log)) +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  geom_errorbar(aes(ymin = mean_log - sd_log, ymax = mean_log + sd_log), width = 5, color = "black", size = 1) +
+  scale_x_continuous(breaks = seq(0, 160, by = 15)) +
+  labs(
+    x = "Time (minutes)",
+    y = expression(log[10]*"(PFU/mL)")
+  )
+```
+
+### Temperature stability
+
+```{r}
+df_temperature <- openxlsx::read.xlsx(here(path_data, "supp1.xlsx"), sheet = "temperature_stability") %>% 
+  dplyr::rowwise() %>%
+  dplyr::mutate(mean_log = log10(mean(c(sample_1, sample_2, sample_3))),
+         sd_log = sd(log10(c(sample_1, sample_2, sample_3)))
+         )
+
+plt_temperature <- ggplot(df_temperature, aes(x = temperature, y = mean_log)) +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  geom_errorbar(aes(ymin = mean_log - sd_log, ymax = mean_log + sd_log), width = 3, color = "black", size = 1) +
+  scale_x_continuous(breaks = seq(0, 80, by = 10)) +
+  scale_y_continuous(limits = c(1, 10)) +
+  labs(
+    x = "Temperature (°C)",
+    y = expression(log[10]*"(PFU/mL)")
+  )
+```
+
+### pH stability
+
+```{r}
+df_ph <- openxlsx::read.xlsx(here(path_data, "supp1.xlsx"), sheet = "pH_stability") %>% 
+  dplyr::rowwise() %>%
+  dplyr::mutate(mean_log = log10(mean(c(sample_1, sample_2, sample_3))),
+         sd_log = sd(log10(c(sample_1, sample_2, sample_3)))
+         )
+
+plt_ph <- ggplot(df_ph, aes(x = pH, y = mean_log)) +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  geom_errorbar(aes(ymin = mean_log - sd_log, ymax = mean_log + sd_log), width = 0.2, color = "black", size = 1) +
+  scale_x_continuous(breaks = seq(5, 12, by = 1), limits = c(5,11)) +
+  scale_y_continuous(limits = c(1, 10)) + 
+  labs(
+    x = "pH",
+    y = expression(log[10]*"(PFU/mL)")
+  )
+```
+
+### MOI
+
+```{r}
+df_moi <- openxlsx::read.xlsx(here(path_data, "supp1.xlsx"), sheet = "MOI") %>% 
+  rowwise() %>%
+  mutate(
+    mean_log = mean(log10(c(sample_1, sample_2, sample_3))),
+    sd_log = sd(log10(c(sample_1, sample_2, sample_3)))
+  ) %>% 
+  ungroup() %>% 
+  dplyr::mutate(MOI = factor(MOI, levels = c("0.001","0.01","0.1","1","10","100","1000")))
+
+
+plt_moi <- ggplot(df_moi, aes(x = MOI, y = mean_log)) +
+  geom_bar(stat = "identity", fill = "grey80", color = "black", width=0.7) +
+  geom_errorbar(aes(ymin = mean_log - sd_log, ymax = mean_log + sd_log), width = 0.2, size=1) +
+  labs(
+    x = "MOI",
+    y = expression(log[10]*"(PFU/mL)")
+  )
+```
+
+### Combine figures together
+
+Combine previous four figures into one single figure (2x2 grid)
+
+```{r}
+library(ggpubr)
+
+fig_combined <- ggarrange(
+  update_figure_theme(plt_moi),
+  update_figure_theme(plt_onestep),
+  update_figure_theme(plt_temperature),
+  update_figure_theme(plt_ph),
+  ncol = 2, nrow = 2,
+  labels = c("A", "B", "C", "D"),
+  font.label = list(size = 18, face = "bold")
+)
+
+# ggsave(path_target("combined_figures.svg"), plot = fig_combined, device = "svg", width = 10, height = 6.5)
+ggsave(path_target("fig-combined.png"), plot = fig_combined, device = "png", width = 10, height = 6.5, dpi = 300)
+```
+
+
+### Lysis curve
+
+```{r}
+df_lysis <- openxlsx::read.xlsx(here(path_data, "supp1.xlsx"), sheet = "lysis_curve") %>% 
+  reshape2::melt(id.vars = "time", variable.name = "sample_id", value.name = "OD600") %>% 
+  dplyr::mutate(treatment = str_replace_all(sample_id, "_.*", ""))
+
+df_lysis_summary <- df_lysis %>%
+  group_by(treatment, time) %>%
+  summarise(
+    OD600_mean = mean(OD600, na.rm = TRUE),
+    OD600_sd = sd(OD600, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    group_color = case_when(
+      treatment == "ck" ~ "#464646",
+      treatment == "moi0.01" ~ "#e94d61",
+      treatment == "moi0.1" ~ "#399cf6",
+      treatment == "moi1" ~ "#79e67e",
+      treatment == "moi10" ~ "#9d5cd6",
+      treatment == "moi100" ~ "#ebb85a",
+      TRUE ~ "#000000"
+    ),
+    group_label = case_when(
+      treatment == "ck" ~ "CK",
+      treatment == "moi0.01" ~ "MOI 0.01",
+      treatment == "moi0.1" ~ "MOI 0.1",
+      treatment == "moi1" ~ "MOI 1",
+      treatment == "moi10" ~ "MOI 10",
+      treatment == "moi100" ~ "MOI 100",
+      TRUE ~ "Other"
+    )
+  )
+
+ggplot(df_lysis_summary, aes(x = time, y = OD600_mean, color = group_label)) +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  geom_errorbar(
+    aes(ymin = OD600_mean - OD600_sd, ymax = OD600_mean + OD600_sd),
+    width = 0.8, alpha = 0.9, linewidth = 0.7
+  ) +
+  scale_color_manual(
+    values = unique(setNames(df_lysis_summary$group_color, df_lysis_summary$group_label))
+  ) +
+  labs(
+    x = "Time (hours)",
+    y = expression(OD[600]),
+    color = NULL
+  ) +
+  # scale_x_continuous(breaks = seq(0, 48, 5), expand = c(0,0)) +
+  # scale_y_continuous(limits = c(0, 0.8), expand = c(0,0)) +
+  theme_classic(base_size = 13) +
+  theme(
+    legend.position = c(0.11, 0.78),
+    legend.background = element_rect(fill = "white", color = "gray80")
+  )
+
+ggsave(path_target("fig-lysis.png"), plot = last_plot(), device = "png", width = 6.5, height = 4.5, dpi = 300)
+```
+
+
+
+### Survival curve
+
+```{r}
+df_survival <- openxlsx::read.xlsx(here(path_data, "supp1.xlsx"), sheet = "survival_curve") %>% 
+  reshape2::melt(id.vars = "time", variable.name = "Group", value.name = "Count") %>% 
+  mutate(
+    survival_rate = Count / 20 * 100,
+    group_color = case_when(
+      Group == "PBS_group" ~ "#2166ac",
+      Group == "phage_group" ~ "#1a9850",
+      Group == "bacterial_group" ~ "#ef8a62",
+      Group == "treatment_group" ~ "#fa9922ff"
+    ),
+    group_shape = case_when(
+      Group == "PBS_group" ~ 18,
+      Group == "phage_group" ~ 15,
+      Group == "bacterial_group" ~ 17,
+      Group == "treatment_group" ~ 16
+    ),
+    group_linetype = case_when(
+      Group == "PBS_group" ~ "dotted",
+      Group == "phage_group" ~ "solid",
+      Group == "bacterial_group" ~ "dotted",
+      Group == "treatment_group" ~ "solid"
+    ),
+    group_label = case_when(
+      Group == "PBS_group" ~ "PBS group",
+      Group == "phage_group" ~ "Phage group",
+      Group == "bacterial_group" ~ "Bacterial group",
+      Group == "treatment_group" ~ "Treatment group"
+    )
+  )
+
+plt_survival <- ggplot(df_survival, aes(x = time, y = survival_rate, group = Group)) +
+  geom_line(aes(color = group_label), size = 1, alpha = 0.4) +
+  geom_point(aes(color = group_label, shape = group_label), size = 5, stroke = 1, alpha = 0.6) +
+  scale_color_manual(values = setNames(df_survival$group_color, df_survival$group_label)) +
+  scale_shape_manual(values = setNames(df_survival$group_shape, df_survival$group_label)) +
+  scale_x_continuous(breaks = seq(min(df_survival$time), max(df_survival$time), by = 1)) +
+  scale_y_continuous(breaks = seq(0, 100, 20), limits = c(0, 105), expand = c(0, 0)) +
+  labs(
+    x = "Time (days)",
+    y = "Survival rate (%)"
+  ) +
+  theme_classic(base_size = 13) +
+  theme(
+    legend.position = c(0.7, 0.45),
+    legend.background = element_rect(fill = "white", color = "gray60"),
+    legend.title = element_blank()
+  )
+
+plt_survival
+
+ggsave(path_target("fig-survival.png"), plt_survival, device = "png", width = 6, height = 4, dpi = 300)
+```
+
+## Files written
+
+These files have been written to the target directory, `r paste0("data/", params$name)`:
+
+```{r}
+#| label: list-files-target
+projthis::proj_dir_info(path_target(), tz = "CET")
+```
