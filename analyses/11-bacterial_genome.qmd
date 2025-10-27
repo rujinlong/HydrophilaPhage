@@ -22,10 +22,6 @@ params:
   name: "11-bacterial_genome"
 ---
 
-**Updated: `r format(Sys.time(), '%Y-%m-%d %H:%M:%S', tz = 'CET')` CET.**
-
-The purpose of this document is ...
-
 ```{r setup}
 #| message: false
 #| include: false
@@ -44,18 +40,13 @@ dir.create(path_data, recursive = TRUE, showWarnings = FALSE)
 dir.create(path_resource, recursive = TRUE, showWarnings = FALSE)
 ```
 
-```{r packages}
-#| message: false
-suppressPackageStartupMessages({
-  library(here)
-  library(conflicted)
-  library(tidyverse)
-})
-```
-
 ## Tasks
 
-The first task is ...
+1. The genome of *Aeromonas hydrophila* MS01 was assembled using [Unicycler](https://github.com/rrwick/Unicycler). 
+
+2. Fragmented scaffolds were connected using [RagTag](https://github.com/malonge/RagTag) with *Aeromonas hydrophila* subsp. hydrophila ATCC 7966 as reference.
+
+3. Assembled genome was annotated using [Bakta](https://github.com/oschwengers/bakta).
 
 ## Files written
 

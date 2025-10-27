@@ -10,3 +10,6 @@ inst/doc
 analyses/data
 
 /.luarc.json
+
+/.quarto/
+**/*.quarto_ipynb

@@ -3,12 +3,28 @@ Title: An R package for project HydrophilaPhage
 Version: 0.0.1
 Authors@R: 
     person("Jinlong", "Ru", , "jinlong.ru@gmail.com", role = c("aut", "cre"))
-Description: This is the package and shiny app for project HydrophilaPhage.
+Description: This is the package for project HydrophilaPhage.
 License: GPL (>= 3)
 URL: https://github.com/rujinlong/HydrophilaPhage
 BugReports: https://github.com/rujinlong/HydrophilaPhage/issues
 Imports: 
-    config
+    ape,
+    config,
+    conflicted,
+    data.table,
+    devtools,
+    dplyr,
+    ggpubr,
+    ggtree,
+    here,
+    knitr,
+    openxlsx,
+    projthis,
+    reshape2,
+    rmarkdown,
+    shiny,
+    svglite,
+    tidyverse
 Suggests: 
     knitr,
     rmarkdown
