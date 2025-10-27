@@ -7,6 +7,9 @@
 
 [![License: GPL
 v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![R](https://img.shields.io/badge/Language-R-blue.svg)](https://www.r-project.org/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17454899.svg)](https://doi.org/10.5281/zenodo.17454899)
+[![R-package](https://img.shields.io/github/r-package/v/rujinlong/HydrophilaPhage)](https://github.com/rujinlong/HydrophilaPhage)
 <!-- badges: end -->
 
 This repository contains source code for the manuscript titled “**A
