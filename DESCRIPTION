@@ -1,6 +1,6 @@
 Package: HydrophilaPhage
 Title: An R package for project HydrophilaPhage
-Version: 0.1
+Version: 3.0
 Authors@R: 
     person("Jinlong", "Ru", , "jinlong.ru@gmail.com", role = c("aut", "cre"))
 Description: This is the package for project HydrophilaPhage.
