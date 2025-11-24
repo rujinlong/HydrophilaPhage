@@ -64,6 +64,8 @@ suppressPackageStartupMessages({
 update_figure_theme <- function(plot) {
   plot + theme_classic(base_size = 13)
 }
+
+fpath_supp <- here("data/submit", "SupplementalData.xlsx")
 ```
 
 ## Tasks
@@ -71,7 +73,7 @@ update_figure_theme <- function(plot) {
 ### One-step growth curve
 
 ```{r}
-df_onestep <- openxlsx::read.xlsx(here(path_data, "supp1.xlsx"), sheet = "growth_curve") %>% 
+df_onestep <- openxlsx::read.xlsx(fpath_supp, sheet = "growth_curve") %>% 
   dplyr::rowwise() %>%
   dplyr::mutate(mean_log = log10(mean(c(sample_1, sample_2, sample_3))),
          sd_log = sd(log10(c(sample_1, sample_2, sample_3)))
@@ -91,7 +93,7 @@ plt_onestep <- ggplot(df_onestep, aes(x = time, y = mean_log)) +
 ### Temperature stability
 
 ```{r}
-df_temperature <- openxlsx::read.xlsx(here(path_data, "supp1.xlsx"), sheet = "temperature_stability") %>% 
+df_temperature <- openxlsx::read.xlsx(fpath_supp, sheet = "temperature_stability") %>% 
   dplyr::rowwise() %>%
   dplyr::mutate(mean_log = log10(mean(c(sample_1, sample_2, sample_3))),
          sd_log = sd(log10(c(sample_1, sample_2, sample_3)))
@@ -112,7 +114,7 @@ plt_temperature <- ggplot(df_temperature, aes(x = temperature, y = mean_log)) +
 ### pH stability
 
 ```{r}
-df_ph <- openxlsx::read.xlsx(here(path_data, "supp1.xlsx"), sheet = "pH_stability") %>% 
+df_ph <- openxlsx::read.xlsx(fpath_supp, sheet = "pH_stability") %>% 
   dplyr::rowwise() %>%
   dplyr::mutate(mean_log = log10(mean(c(sample_1, sample_2, sample_3))),
          sd_log = sd(log10(c(sample_1, sample_2, sample_3)))
@@ -133,7 +135,7 @@ plt_ph <- ggplot(df_ph, aes(x = pH, y = mean_log)) +
 ### MOI
 
 ```{r}
-df_moi <- openxlsx::read.xlsx(here(path_data, "supp1.xlsx"), sheet = "MOI") %>% 
+df_moi <- openxlsx::read.xlsx(fpath_supp, sheet = "MOI") %>% 
   rowwise() %>%
   mutate(
     mean_log = mean(log10(c(sample_1, sample_2, sample_3))),
@@ -177,7 +179,7 @@ ggsave(path_target("fig-combined.png"), plot = fig_combined, device = "png", wid
 ### Lysis curve
 
 ```{r}
-df_lysis <- openxlsx::read.xlsx(here(path_data, "supp1.xlsx"), sheet = "lysis_curve") %>% 
+df_lysis <- openxlsx::read.xlsx(fpath_supp, sheet = "lysis_curve") %>% 
   reshape2::melt(id.vars = "time", variable.name = "sample_id", value.name = "OD600") %>% 
   dplyr::mutate(treatment = str_replace_all(sample_id, "_.*", ""))
 
@@ -209,7 +211,7 @@ df_lysis_summary <- df_lysis %>%
     )
   )
 
-ggplot(df_lysis_summary, aes(x = time, y = OD600_mean, color = group_label)) +
+plt_lysis_summary <- ggplot(df_lysis_summary, aes(x = time, y = OD600_mean, color = group_label)) +
   geom_line(size = 1) +
   geom_point(size = 2) +
   geom_errorbar(
@@ -226,13 +228,46 @@ ggplot(df_lysis_summary, aes(x = time, y = OD600_mean, color = group_label)) +
   ) +
   # scale_x_continuous(breaks = seq(0, 48, 5), expand = c(0,0)) +
   # scale_y_continuous(limits = c(0, 0.8), expand = c(0,0)) +
+  annotate("text", x = 33, y = 0.15, label = "ANOVA (48h): p < 0.001", 
+           hjust = 0, size = 4, fontface = "italic") +
   theme_classic(base_size = 13) +
   theme(
     legend.position = c(0.11, 0.78),
     legend.background = element_rect(fill = "white", color = "gray80")
   )
 
-ggsave(path_target("fig-lysis.png"), plot = last_plot(), device = "png", width = 6.5, height = 4.5, dpi = 300)
+plt_lysis_summary
+
+ggsave(path_target("fig3.png"), plot = plt_lysis_summary, device = "png", width = 6.5, height = 4.5, dpi = 300)
+```
+
+```{r}
+# --- Add this to your R code to calculate Lysis Stats ---
+
+# 1. Select the final time point (e.g., 48h) or a specific time point of interest
+lysis_endpoint <- df_lysis %>% 
+  dplyr::filter(time == 48) # Assuming 48 is the last time point
+
+# 2. Run One-way ANOVA
+anova_res <- aov(OD600 ~ treatment, data = lysis_endpoint)
+summary_anova <- summary(anova_res)
+
+# Extract values
+f_value <- summary_anova[[1]][["F value"]][1]
+df_num <- summary_anova[[1]][["Df"]][1]
+df_den <- summary_anova[[1]][["Df"]][2]
+p_val_anova <- summary_anova[[1]][["Pr(>F)"]][1]
+
+cat(sprintf("Lysis ANOVA (48h): F(%d, %d) = %.2f, p-value = %.3f\n", 
+            df_num, df_den, f_value, p_val_anova))
+
+cat(sprintf("Lysis ANOVA (48h): F(%d, %d) = %f, p-value = %f\n", 
+            df_num, df_den, f_value, p_val_anova))
+
+df_num
+df_den
+f_value
+p_val_anova
 ```
 
 
@@ -240,7 +275,7 @@ ggsave(path_target("fig-lysis.png"), plot = last_plot(), device = "png", width =
 ### Survival curve
 
 ```{r}
-df_survival <- openxlsx::read.xlsx(here(path_data, "supp1.xlsx"), sheet = "survival_curve") %>% 
+df_survival <- openxlsx::read.xlsx(fpath_supp, sheet = "survival_curve") %>% 
   reshape2::melt(id.vars = "time", variable.name = "Group", value.name = "Count") %>% 
   mutate(
     survival_rate = Count / 20 * 100,
@@ -248,7 +283,7 @@ df_survival <- openxlsx::read.xlsx(here(path_data, "supp1.xlsx"), sheet = "survi
       Group == "PBS_group" ~ "#2166ac",
       Group == "phage_group" ~ "#1a9850",
       Group == "bacterial_group" ~ "#ef8a62",
-      Group == "treatment_group" ~ "#fa9922ff"
+      Group == "treatment_group" ~ "#f637e0"
     ),
     group_shape = case_when(
       Group == "PBS_group" ~ 18,
@@ -281,6 +316,8 @@ plt_survival <- ggplot(df_survival, aes(x = time, y = survival_rate, group = Gro
     x = "Time (days)",
     y = "Survival rate (%)"
   ) +
+  annotate("text", x = 0, y = 10, label = "Log-rank test, p < 0.001", 
+           hjust = 0, size = 4, fontface = "italic") +
   theme_classic(base_size = 13) +
   theme(
     legend.position = c(0.7, 0.45),
@@ -291,6 +328,73 @@ plt_survival <- ggplot(df_survival, aes(x = time, y = survival_rate, group = Gro
 plt_survival
 
 ggsave(path_target("fig-survival.png"), plt_survival, device = "png", width = 6, height = 4, dpi = 300)
+```
+
+```{r}
+# --- Add this to your R code to calculate Survival Stats ---
+
+library(survival)
+
+# 1. Reconstruct individual-level data from the aggregate counts for survival analysis
+# We need a dataframe with: Time, Status (1=dead, 0=censored), Group
+reconstruct_survival_data <- function(df_counts) {
+  # Total fish per group = 20
+  total_n <- 20
+  
+  # Filter only the groups we want to compare (e.g., Treatment vs Bacterial)
+  target_groups <- c("bacterial_group", "treatment_group")
+  df_sub <- df_counts %>% dplyr::filter(Group %in% target_groups)
+  
+  all_data <- data.frame()
+  
+  for (grp in unique(df_sub$Group)) {
+    grp_data <- df_sub %>% dplyr::filter(Group == grp) %>% dplyr::arrange(time)
+    
+    # Calculate deaths at each time point
+    # Initial count is 20. If day 1 count is 18, then 2 died at day 1.
+    current_survivors <- total_n
+    deaths_vector <- c()
+    times_vector <- c()
+    
+    for (i in 1:nrow(grp_data)) {
+      day <- grp_data$time[i]
+      survivors <- grp_data$Count[i]
+      n_deaths <- current_survivors - survivors
+      
+      if (n_deaths > 0) {
+        deaths_vector <- c(deaths_vector, rep(day, n_deaths))
+      }
+      current_survivors <- survivors
+    }
+    
+    # The rest are censored at the end of experiment (Day 7)
+    censored_count <- current_survivors
+    censored_vector <- rep(7, censored_count) # Assuming exp ends at day 7
+    
+    # Combine
+    time_points <- c(deaths_vector, censored_vector)
+    status <- c(rep(1, length(deaths_vector)), rep(0, length(censored_vector))) # 1=dead
+    
+    temp_df <- data.frame(
+      time = time_points,
+      status = status,
+      group = grp
+    )
+    all_data <- rbind(all_data, temp_df)
+  }
+  return(all_data)
+}
+
+surv_data_for_stats <- reconstruct_survival_data(df_survival)
+
+# 2. Run Log-rank test (Mantel-Cox)
+surv_diff <- survdiff(Surv(time, status) ~ group, data = surv_data_for_stats)
+
+print(surv_diff)
+# Extract p-value and Chi-sq manually to print cleanly
+p_val_surv <- 1 - pchisq(surv_diff$chisq, length(surv_diff$n) - 1)
+cat(sprintf("Survival Log-rank Test: Chi-sq = %f, df = %d, p-value = %f\n", 
+            surv_diff$chisq, length(surv_diff$n) - 1, p_val_surv))
 ```
 
 ## Files written
