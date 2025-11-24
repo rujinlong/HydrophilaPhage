@@ -40,6 +40,21 @@ dir.create(path_data, recursive = TRUE, showWarnings = FALSE)
 dir.create(path_resource, recursive = TRUE, showWarnings = FALSE)
 ```
 
+
+
+```{r}
+#| label: packages
+#| message: false
+suppressPackageStartupMessages({
+  library(here)
+  library(tidyverse)
+  library(data.table)
+  library(geneviewer)
+  devtools::load_all()
+})
+```
+
+
 ## Tasks
 
 1. The genome of vB_AhyM_Hp3 was assembled using [Unicycler](https://github.com/rrwick/Unicycler). 
@@ -47,6 +62,26 @@ dir.create(path_resource, recursive = TRUE, showWarnings = FALSE)
 2. Assembled genome was annotated using [Pharokka](https://github.com/gbouras13/pharokka) and [Phold](https://github.com/gbouras13/phold).
 
 3. [vConTACT3](https://bitbucket.org/MAVERICLab/vcontact3) was used to cluster vB_AhyM_Hp3 with NCBI viral RefSeq genomes.
+
+```{r}
+#| label: gbk-to-tsv
+
+file_gbk <- here(path_data, "phynteny.gbk")
+gbk <- read_gbk(file_gbk)
+
+df_cds <- gbk$phynteny$FEATURES$CDS %>%
+  purrr::map_dfr(~ list(
+    locus_tag   = .x[["locus_tag"]],
+    translation = .x[["translation"]],
+    region      = .x[["region"]],
+    `function`  = .x[["function"]],
+    product     = .x[["product"]]
+  )) %>%
+  tidyr::separate(region, into = c("region_start", "region_end"), sep = "\\.\\.", convert = TRUE) %>% 
+  dplyr::mutate(locus_tag = str_replace(locus_tag, "_CDS", ""))
+
+fwrite(df_cds, path_target("phage_cds.tsv"), sep = "\t")
+```
 
 ## Files written
 
