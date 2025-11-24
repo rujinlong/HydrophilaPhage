@@ -58,6 +58,8 @@ suppressPackageStartupMessages({
   library(data.table)
   library(openxlsx)
   library(svglite)
+  library(ggpubr)
+  library(survival)
   devtools::load_all()
 })
 
@@ -73,6 +75,7 @@ fpath_supp <- here("data/submit", "SupplementalData.xlsx")
 ### One-step growth curve
 
 ```{r}
+#| label: onestep-figure
 df_onestep <- openxlsx::read.xlsx(fpath_supp, sheet = "growth_curve") %>% 
   dplyr::rowwise() %>%
   dplyr::mutate(mean_log = log10(mean(c(sample_1, sample_2, sample_3))),
@@ -93,6 +96,7 @@ plt_onestep <- ggplot(df_onestep, aes(x = time, y = mean_log)) +
 ### Temperature stability
 
 ```{r}
+#| label: temperature-figure
 df_temperature <- openxlsx::read.xlsx(fpath_supp, sheet = "temperature_stability") %>% 
   dplyr::rowwise() %>%
   dplyr::mutate(mean_log = log10(mean(c(sample_1, sample_2, sample_3))),
@@ -114,6 +118,7 @@ plt_temperature <- ggplot(df_temperature, aes(x = temperature, y = mean_log)) +
 ### pH stability
 
 ```{r}
+#| label: ph-figure
 df_ph <- openxlsx::read.xlsx(fpath_supp, sheet = "pH_stability") %>% 
   dplyr::rowwise() %>%
   dplyr::mutate(mean_log = log10(mean(c(sample_1, sample_2, sample_3))),
@@ -135,6 +140,7 @@ plt_ph <- ggplot(df_ph, aes(x = pH, y = mean_log)) +
 ### MOI
 
 ```{r}
+#| label: moi-figure
 df_moi <- openxlsx::read.xlsx(fpath_supp, sheet = "MOI") %>% 
   rowwise() %>%
   mutate(
@@ -159,7 +165,7 @@ plt_moi <- ggplot(df_moi, aes(x = MOI, y = mean_log)) +
 Combine previous four figures into one single figure (2x2 grid)
 
 ```{r}
-library(ggpubr)
+#| label: combine-figures
 
 fig_combined <- ggarrange(
   update_figure_theme(plt_moi),
@@ -179,6 +185,7 @@ ggsave(path_target("fig-combined.png"), plot = fig_combined, device = "png", wid
 ### Lysis curve
 
 ```{r}
+#| label: lysis-curve
 df_lysis <- openxlsx::read.xlsx(fpath_supp, sheet = "lysis_curve") %>% 
   reshape2::melt(id.vars = "time", variable.name = "sample_id", value.name = "OD600") %>% 
   dplyr::mutate(treatment = str_replace_all(sample_id, "_.*", ""))
@@ -242,32 +249,20 @@ ggsave(path_target("fig3.png"), plot = plt_lysis_summary, device = "png", width 
 ```
 
 ```{r}
-# --- Add this to your R code to calculate Lysis Stats ---
-
-# 1. Select the final time point (e.g., 48h) or a specific time point of interest
+#| label: lysis-anova
 lysis_endpoint <- df_lysis %>% 
-  dplyr::filter(time == 48) # Assuming 48 is the last time point
+  dplyr::filter(time == 48)
 
-# 2. Run One-way ANOVA
 anova_res <- aov(OD600 ~ treatment, data = lysis_endpoint)
 summary_anova <- summary(anova_res)
 
-# Extract values
 f_value <- summary_anova[[1]][["F value"]][1]
 df_num <- summary_anova[[1]][["Df"]][1]
 df_den <- summary_anova[[1]][["Df"]][2]
 p_val_anova <- summary_anova[[1]][["Pr(>F)"]][1]
 
-cat(sprintf("Lysis ANOVA (48h): F(%d, %d) = %.2f, p-value = %.3f\n", 
-            df_num, df_den, f_value, p_val_anova))
-
 cat(sprintf("Lysis ANOVA (48h): F(%d, %d) = %f, p-value = %f\n", 
             df_num, df_den, f_value, p_val_anova))
-
-df_num
-df_den
-f_value
-p_val_anova
 ```
 
 
@@ -331,12 +326,9 @@ ggsave(path_target("fig-survival.png"), plt_survival, device = "png", width = 6,
 ```
 
 ```{r}
-# --- Add this to your R code to calculate Survival Stats ---
+#｜ label: survival-stats
 
-library(survival)
-
-# 1. Reconstruct individual-level data from the aggregate counts for survival analysis
-# We need a dataframe with: Time, Status (1=dead, 0=censored), Group
+# Reconstruct individual-level data from the aggregate counts for survival analysis
 reconstruct_survival_data <- function(df_counts) {
   # Total fish per group = 20
   total_n <- 20
@@ -387,11 +379,11 @@ reconstruct_survival_data <- function(df_counts) {
 
 surv_data_for_stats <- reconstruct_survival_data(df_survival)
 
-# 2. Run Log-rank test (Mantel-Cox)
+# Log-rank test (Mantel-Cox)
 surv_diff <- survdiff(Surv(time, status) ~ group, data = surv_data_for_stats)
 
 print(surv_diff)
-# Extract p-value and Chi-sq manually to print cleanly
+
 p_val_surv <- 1 - pchisq(surv_diff$chisq, length(surv_diff$n) - 1)
 cat(sprintf("Survival Log-rank Test: Chi-sq = %f, df = %d, p-value = %f\n", 
             surv_diff$chisq, length(surv_diff$n) - 1, p_val_surv))
