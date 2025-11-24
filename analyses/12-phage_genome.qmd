@@ -40,6 +40,19 @@ dir.create(path_data, recursive = TRUE, showWarnings = FALSE)
 dir.create(path_resource, recursive = TRUE, showWarnings = FALSE)
 ```
 
+
+
+```{r}
+#| label: packages
+#| message: false
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(geneviewer)
+  devtools::load_all()
+})
+```
+
+
 ## Tasks
 
 1. The genome of vB_AhyM_Hp3 was assembled using [Unicycler](https://github.com/rrwick/Unicycler). 
@@ -47,6 +60,67 @@ dir.create(path_resource, recursive = TRUE, showWarnings = FALSE)
 2. Assembled genome was annotated using [Pharokka](https://github.com/gbouras13/pharokka) and [Phold](https://github.com/gbouras13/phold).
 
 3. [vConTACT3](https://bitbucket.org/MAVERICLab/vcontact3) was used to cluster vB_AhyM_Hp3 with NCBI viral RefSeq genomes.
+
+```{r}
+#| label: gbk-to-tsv
+
+file_gbk <- here(path_data, "phynteny.gbk")
+
+gb_record <- readGenBank(file_gbk)
+
+feature_tbl <- gbFeatureTable(gb_record) |>
+  as_tibble()
+
+needed_cols <- c(
+  "gene", "locus_tag", "product", "protein_id",
+  "note", "inference", "db_xref", "translation"
+)
+
+missing_cols <- setdiff(needed_cols, names(feature_tbl))
+
+if (length(missing_cols) > 0) {
+  fill_tbl <- purrr::map_dfc(
+    missing_cols,
+    ~tibble(!! .x := NA_character_)
+  )
+  feature_tbl <- dplyr::bind_cols(feature_tbl, fill_tbl)
+}
+
+feature_tbl <- feature_tbl |>
+  rename(
+    feature_type = type,
+    seq_id = seqnames
+  ) |>
+  mutate(
+    strand = as.character(strand),
+    length_bp = end - start + 1
+  ) |>
+  filter(feature_type %in% c("CDS", "gene", "misc_feature", "tRNA", "rRNA")) |>
+  arrange(seq_id, start) |>
+  select(
+    feature_type,
+    seq_id,
+    start,
+    end,
+    length_bp,
+    strand,
+    gene,
+    locus_tag,
+    product,
+    protein_id,
+    note,
+    inference,
+    db_xref,
+    translation,
+    everything()
+  )
+
+file_gbk_features <- here(path_data, "phynteny_features.tsv")
+
+readr::write_tsv(feature_tbl, file_gbk_features)
+
+feature_tbl
+```
 
 ## Files written
 
