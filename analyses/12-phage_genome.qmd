@@ -46,7 +46,9 @@ dir.create(path_resource, recursive = TRUE, showWarnings = FALSE)
 #| label: packages
 #| message: false
 suppressPackageStartupMessages({
+  library(here)
   library(tidyverse)
+  library(data.table)
   library(geneviewer)
   devtools::load_all()
 })
@@ -65,61 +67,20 @@ suppressPackageStartupMessages({
 #| label: gbk-to-tsv
 
 file_gbk <- here(path_data, "phynteny.gbk")
+gbk <- read_gbk(file_gbk)
 
-gb_record <- readGenBank(file_gbk)
+df_cds <- gbk$phynteny$FEATURES$CDS %>%
+  purrr::map_dfr(~ list(
+    locus_tag   = .x[["locus_tag"]],
+    translation = .x[["translation"]],
+    region      = .x[["region"]],
+    `function`  = .x[["function"]],
+    product     = .x[["product"]]
+  )) %>%
+  tidyr::separate(region, into = c("region_start", "region_end"), sep = "\\.\\.", convert = TRUE) %>% 
+  dplyr::mutate(locus_tag = str_replace(locus_tag, "_CDS", ""))
 
-feature_tbl <- gbFeatureTable(gb_record) |>
-  as_tibble()
-
-needed_cols <- c(
-  "gene", "locus_tag", "product", "protein_id",
-  "note", "inference", "db_xref", "translation"
-)
-
-missing_cols <- setdiff(needed_cols, names(feature_tbl))
-
-if (length(missing_cols) > 0) {
-  fill_tbl <- purrr::map_dfc(
-    missing_cols,
-    ~tibble(!! .x := NA_character_)
-  )
-  feature_tbl <- dplyr::bind_cols(feature_tbl, fill_tbl)
-}
-
-feature_tbl <- feature_tbl |>
-  rename(
-    feature_type = type,
-    seq_id = seqnames
-  ) |>
-  mutate(
-    strand = as.character(strand),
-    length_bp = end - start + 1
-  ) |>
-  filter(feature_type %in% c("CDS", "gene", "misc_feature", "tRNA", "rRNA")) |>
-  arrange(seq_id, start) |>
-  select(
-    feature_type,
-    seq_id,
-    start,
-    end,
-    length_bp,
-    strand,
-    gene,
-    locus_tag,
-    product,
-    protein_id,
-    note,
-    inference,
-    db_xref,
-    translation,
-    everything()
-  )
-
-file_gbk_features <- here(path_data, "phynteny_features.tsv")
-
-readr::write_tsv(feature_tbl, file_gbk_features)
-
-feature_tbl
+fwrite(df_cds, path_target("phage_cds.tsv"), sep = "\t")
 ```
 
 ## Files written
