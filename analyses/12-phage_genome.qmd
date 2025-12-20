@@ -4,7 +4,7 @@ title-block-banner: true
 author:
   - name: Jinlong Ru
     orcid: 0000-0002-6757-6018
-date: 2024-12-09
+date: 2025-12-20
 toc: true
 toc-depth: 4
 number-sections: true
@@ -22,13 +22,23 @@ params:
   name: "12-phage_genome"
 ---
 
-```{r setup}
+```{r}
+#| label: params
+#| eval: !expr interactive()
+#| include: false
+params = list(name = "12-phage_genome")
+```
+
+```{r}
+#| label: setup
 #| message: false
 #| include: false
 #| warning: false
-setwd(here::here("analyses"))
-params <- list(name = "12-phage_genome")
-here::i_am(paste0(params$name, ".qmd"), uuid = "78c65b38-67d9-4cad-a701-9cda22361a70")
+wd <- "analyses"
+if (basename(getwd()) != wd) {
+  setwd(here::here(wd))
+}
+here::i_am(paste0(params$name, ".qmd"), uuid = "cd097d59-063f-4d07-8120-c6966ea882de")
 projthis::proj_create_dir_target(params$name, clean = FALSE)
 path_target <- projthis::proj_path_target(params$name)
 path_source <- projthis::proj_path_source(params$name)
@@ -39,8 +49,6 @@ dir.create(path_raw, recursive = TRUE, showWarnings = FALSE)
 dir.create(path_data, recursive = TRUE, showWarnings = FALSE)
 dir.create(path_resource, recursive = TRUE, showWarnings = FALSE)
 ```
-
-
 
 ```{r}
 #| label: packages
@@ -53,7 +61,6 @@ suppressPackageStartupMessages({
   devtools::load_all()
 })
 ```
-
 
 ## Tasks
 
@@ -87,6 +94,8 @@ fwrite(df_cds, path_target("phage_cds.tsv"), sep = "\t")
 
 These files have been written to the target directory, `r paste0("data/", params$name)`:
 
-```{r list-files-target}
+```{r}
+#| label: list-files-target
+#| include: false
 projthis::proj_dir_info(path_target(), tz = "CET")
 ```

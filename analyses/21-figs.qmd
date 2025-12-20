@@ -27,6 +27,13 @@ params:
 The purpose of this document is to create figures based on the bacteriophage infection experiments.
 
 ```{r}
+#| label: params
+#| eval: !expr interactive()
+#| include: false
+params = list(name = "21-figs")
+```
+
+```{r}
 #| label: setup
 #| message: false
 #| include: false
@@ -35,7 +42,6 @@ wd <- "analyses"
 if (basename(getwd()) != wd) {
   setwd(here::here(wd))
 }
-params <- list(name = "21-figs")
 here::i_am(paste0(params$name, ".qmd"), uuid = "a439e682-f799-4817-8772-5adc8157c4dd")
 projthis::proj_create_dir_target(params$name, clean = FALSE)
 path_target <- projthis::proj_path_target(params$name)
@@ -395,5 +401,6 @@ These files have been written to the target directory, `r paste0("data/", params
 
 ```{r}
 #| label: list-files-target
+#| include: false
 projthis::proj_dir_info(path_target(), tz = "CET")
 ```
