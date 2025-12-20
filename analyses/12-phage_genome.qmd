@@ -66,7 +66,7 @@ suppressPackageStartupMessages({
 
 1. The genome of vB_AhyM_Hp3 was assembled using [Unicycler](https://github.com/rrwick/Unicycler). 
 
-2. Assembled genome was annotated using [Pharokka](https://github.com/gbouras13/pharokka) and [Phold](https://github.com/gbouras13/phold).
+2. Assembled genome was annotated using [Pharokka](https://github.com/gbouras13/pharokka), [Phold](https://github.com/gbouras13/phold), and [phynteny](https://github.com/susiegriggo/Phynteny).
 
 3. [vConTACT3](https://bitbucket.org/MAVERICLab/vcontact3) was used to cluster vB_AhyM_Hp3 with NCBI viral RefSeq genomes.
 
