@@ -76,16 +76,37 @@ suppressPackageStartupMessages({
 file_gbk <- here(path_data, "phynteny.gbk")
 gbk <- read_gbk(file_gbk)
 
+# update the gbk file: if the`function` == "unknown function" and phynteny exists but not equal to "other", then update the `function` with phynteny
+gbk$phynteny$FEATURES$CDS <- purrr::map(gbk$phynteny$FEATURES$CDS, ~ {
+
+  phynteny    <- purrr::pluck(.x, "phynteny",  .default = "other")
+  func_value  <- purrr::pluck(.x, "function",  .default = NA_character_)
+  if (func_value == "unknown function" && phynteny != "other") {
+    .x[["function"]] <- phynteny
+  }
+  return(.x)
+})
+
 df_cds <- gbk$phynteny$FEATURES$CDS %>%
-  purrr::map_dfr(~ list(
-    locus_tag   = .x[["locus_tag"]],
-    translation = .x[["translation"]],
-    region      = .x[["region"]],
-    `function`  = .x[["function"]],
-    product     = .x[["product"]]
-  )) %>%
-  tidyr::separate(region, into = c("region_start", "region_end"), sep = "\\.\\.", convert = TRUE) %>% 
-  dplyr::mutate(locus_tag = str_replace(locus_tag, "_CDS", ""))
+  purrr::map_dfr(~ {
+    list(
+      locus_tag   = purrr::pluck(.x, "locus_tag",   .default = NA_character_),
+      translation = purrr::pluck(.x, "translation", .default = NA_character_),
+      region      = purrr::pluck(.x, "region",      .default = NA_character_),
+      `function`  = purrr::pluck(.x, "function",    .default = NA_character_),
+      product     = purrr::pluck(.x, "product",     .default = NA_character_)
+    )
+  }) %>%
+  tidyr::separate(
+    region,
+    into = c("region_start", "region_end"),
+    sep = "\\.\\.",
+    convert = TRUE,
+    fill = "right",
+    extra = "merge"
+  ) %>%
+  dplyr::mutate(locus_tag = stringr::str_replace(locus_tag, "_CDS", ""))
+
 
 fwrite(df_cds, path_target("phage_cds.tsv"), sep = "\t")
 ```
