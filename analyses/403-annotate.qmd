@@ -1,0 +1,99 @@
+---
+title: "403-annotate"
+date: today
+params:
+  name: "403-annotate"
+---
+
+**Updated: `r format(Sys.time(), '%Y-%m-%d %H:%M:%S', tz = 'CET')` CET.**
+
+```{r}
+#| label: params
+#| eval: !expr interactive()
+#| include: false
+params <- list(name = "403-annotate")
+```
+
+```{r}
+#| label: setup
+#| include: false
+#| message: false
+#| warning: false
+#| cache: false
+wd <- "analyses"
+if (basename(getwd()) != wd) {
+    setwd(here::here(wd))
+}
+here::i_am(paste0(params$name, ".qmd"), uuid = "3bd8b521-0572-4b38-8621-e6c8fb4e976f")
+qproj::proj_create_dir_target(params$name, clean = FALSE)
+
+# convenience helpers
+path_target <- qproj::proj_path_target(params$name)
+path_source <- qproj::proj_path_source(params$name)
+path_raw <- path_source("00-raw")
+path_resource <- here::here(path_raw, "d00-resource")
+path_data <- here::here(path_raw, paste0("d", params$name))
+dir.create(path_raw, recursive = TRUE, showWarnings = FALSE)
+dir.create(path_data, recursive = TRUE, showWarnings = FALSE)
+dir.create(path_resource, recursive = TRUE, showWarnings = FALSE)
+```
+
+```{r}
+#| label: packages
+#| message: false
+#| warning: false
+#| cache: false
+suppressPackageStartupMessages({
+  library(here)
+  library(conflicted)
+  library(tidyverse)
+  library(data.table)
+  devtools::load_all()
+})
+# Resolve common dplyr / data.table / stats name clashes up front.
+# Add more `conflicts_prefer()` calls below as needed.
+conflicted::conflicts_prefer(
+  dplyr::filter,
+  dplyr::lag,
+  dplyr::first,
+  dplyr::last,
+  dplyr::between,
+  .quiet = TRUE
+)
+```
+
+## Tasks
+
+> **共享底座 step 3/6 · 主注释 pipeline**。映射 `shared-base-spec-v1.md §4`。复用 pc031 已验证工具链(Pharokka/Phold/Phynteny/vConTACT3)。
+> 去冗基因组集 → 分类 + lifestyle + 宿主 + 基因注释，交 `404-safety` / `405-enzymes` / `406-master_table`。
+
+**上游**：`path_source("402-dereplicate", "derep_representatives.fna")`。**外部工具**：
+- 分类：geNomad + vConTACT3 + **VIRIDIC(family-level demarcation) + 多基因 proteomic tree(ViPTree/VICTOR)** + ICTV VMR → robust new-clade flag（非单基因）
+- Lifestyle：BACPHLIP / PhaTYP；**宿主预测**：iPHoP(+CHERRY)
+- 基因注释：Pharokka → Phold → Phynteny（复用 pc031 `112-phage_genome` 模式）
+
+### Task 1: 分类 + lifestyle + 宿主（命令记录，HPC 执行）
+
+```{r}
+#| label: taxonomy-lifestyle-host
+#| eval: false
+# TODO[403-T1]: geNomad / vConTACT3 / VIRIDIC / ViPTree / BACPHLIP / iPHoP
+```
+
+### Task 2: 基因注释 Pharokka→Phold→Phynteny
+
+```{r}
+#| label: gene-annotation
+#| eval: false
+# TODO[403-T2]: 复用 pc031 R/utils.R::parse_vcontact3 等 parse 逻辑
+# write: path_target("annotation_cds.tsv") / path_target("taxonomy.tsv") / path_target("lifestyle_host.tsv")
+```
+
+## Files written
+
+These files have been written to the target directory, `r paste0("data/", params$name)`:
+
+```{r}
+#| label: list-files-target
+knitr::kable(qproj::proj_dir_info(path_target(), tz = "CET"))
+```

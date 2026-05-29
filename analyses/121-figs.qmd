@@ -1,51 +1,35 @@
 ---
-title: "21-figs"
-title-block-banner: true
-author:
-  - name: Jinlong Ru
-    orcid: 0000-0002-6757-6018
-date: 2025-10-23
-toc: true
-toc-depth: 4
-number-sections: true
-code-fold: true
-code-line-numbers: true
-code-tools: true
-format: 
-  html:
-    embed-resources: true
-    smooth-scroll: true
-    page-layout: full
-reference-location: section
-citation-location: document
+title: "121-figs"
+date: today
 params:
-  name: "21-figs"
+  name: "121-figs"
 ---
 
 **Updated: `r format(Sys.time(), '%Y-%m-%d %H:%M:%S', tz = 'CET')` CET.**
-
-The purpose of this document is to create figures based on the bacteriophage infection experiments.
 
 ```{r}
 #| label: params
 #| eval: !expr interactive()
 #| include: false
-params = list(name = "21-figs")
+params <- list(name = "121-figs")
 ```
 
 ```{r}
 #| label: setup
-#| message: false
 #| include: false
+#| message: false
 #| warning: false
+#| cache: false
 wd <- "analyses"
 if (basename(getwd()) != wd) {
-  setwd(here::here(wd))
+    setwd(here::here(wd))
 }
-here::i_am(paste0(params$name, ".qmd"), uuid = "a439e682-f799-4817-8772-5adc8157c4dd")
-projthis::proj_create_dir_target(params$name, clean = FALSE)
-path_target <- projthis::proj_path_target(params$name)
-path_source <- projthis::proj_path_source(params$name)
+here::i_am(paste0(params$name, ".qmd"), uuid = "1ff377c0-5958-402d-90cf-59485dbe0588")
+qproj::proj_create_dir_target(params$name, clean = FALSE)
+
+# convenience helpers
+path_target <- qproj::proj_path_target(params$name)
+path_source <- qproj::proj_path_source(params$name)
 path_raw <- path_source("00-raw")
 path_resource <- here::here(path_raw, "d00-resource")
 path_data <- here::here(path_raw, paste0("d", params$name))
@@ -57,6 +41,8 @@ dir.create(path_resource, recursive = TRUE, showWarnings = FALSE)
 ```{r}
 #| label: packages
 #| message: false
+#| warning: false
+#| cache: false
 suppressPackageStartupMessages({
   library(here)
   library(conflicted)
@@ -68,6 +54,16 @@ suppressPackageStartupMessages({
   library(survival)
   devtools::load_all()
 })
+# Resolve common dplyr / data.table / stats name clashes up front.
+# Add more `conflicts_prefer()` calls below as needed.
+conflicted::conflicts_prefer(
+  dplyr::filter,
+  dplyr::lag,
+  dplyr::first,
+  dplyr::last,
+  dplyr::between,
+  .quiet = TRUE
+)
 
 update_figure_theme <- function(plot) {
   plot + theme_classic(base_size = 13)
@@ -395,12 +391,12 @@ cat(sprintf("Survival Log-rank Test: Chi-sq = %f, df = %d, p-value = %f\n",
             surv_diff$chisq, length(surv_diff$n) - 1, p_val_surv))
 ```
 
+
 ## Files written
 
 These files have been written to the target directory, `r paste0("data/", params$name)`:
 
 ```{r}
 #| label: list-files-target
-#| include: false
-projthis::proj_dir_info(path_target(), tz = "CET")
+knitr::kable(qproj::proj_dir_info(path_target(), tz = "CET"))
 ```

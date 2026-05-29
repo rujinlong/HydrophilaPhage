@@ -1,37 +1,35 @@
 ---
-title: "11-bacterial_genome"
-title-block-banner: true
-author:
-  - name: Jinlong Ru
-    orcid: 0000-0002-6757-6018
-date: 2024-12-08
-toc: true
-toc-depth: 4
-number-sections: true
-code-fold: true
-code-line-numbers: true
-code-tools: true
-format: 
-  html:
-    embed-resources: true
-    smooth-scroll: true
-    page-layout: full
-reference-location: section
-citation-location: document
+title: "111-bacterial_genome"
+date: today
 params:
-  name: "11-bacterial_genome"
+  name: "111-bacterial_genome"
 ---
 
-```{r setup}
-#| message: false
+**Updated: `r format(Sys.time(), '%Y-%m-%d %H:%M:%S', tz = 'CET')` CET.**
+
+```{r}
+#| label: params
+#| eval: !expr interactive()
 #| include: false
+params <- list(name = "111-bacterial_genome")
+```
+
+```{r}
+#| label: setup
+#| include: false
+#| message: false
 #| warning: false
-setwd(here::here("analyses"))
-params <- list(name = "11-bacterial_genome")
-here::i_am(paste0(params$name, ".qmd"), uuid = "c5ca5f19-4770-4226-b501-460d26421fb8")
-projthis::proj_create_dir_target(params$name, clean = FALSE)
-path_target <- projthis::proj_path_target(params$name)
-path_source <- projthis::proj_path_source(params$name)
+#| cache: false
+wd <- "analyses"
+if (basename(getwd()) != wd) {
+    setwd(here::here(wd))
+}
+here::i_am(paste0(params$name, ".qmd"), uuid = "247a7409-6777-4665-9620-fa40bd70ac76")
+qproj::proj_create_dir_target(params$name, clean = FALSE)
+
+# convenience helpers
+path_target <- qproj::proj_path_target(params$name)
+path_source <- qproj::proj_path_source(params$name)
 path_raw <- path_source("00-raw")
 path_resource <- here::here(path_raw, "d00-resource")
 path_data <- here::here(path_raw, paste0("d", params$name))
@@ -52,6 +50,7 @@ dir.create(path_resource, recursive = TRUE, showWarnings = FALSE)
 
 These files have been written to the target directory, `r paste0("data/", params$name)`:
 
-```{r list-files-target}
-projthis::proj_dir_info(path_target(), tz = "CET")
+```{r}
+#| label: list-files-target
+knitr::kable(qproj::proj_dir_info(path_target(), tz = "CET"))
 ```

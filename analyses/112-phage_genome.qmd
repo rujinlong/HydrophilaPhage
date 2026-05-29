@@ -1,47 +1,35 @@
 ---
-title: "12-phage_genome"
-title-block-banner: true
-author:
-  - name: Jinlong Ru
-    orcid: 0000-0002-6757-6018
-date: 2025-12-20
-toc: true
-toc-depth: 4
-number-sections: true
-code-fold: true
-code-line-numbers: true
-code-tools: true
-format: 
-  html:
-    embed-resources: true
-    smooth-scroll: true
-    page-layout: full
-reference-location: section
-citation-location: document
+title: "112-phage_genome"
+date: today
 params:
-  name: "12-phage_genome"
+  name: "112-phage_genome"
 ---
+
+**Updated: `r format(Sys.time(), '%Y-%m-%d %H:%M:%S', tz = 'CET')` CET.**
 
 ```{r}
 #| label: params
 #| eval: !expr interactive()
 #| include: false
-params = list(name = "12-phage_genome")
+params <- list(name = "112-phage_genome")
 ```
 
 ```{r}
 #| label: setup
-#| message: false
 #| include: false
+#| message: false
 #| warning: false
+#| cache: false
 wd <- "analyses"
 if (basename(getwd()) != wd) {
-  setwd(here::here(wd))
+    setwd(here::here(wd))
 }
-here::i_am(paste0(params$name, ".qmd"), uuid = "cd097d59-063f-4d07-8120-c6966ea882de")
-projthis::proj_create_dir_target(params$name, clean = FALSE)
-path_target <- projthis::proj_path_target(params$name)
-path_source <- projthis::proj_path_source(params$name)
+here::i_am(paste0(params$name, ".qmd"), uuid = "e776e5a8-f390-41be-a235-1dd1ab20043e")
+qproj::proj_create_dir_target(params$name, clean = FALSE)
+
+# convenience helpers
+path_target <- qproj::proj_path_target(params$name)
+path_source <- qproj::proj_path_source(params$name)
 path_raw <- path_source("00-raw")
 path_resource <- here::here(path_raw, "d00-resource")
 path_data <- here::here(path_raw, paste0("d", params$name))
@@ -53,13 +41,26 @@ dir.create(path_resource, recursive = TRUE, showWarnings = FALSE)
 ```{r}
 #| label: packages
 #| message: false
+#| warning: false
+#| cache: false
 suppressPackageStartupMessages({
   library(here)
+  library(conflicted)
   library(tidyverse)
   library(data.table)
   library(geneviewer)
   devtools::load_all()
 })
+# Resolve common dplyr / data.table / stats name clashes up front.
+# Add more `conflicts_prefer()` calls below as needed.
+conflicted::conflicts_prefer(
+  dplyr::filter,
+  dplyr::lag,
+  dplyr::first,
+  dplyr::last,
+  dplyr::between,
+  .quiet = TRUE
+)
 ```
 
 ## Tasks
@@ -117,6 +118,5 @@ These files have been written to the target directory, `r paste0("data/", params
 
 ```{r}
 #| label: list-files-target
-#| include: false
-projthis::proj_dir_info(path_target(), tz = "CET")
+knitr::kable(qproj::proj_dir_info(path_target(), tz = "CET"))
 ```

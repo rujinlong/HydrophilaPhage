@@ -1,45 +1,35 @@
 ---
-title: "13-tree"
-title-block-banner: true
-author:
-  - name: Jinlong Ru
-    orcid: 0000-0002-6757-6018
-date: 2025-10-02
-toc: true
-toc-depth: 4
-number-sections: true
-code-fold: true
-code-line-numbers: true
-code-tools: true
-format: 
-  html:
-    embed-resources: true
-    smooth-scroll: true
-    page-layout: full
-reference-location: section
-citation-location: document
+title: "113-tree"
+date: today
 params:
-  name: "13-tree"
+  name: "113-tree"
 ---
 
 **Updated: `r format(Sys.time(), '%Y-%m-%d %H:%M:%S', tz = 'CET')` CET.**
 
-The purpose of this document is to visualize the phylogenetic tree built using the Terminase Large Subunit (TerL) protein sequences.
+```{r}
+#| label: params
+#| eval: !expr interactive()
+#| include: false
+params <- list(name = "113-tree")
+```
 
 ```{r}
 #| label: setup
-#| message: false
 #| include: false
+#| message: false
 #| warning: false
+#| cache: false
 wd <- "analyses"
 if (basename(getwd()) != wd) {
-  setwd(here::here(wd))
+    setwd(here::here(wd))
 }
-params <- list(name = "13-tree")
-here::i_am(paste0(params$name, ".qmd"), uuid = "f37b82f2-f35f-4958-9211-3fc37c4b4f2e")
-projthis::proj_create_dir_target(params$name, clean = FALSE)
-path_target <- projthis::proj_path_target(params$name)
-path_source <- projthis::proj_path_source(params$name)
+here::i_am(paste0(params$name, ".qmd"), uuid = "24d9ee92-87f0-437d-8a74-baacaab327c8")
+qproj::proj_create_dir_target(params$name, clean = FALSE)
+
+# convenience helpers
+path_target <- qproj::proj_path_target(params$name)
+path_source <- qproj::proj_path_source(params$name)
 path_raw <- path_source("00-raw")
 path_resource <- here::here(path_raw, "d00-resource")
 path_data <- here::here(path_raw, paste0("d", params$name))
@@ -51,6 +41,8 @@ dir.create(path_resource, recursive = TRUE, showWarnings = FALSE)
 ```{r}
 #| label: packages
 #| message: false
+#| warning: false
+#| cache: false
 suppressPackageStartupMessages({
   library(here)
   library(conflicted)
@@ -58,8 +50,19 @@ suppressPackageStartupMessages({
   library(data.table)
   library(ggtree)
   library(ape)
+  library(openxlsx)
   devtools::load_all()
 })
+# Resolve common dplyr / data.table / stats name clashes up front.
+# Add more `conflicts_prefer()` calls below as needed.
+conflicted::conflicts_prefer(
+  dplyr::filter,
+  dplyr::lag,
+  dplyr::first,
+  dplyr::last,
+  dplyr::between,
+  .quiet = TRUE
+)
 ```
 
 ## Tasks
@@ -71,7 +74,7 @@ The first task is to import the NWK file containing the phylogenetic tree. The N
 tree <- read.tree(here(path_data, "TLS_tree.nwk"))
 
 # save the node data as an excel file, so that user can modify the node data manually and then import to the tree again
-library(openxlsx)
+
 tip_data <- as.data.frame(tree$tip.label)
 write.xlsx(tip_data, here(path_data, "tip_data.xlsx"), rowNames = TRUE)
 
@@ -95,5 +98,5 @@ These files have been written to the target directory, `r paste0("data/", params
 
 ```{r}
 #| label: list-files-target
-projthis::proj_dir_info(path_target(), tz = "CET")
+knitr::kable(qproj::proj_dir_info(path_target(), tz = "CET"))
 ```

@@ -15,3 +15,7 @@ analyses/data
 **/*.quarto_ipynb
 .claude/context/pm.vec
 .claude/context/pm.sqlite.bak*
+
+# manuscript/ drafts: track .qmd source; ignore bibliography symlink (machine-specific) + quarto render aux
+manuscript/bibliography.bib
+manuscript/**/*_files/
