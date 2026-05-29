@@ -13,3 +13,5 @@ analyses/data
 
 /.quarto/
 **/*.quarto_ipynb
+.claude/context/pm.vec
+.claude/context/pm.sqlite.bak*
