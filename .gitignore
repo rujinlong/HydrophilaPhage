@@ -16,6 +16,19 @@ analyses/data
 .claude/context/pm.vec
 .claude/context/pm.sqlite.bak*
 
-# manuscript/ drafts: track .qmd source; ignore bibliography symlink (machine-specific) + quarto render aux
+# manuscript/ drafts: track .tex/Makefile source; ignore bibliography symlink (machine-specific) + build artifacts
 manuscript/bibliography.bib
 manuscript/**/*_files/
+
+# LaTeX build artifacts + anonymize.py flattened outputs (manuscript-anon.* is generated)
+manuscript/*.aux
+manuscript/*.bbl
+manuscript/*.blg
+manuscript/*.fdb_latexmk
+manuscript/*.fls
+manuscript/*.log
+manuscript/*.out
+manuscript/*.pdf
+manuscript/*.synctex.gz
+manuscript/*.xdv
+manuscript/manuscript-anon.*

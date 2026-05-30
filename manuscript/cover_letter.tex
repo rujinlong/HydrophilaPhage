@@ -1,0 +1,100 @@
+% Cover letter — Hp3 manuscript, Microbial Biotechnology (Wiley)
+% Build:  latexmk cover_letter.tex   (xelatex)
+\documentclass[11pt,a4paper]{article}
+\usepackage{iftex}
+\ifPDFTeX\usepackage[T1]{fontenc}\usepackage[utf8]{inputenc}
+\else\usepackage{fontspec}\setmainfont{Times New Roman}\fi
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{parskip}
+\usepackage{hyperref}\hypersetup{hidelinks}
+\pagestyle{empty}
+
+\begin{document}
+
+\noindent Jinlong Ru, on behalf of all authors\\
+Technical University of Munich \& Helmholtz Centre Munich\\
+\href{mailto:jinlong.ru@tum.de}{jinlong.ru@tum.de}
+
+\bigskip
+\noindent The Editor-in-Chief\\
+\emph{Microbial Biotechnology}
+
+\bigskip
+\noindent Dear Editor,
+
+We are pleased to submit our manuscript, \textbf{``A novel bacteriophage
+representing a putative new viral family rescues largemouth bass from lethal
+\emph{Aeromonas hydrophila} infection,''} for consideration as a Research
+Article in \emph{Microbial Biotechnology}.
+
+\emph{Aeromonas hydrophila} is a leading aquaculture pathogen whose escalating
+multidrug resistance demands sustainable, non-antibiotic control strategies.
+We report the isolation and multi-level characterization of bacteriophage
+vB\_AhyM\_Hp3 (Hp3) against \emph{A. hydrophila}, with three findings we
+believe are of direct interest to the journal's biocontrol readership:
+
+\begin{enumerate}
+\item \textbf{A distinct new viral lineage.} Integrating nucleotide-level
+(VIRIDIC, 83.65\% intergenomic similarity), single-gene (terminase
+large-subunit ML phylogeny), and whole-proteome analyses (ViPTree; amino-acid
+genome-BLAST distance phylogeny, VICTOR), Hp3 and its closest relative HJ05
+constitute a \emph{new genus} that represents a \emph{putative new family}
+within the class \emph{Caudoviricetes} (maximum whole-proteome similarity to
+any classified virus $S_G = 0.073$).
+
+\item \textbf{Demonstrated \emph{in vivo} efficacy and host safety.} A single
+administration (MOI 1.0) increased the seven-day survival of largemouth bass
+from 15\% to 85\% under lethal challenge, while fish receiving phage alone
+showed 100\% survival with no histopathology.
+
+\item \textbf{A genomically safe, well-defined biocontrol candidate.} Hp3
+carries no antibiotic-resistance genes and no high-confidence virulence
+determinants, and exhibits rapid lytic kinetics with broad temperature and pH
+stability.
+
+\end{enumerate}
+
+Together these results position Hp3 both as a practical biocontrol agent for
+aquaculture and as a foundation for next-generation engineered phage
+therapeutics --- squarely within the scope of \emph{Microbial Biotechnology}.
+
+The manuscript is original, has not been published previously, and is not under
+consideration elsewhere. As corresponding author, I consent to its publication
+and confirm that the content and authorship of this manuscript have been
+approved by all authors; the authors declare no competing interests. All raw sequencing data and assembled genomes are
+openly available in NCBI BioProject \textbf{PRJNA1348731}; figure source data
+are deposited in Figshare
+(\href{https://doi.org/10.6084/m9.figshare.30500525}{10.6084/m9.figshare.30500525})
+and the analysis code is archived in Zenodo
+(\href{https://doi.org/10.5281/zenodo.17454899}{10.5281/zenodo.17454899}).
+All animal experiments followed the ARRIVE guidelines and were approved by the
+Institutional Animal Care and Use Committee (approval no. NWAFU-314020038).
+
+% --------------------------------------------------------------------------
+% Suggested reviewers — PLACEHOLDERS. Fill with 3–5 real experts (name,
+% affiliation, email) with NO conflict of interest (not collaborators/
+% co-authors in the last ~5 years). Pick complementary expertise so the
+% three pillars of the paper are each covered:
+% --------------------------------------------------------------------------
+\medskip
+\noindent\textbf{Suggested reviewers} (no conflicts of interest):
+\begin{itemize}
+\item \emph{[Name, affiliation, email]} --- bacteriophage genomics and
+prokaryotic virus taxonomy (ICTV \emph{Caudoviricetes} framework).
+\item \emph{[Name, affiliation, email]} --- \emph{Aeromonas} / aquaculture
+phage therapy and host-range biology.
+\item \emph{[Name, affiliation, email]} --- bacterial diseases of farmed fish
+(e.g.\ largemouth bass) and \emph{in vivo} phage protection models.
+\end{itemize}
+
+\medskip
+\noindent We thank you for considering our work and look forward to your
+response.
+
+\bigskip
+\noindent Sincerely,\\[1ex]
+Jinlong Ru, Li Deng, and Gaoxue Wang\\
+\emph{(corresponding authors)}\\
+on behalf of all authors
+
+\end{document}

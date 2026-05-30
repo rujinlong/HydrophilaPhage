@@ -13,7 +13,7 @@ The science: characterization of phage `vB_AhyM_Hp3` (genome + biology + in-vivo
 `analyses/data` is a **symlink** to `~/Dropbox/project/pc031-aquaPhage/data/` and is gitignored. Two consequences:
 
 - Don't expect data when running on a fresh clone; the symlink target must exist locally.
-- The Dropbox tree holds the manuscript artifacts (`manuscript.qmd`, `manuscript.tex`, `manuscript.docx`, `cover_letter*.docx`), the bibliography (`bibliography.bib` itself symlinks into the user's Zotero export), the LaTeX class (`elsarticle.cls`), and per-step input/output directories. Edits to the manuscript happen there, not in this repo.
+- The Dropbox tree holds the **legacy** manuscript artifacts (`manuscript.qmd` and its `.tex`/`.docx` renders, `cover_letter*.docx`) and per-step input/output directories; `bibliography.bib` symlinks into the user's Zotero export. **As of 2026-05 the manuscript is authored in LaTeX under this repo's `manuscript/` (see "Manuscript pipeline note"), not in the Dropbox `.qmd`.** Per-step data input/output still lives in the Dropbox tree.
 
 `analyses/data/submit/SupplementalData.xlsx` is the wet-lab data source for `21-figs.qmd` (growth curve, temperature/pH stability, MOI, lysis, survival sheets).
 
@@ -77,4 +77,12 @@ There are no unit tests (`testthat/edition: 3` is configured in DESCRIPTION but 
 
 ## Manuscript pipeline note
 
-The manuscript itself (`.qmd` → `.tex` → `.docx`) is rendered from `~/Dropbox/project/pc031-aquaPhage/data/manuscript.qmd` using `elsarticle.cls` and the bibliography at `data/bibliography.bib` (Zotero export). When the user asks to "update the manuscript" or "respond to reviewers," work in the Dropbox tree, not in this repo's `analyses/`.
+**As of 2026-05 the manuscript is authored in LaTeX under `manuscript/` in this repo and built with `latexmk` (xelatex) — not Quarto.** Layout:
+
+- `manuscript/manuscript.tex` — frontmatter (article class + `authblk`, author-year via `natbib`+`apalike`) and `\input{body.tex}`.
+- `manuscript/body.tex` — the sections (Introduction … Declarations).
+- `manuscript/bibliography.bib` — symlink to the Zotero export (same keys as everywhere).
+- Figures are referenced by **relative path** `../analyses/data/121-figs/figN.png` (the gitignored Dropbox symlink tree); figure generation still lives in `analyses/*.qmd` (Quarto).
+- Build: `cd manuscript && latexmk` (or `make`). `make anonymize` flattens + scrubs authors/affiliations/funding/identifying URLs → `manuscript-anon.pdf` for NotebookLM double-blind adversarial review (`make flat` / `make wordcount` / `make clean` also available).
+
+Target journal: **Microbial Biotechnology** (Wiley; no journal-specific `.cls`, so the build is article-based with an upgrade path to `WileyNJD-v2` noted at the top of `manuscript.tex`; Wiley accepts a PDF at initial submission). The legacy Quarto source (`~/Dropbox/.../manuscript.qmd`, `elsarticle`) is archived — **manuscript edits now happen in `manuscript/`**. Analyses/figures stay in `analyses/`.

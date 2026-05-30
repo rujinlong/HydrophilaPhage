@@ -263,8 +263,12 @@ df_num <- summary_anova[[1]][["Df"]][1]
 df_den <- summary_anova[[1]][["Df"]][2]
 p_val_anova <- summary_anova[[1]][["Pr(>F)"]][1]
 
-cat(sprintf("Lysis ANOVA (48h): F(%d, %d) = %f, p-value = %f\n", 
+cat(sprintf("Lysis ANOVA (48h): F(%d, %d) = %f, p-value = %f\n",
             df_num, df_den, f_value, p_val_anova))
+
+# Tukey HSD post-hoc (pairwise comparisons), sorted by adjusted p
+tukey_res <- TukeyHSD(anova_res)$treatment
+print(round(tukey_res[order(tukey_res[, "p adj"]), c("diff", "p adj")], 4))
 ```
 
 
