@@ -1,6 +1,6 @@
 # QPROJ Workflow Graph Report
 
-Generated: 2026-05-29 | Project: pc031-aquaPhage | Workflow: analyses | Steps: 13 | Functions: 1 | Tables: 0 | Edges: 12
+Generated: 2026-05-30 | Project: pc031-aquaPhage | Workflow: analyses | Steps: 4 | Functions: 1 | Tables: 0 | Edges: 3
 
 ## For AI assistants -- read this first
 
@@ -23,7 +23,7 @@ Read `qproj-graph.json` only if `qg` does not surface the field you need.
 
 ## Workflow Overview
 
-Pipeline: 111-bacterial_genome -> 112-phage_genome -> 113-tree -> 121-figs -> 401-collect -> 402-dereplicate -> 403-annotate -> 404-safety -> 405-enzymes -> 406-master_table -> 501-aeromonas_pangenome -> 601-safety_platform -> 701-virome_landscape
+Pipeline: 111-bacterial_genome -> 112-phage_genome -> 113-tree -> 121-figs
 
 ## Step Summary
 
@@ -32,16 +32,7 @@ Pipeline: 111-bacterial_genome -> 112-phage_genome -> 113-tree -> 121-figs -> 40
 | 111-bacterial_genome | - | none | - | - |
 | 112-phage_genome | raw | none | phage_cds.tsv | entry |
 | 113-tree | raw | none | TLS_tree.png | entry |
-| 121-figs | - | none | fig-combined.png, fig3.png, fig-survival.png | - |
-| 401-collect | - | none | - | - |
-| 402-dereplicate | - | none | - | - |
-| 403-annotate | - | none | - | - |
-| 404-safety | - | none | - | - |
-| 405-enzymes | - | none | - | - |
-| 406-master_table | - | none | - | - |
-| 501-aeromonas_pangenome | - | none | - | - |
-| 601-safety_platform | - | none | - | - |
-| 701-virome_landscape | - | none | - | terminal |
+| 121-figs | - | none | fig-combined.png, fig3.png, fig-survival.png | terminal |
 
 ## Unused R/ Functions
 
