@@ -317,8 +317,8 @@ plt_survival <- ggplot(df_survival, aes(x = time, y = survival_rate, group = Gro
     x = "Time (days)",
     y = "Survival rate (%)"
   ) +
-  annotate("text", x = 0, y = 10, label = "Log-rank test, p < 0.001", 
-           hjust = 0, size = 4, fontface = "italic") +
+  annotate("text", x = 0, y = 10, label = "Overall Log-rank p < 0.001; treatment HR 0.091",
+           hjust = 0, size = 3.5, fontface = "italic") +
   theme_classic(base_size = 13) +
   theme(
     legend.position = c(0.7, 0.45),
@@ -339,9 +339,8 @@ reconstruct_survival_data <- function(df_counts) {
   # Total fish per group = 20
   total_n <- 20
   
-  # Filter only the groups we want to compare (e.g., Treatment vs Bacterial)
-  target_groups <- c("bacterial_group", "treatment_group")
-  df_sub <- df_counts %>% dplyr::filter(Group %in% target_groups)
+  # Use all four groups (overall test); pairwise/Cox subsets are taken below
+  df_sub <- df_counts
   
   all_data <- data.frame()
   
@@ -384,15 +383,38 @@ reconstruct_survival_data <- function(df_counts) {
 }
 
 surv_data_for_stats <- reconstruct_survival_data(df_survival)
+surv_data_for_stats$group <- factor(
+  surv_data_for_stats$group,
+  levels = c("PBS_group", "phage_group", "bacterial_group", "treatment_group")
+)
 
-# Log-rank test (Mantel-Cox)
+# Overall k-sample log-rank (Mantel-Cox) across all four groups
 surv_diff <- survdiff(Surv(time, status) ~ group, data = surv_data_for_stats)
-
 print(surv_diff)
+overall_df <- length(surv_diff$n) - 1
+overall_p <- 1 - pchisq(surv_diff$chisq, overall_df)
+cat(sprintf("Overall log-rank: Chi-sq = %.3f, df = %d, p = %.3g\n",
+            surv_diff$chisq, overall_df, overall_p))
 
-p_val_surv <- 1 - pchisq(surv_diff$chisq, length(surv_diff$n) - 1)
-cat(sprintf("Survival Log-rank Test: Chi-sq = %f, df = %d, p-value = %f\n", 
-            surv_diff$chisq, length(surv_diff$n) - 1, p_val_surv))
+# Pairwise log-rank with Benjamini-Hochberg adjustment for multiple testing
+pair_list <- combn(levels(surv_data_for_stats$group), 2, simplify = FALSE)
+pw <- do.call(rbind, lapply(pair_list, function(pr) {
+  sub <- surv_data_for_stats %>% dplyr::filter(group %in% pr)
+  sub$group <- droplevels(sub$group)
+  sd <- survdiff(Surv(time, status) ~ group, data = sub)
+  data.frame(pair = paste(pr, collapse = " vs "),
+             chisq = round(sd$chisq, 3),
+             p_raw = 1 - pchisq(sd$chisq, 1))
+}))
+pw$p_BH <- p.adjust(pw$p_raw, method = "BH")
+print(pw, row.names = FALSE)
+
+# Cox proportional-hazards model: treatment vs bacterial (reference = bacterial)
+sub_tb <- surv_data_for_stats %>%
+  dplyr::filter(group %in% c("bacterial_group", "treatment_group"))
+sub_tb$group <- relevel(droplevels(sub_tb$group), ref = "bacterial_group")
+cox_tb <- survival::coxph(Surv(time, status) ~ group, data = sub_tb)
+print(summary(cox_tb)$conf.int)
 ```
 
 

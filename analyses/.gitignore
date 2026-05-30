@@ -1,0 +1,7 @@
+/.quarto/
+**/*.quarto_ipynb
+
+# Quarto render byproducts (track the .qmd sources, not rendered output)
+*_cache/
+*_files/
+121-figs.md

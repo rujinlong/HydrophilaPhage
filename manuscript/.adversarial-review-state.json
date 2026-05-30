@@ -1,0 +1,41 @@
+{
+  "manuscript_path": "manuscript/body.tex",
+  "manuscript_dir": "manuscript",
+  "notebook_id": "6c2013cb-0a6f-4925-9daf-19452c751c4a",
+  "manuscript_source_id": "49039f1e-7b7e-42da-be5e-9e9bcf72af93",
+  "literature_source_ids": [
+    "e32e7acb-8f5b-46c2-848a-350884ec968c",
+    "c2d76e00-2740-4cfb-9ac7-7b187be8f152",
+    "1022bf97-ff4e-4b80-a2d8-e75e14f5ddab",
+    "3155957c-1b04-4591-8793-cda91c2b9a3e",
+    "21b9b57b-75c9-41a7-9a93-c48198d831d9",
+    "c2690ce8-7433-4403-bab7-dea98434459b",
+    "86564eb0-9fc6-435d-9985-0ae7d662f29c",
+    "bc579d15-de12-4a45-bc9e-3595f5f0e952",
+    "7acac04a-773a-46bb-a2f2-31a8076f3ded",
+    "84d2090e-362a-4047-b230-83c69897fbf7",
+    "1c9371f6-b8f2-4e2e-883e-2f38e4ccf62d",
+    "deb47dd3-d16c-4f11-8921-a1fd342aa0b0",
+    "058ee7b0-0c03-4301-966b-1481c72a74a4",
+    "0f33e326-a359-4644-8476-d0b3d721273e",
+    "39a98eb6-9f5b-4eab-a809-db63fd3bd61a",
+    "772e16e5-ff38-4137-9759-1e145d2d3f87",
+    "350b8bdb-d82b-46b0-92a3-98db95da01bf",
+    "9c6789a4-db63-4a3c-a08b-f3f98dfdf021",
+    "f36af482-9ca6-4dbf-b6ab-61c2049049ac",
+    "8bcad58f-11c1-4e7e-98bc-8b14c23f7158",
+    "9e42e300-1a2a-44b2-ace0-19130412677b"
+  ],
+  "lang": "zh",
+  "rounds_total": 4,
+  "rounds_completed": 4,
+  "next_module_number": 14,
+  "rebuild_cmd": "make pdf && make anonymize",
+  "reupload_file": "manuscript-anon.pdf",
+  "round_focus_map": {
+    "1": "Taxonomy claim strength: new genus + putative new family. VICTOR/OPTSIL caveat (EL-001/DEC-D017), ViPTree S_G=0.073 single-anchor, vConTACT3 few-protein-link, single-relative (HJ05) basis, whether 'putative new family' is over/under-claimed for ICTV Caudoviricetes.",
+    "2": "Putative AMG interpretation (thyA/nrdD/DAHP-synthase shikimate): is the down-toned framing defensible? Foldseek fident=0.38 strength, host-contamination/assembly artifact risk, over-interpretation, AMG definition rigor.",
+    "3": "In vivo + statistics design: single log-rank comparison only, biosafety (phage-only 100%) not powered, histopathology descriptive, single 48h in-vitro endpoint, n/group, LD50 Kaerber, pseudoreplication. Is the added limitations sentence sufficient?",
+    "4": "Novelty vs prior Aeromonas-phage / aquaculture phage-therapy literature: is the contribution incremental? What comparable Aeromonas phage therapy fish studies exist? Reviewer-blocker overclaims, Results-Discussion coupling, meta-review."
+  }
+}
