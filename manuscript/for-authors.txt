@@ -1,0 +1,261 @@
+Author Guidelines
+Sections
+
+1. Information for Contributors
+2. Submission of Manuscripts
+3. Presentation of Manuscripts
+4. Editorial Policies and Ethical Considerations
+5. Accepted Manuscripts
+
+1. Information for Contributors
+Microbial Biotechnology invites original research articles related to the following subject areas:
+
+• Agricultural biotechnology and feedstock formation and conversions
+• Algal biotechnology
+• Biocatalysis and green chemistry
+• Bioenergy
+• Biofuels
+• Biologically-based analytical methods
+• Biomining, including oil recovery and processing
+• Bionanotechnology
+• Biopolymers and biomaterials
+• Bioremediation
+• Biosensors and monitoring systems
+• Biosurfactants and bioemulsifiers
+• Compatible solutes and bioprotectants
+• Diagnostics	• Food, beverages and supplements
+• Functional genomics
+• Fungal biotechnology
+• Metabolic design
+• Microbially-based strategies in public health
+• Microbially-based strategies to influence global processes
+• Pharmaceuticals
+• Primary metabolites
+• Process engineering
+• Protein engineering
+• Secondary metabolites and natural products
+• Systems analysis, modelling
+• Systems biology
+• Technology development
+Types of articles published in the journal:	Commissioned manuscripts:
+• Brief Reports
+• Correspondence
+• Research Articles
+• Reviews	• Highlights
+• Lilliput Hot Topics
+• Mini-Reviews
+• Opinion Articles
+• Patent Trends
+• Web Alerts
+
+The types of articles published in MBT reflect the Editors’ endeavor to actively promote the field of microbial biotechnology. This includes the broad scope of the subject, as well as its impact in socio-political, health, nutritional and economic realms.
+
+MBT’s key content comprises full-length research papers and brief reports. In addition, issues may include editorials, opinion, highlights, mini-reviews, patent trends, ‘perspectives: Lilliput hot topics’ and web alerts. In addition, the journal considers all types of submissions to two specific sections: Genome Updates; and Engineering Biology and Synthetic Biology. Antonine Danchin coordinates the Genome Updates for content relating to microbes used as cell factories. Pablo I. Nikel and Wei Huang coordinate the section devoted to Engineering Biology and Synthetic Biology, which features work relating to: i) the design, engineering and re-engineering of biological devices and systems; and ii) the application of synthetic biology to solving societal challenges and to creating commercially viable solutions for industry.
+
+Research Papers and Brief Reports
+
+These articles present original findings that advance the field of microbial biotechnology. Papers are accepted and published if they provide substantial, in-depth, and novel research findings that are deemed of interest to our readership. Papers may either be full research papers or brief reports. In both cases, the work must be complete (preliminary communications will not be considered) and meet the minimum requirements for originality and scientific accomplishment. Manuscripts should be concise and practice best practices for scientific reporting. Material not crucial to an understanding of the main findings (e.g., primer sequences; strain lists, etc.) should be submitted as supplementary materials.
+
+The decision on whether a submission is published as a full research article or brief report is not dictated by the length of the initial submission, but rather by the length deemed necessary by the reviewers and Editors to detail the advance being described.
+
+Minireviews/Reviews
+
+These articles bring exciting new developments and/or concepts to the attention of our readers. They are selective in scope, focused and concise, rather than being comprehensive or historical. Also, they may be somewhat speculative, especially if this is likely to provoke interesting discussion and/or stimulate new lines of creative experimentation. Therefore, mini-reviews are thought pieces rather than summary of existing findings or ideas. There is no strict format for mini-reviews; however, along with the main text authors should include a summary, introduction and concluding remarks. Literature citations should be balanced but not exhaustive. Mini-reviews should be well illustrated with figures and tables that attract the reader’s attention. Most, but not all, minireviews are invited; authors that wish to submit a mini-review should first contact the mini-review Editor, Juan-Luis Ramos, to ascertain whether or not their topic is appropriate.
+
+Opinion/Correspondence
+
+The journal collects relevant opinions from its Ed Board members and other scientists on issues related to microbial biotechnology. These submissions should contribute to the discussion of relevant issues, advance new hypotheses or provide new interpretations of existing hypotheses. Correspondence or opinion articles may be either solicited by the Editors or offered as an unsolicited submission. If you wish to offer an unsolicited contribution, we ask you to first contact the specific Editor whose specialty is closest to yours and provide them with a short description of the content and the implications of your article.
+
+Perspectives: Lilliput hot topics
+
+This section is a hybrid between an opinion and a mini-review. These articles provide a science-driven perspective on a timely research topic. The current series of Lilliput articles are dedicated to SARS-CoV2 virus, its mechanism of action, development of vaccines and other strategies to combat it. In addition, the series collects issues related to past viral pandemics (i.e., the Russian flu). Most, but not all, Lilliput are invited; authors wishing to submit a Lilliput article should first contact the Lilliput Editor, Harald Brüssow, to ascertain whether or not their topic is appropriate.
+
+Highlights
+
+With the current explosion in the volume of scientific publications, it can be difficult to stay abreast of advances. To help our readers, MBT summarizes the major contributions made in a particular issue, placing them within the greater context, expanding visibility and attracting the reader’s attention to the articles that may be of most interest. The introduction of the highlights should be concise and put emphasis on what the major impact of the article is within the field. Highlights should include a brief abstract. Most, but not all, highlights are invited; authors wishing to submit a highlight should first contact the highlight Editor, Carmen Michán, to ascertain whether or not their topic is appropriate.
+
+Patent Trends
+
+The field of biotechnology is a powerhouse for the development of intellectual property. Patents are valuable publications that, in many instances, provide highly relevant information on applying biotech solutions. Despite being of great interest to the field, these advances of often overlooked. To address this, MBT is publishing short reports on patents filed in areas of interest to our readership. To submit a Patent Trend, please contact the Editor of this section, Jose-Luis García.
+
+Special Issues
+
+Each year, one or two issues will be Special Issues devoted to particularly topical subjects and edited by expert guest editors. These issues are open to submissions from all authors, please see the website for current calls for papers.
+
+2. Submission of Manuscripts
+New submissions should be made via the Research Exchange submission portal https://authors.wiley.com/journal/MBT2. You may check the status of your submission at any time by logging on to submission.wiley.com and clicking the “My Submissions” button. For technical help with the submission system, please review our FAQs or contact submissionhelp@wiley.com.
+
+Papers must be submitted exclusively to Microbial Biotechnology and are accepted on the understanding that they have not been, and will not be, submitted or published elsewhere. The corresponding author must give consent to publication in a cover letter sent with the paper, which also should explicitly state that the content and authorship of the submitted manuscript has been approved by all authors.
+
+Preprints
+
+Microbial Biotechnology will consider for review articles previously available as preprints on non-commercial servers such as ArXiv, bioRxiv, psyArXiv, SocArXiv, engrXiv, etc. Authors are requested to update any pre-publication versions with a link to the final published article. Authors may also post the final published version of the article immediately after publication.
+
+Pre-submission English-language editing
+
+Authors for whom English is a second language may choose to have their manuscript professionally edited before submission to improve the English. A description of the editing services provided by Wiley can be found here. All services are paid for and arranged by the author, and use of one of these services does not guarantee acceptance or preference for publication.
+
+3. Presentation of Manuscripts
+ Free Format submission
+
+Microbial Biotechnology now offers Free Format submission for a simplified and streamlined submission process.
+
+Before you submit, you will need:
+
+Your manuscript: this should be an editable file including text, figures, and tables, or separate files – whichever you prefer. All required sections should be contained in your manuscript, including abstract (which does need to be correctly styled), introduction, experimental procedures (not included in Brief Reports), results, discussion (combined in Brief Reports), and conclusions. Figures and tables should have legends. Figures should be uploaded in the highest resolution possible. References may be submitted in any style or format (though we recommend the format noted below), as long as it is consistent throughout the manuscript. Supporting information should be submitted in separate files. If the manuscript, figures or tables are difficult for you to read, they will also be difficult for the editors and reviewers, and the editorial office will send it back to you for revision. Your manuscript may also be sent back to you for revision if the quality of English language is poor.
+An ORCID ID, freely available at https://orcid.org. (Why is this important? Your article, if accepted and published, will be attached to your ORCID profile. Institutions and funders are increasingly requiring authors to have ORCID IDs.)
+The title page of the manuscript, including:
+Your co-author details, including affiliation and email address. (Why is this important? We need to keep all co-authors informed of the outcome of the peer review process.)
+Statements relating to our ethics and integrity policies, which may include any of the following (Why are these important? We need to uphold rigorous ethical standards for the research we consider for publication):
+data availability statement
+funding statement
+conflict of interest disclosure
+ethics approval statement
+patient consent statement
+permission to reproduce material from other sources
+clinical trial registration
+To submit, login at https://authors.wiley.com/journal/MBT2 and create a new submission. Follow the submission steps as required and submit the manuscript.
+
+Please note that authors should always retain a copy of all material. Papers should be as concise as possible, compatible with clarity and completeness, and should not normally exceed eight printed pages. As a guide, this corresponds to 17 pages of double line-spaced manuscript with three figures/tables, 15 pages of manuscript with six figures/tables or 14 pages of manuscript with eight figures/tables. The text should be double-spaced. Important material that would make the paper excessive in length, or that is not absolutely essential to document the main findings of the paper, may be submitted as "Supporting Information" (see below).
+
+The title page should include the author's name(s), affiliation(s) where the work was conducted, ORCID number, and the address to which all correspondence and proofs should be sent. Telephone numbers should also be supplied, along with an e-mail address, preferably institutional. Present addresses of authors should appear as a footnote. A running title of not more than 50 characters should be provided.
+
+All original research papers must include a Summary not exceeding 200 words. The Summary should not include extensive background or describe what was done, but clearly formulate the principal findings and articulate the advance achieved. The main text of full papers should be subdivided into Introduction, Experimental Procedures, Results and Discussion, and can include additional subheadings. The Results and Discussion sections may be combined. Experimental procedures should be sufficiently detailed to enable the experiments to be reproduced.
+
+In Brief Reports, Results and Discussion are combined, there is no section Experimental Procedures, and essential experimental details should be incorporated into the corresponding figure and table legends. Authors should state in the methods section or in the legend for the Figures or as footnotes for the Tables the number of times each experiment was repeated and include appropriate statistical analysis. Relevant information (results or methods) that cannot be included in the main text can be provided as supplementary material for publication online.
+
+All pages must be numbered consecutively. Acknowledgments, References, Table and Figure legends should follow the main text, each starting on a new page. The preferred position of tables and figures should be indicated in the margin of the text. Footnotes should be avoided.
+
+Text
+
+Files should be formatted double-spaced with no hyphenation and automatic word-wrap (no hard returns within paragraphs). Please type your text consistently, e.g. take care to distinguish between '1' (one) and 'l' (lower-case L) and '0' (zero) and 'O' (capital O), etc.
+
+References
+
+Authors are encouraged to use the system illustrated below. Only full articles that have been published or are 'in press' may be included in the reference list. In the text, unpublished or submitted studies should be referred to as such (e.g. J. M. Smith, unpublished), or as a personal communication. It is the author's responsibility to obtain permission from colleagues to include their work as a personal communication. In the text, references should be inserted in parentheses in date order, as follows: (Classes, 207; Bennet et al., 2018; Timmis et al., 2019; de Lorenzo, 2021). The reference list should be in alphabetical order according to the first-named author. Papers with two authors should follow those of the first-named author, arranged in alphabetical order according to the name of the second author. Articles with more than two authors should follow those of the first named author in chronological order; with multiple references from the same first author in a given year, please list the references in cited order. The title of the article must be included. For papers with up to seven authors, the names of all authors should be listed. For papers with eight or more authors, the first six names should be listed, followed by 'et al.'. Standard abbreviations of journal titles should be used, as in the Index Medicus. Please see the following examples:
+
+Claassens, N.J. (2017) A warm welcome for alternative CO2 fixation pathways in microbial biotechnology. Microb Biotechnol  10:  31– 34.
+
+Brüssow, H., and Brüssow, L. (2021)  Clinical evidence that the pandemic from 1889 to 1891 commonly called the Russian flu might have been an earlier coronavirus pandemic. Microb Biotechnol 14: 1860 – 1870.
+
+Bennett, R.K., Steinberg, L.M., Chen, W., and Papoutsakis, E.T. (2018) Engineering the bioconversion of methane and methanol to fuels and chemicals in native and synthetic methylotrophs. Curr Opin Biotechnol  50:  81– 93
+
+Timmis, K., Cavicchioli, R., Garcia, J.L., Nogales, B., Chavarría, M., Stein, L., et al. (2019) The urgent need for microbiology literacy in society. Environ Microbiol  21:  1513– 1528.
+
+References to material available online can be given, but only if the information is available without charge to readers on an official site. Authors will be asked to provide electronic copies of the cited material for inclusion on the Microbial Biotechnology web site at the discretion of the Editors. The format for citations is as follows:
+
+Beckleheimer, J. (1994). How do you cite URLs in a bibliography? [WWW document]. URL www.nrlssc.navy.mil/meta/bibliography.html
+
+Tables
+
+Tables should be typed as text, using 'tabs' to align columns. The use of table editors should be avoided. Do not use graphics software to create tables.
+
+Figures
+
+Please send us digital versions of your figures. The best quality of reproduction both in print and online can be achieved if files are saved in formats that are appropriate for the content of the image. Although authors are encouraged to send the highest-quality figures possible, figures can be submitted in any format provided they are legible. If a different format is required for publication, the Production Editor will request the figure(s) in a different file type after acceptance. Please note that your paper will be processed more quickly if the figures are supplied according to these standards, and do not have to be relabeled or redrawn. Please ensure that electronic artwork is prepared such that, after reduction it will fit across one or two columns or two-thirds page width (80 mm, 169 mm or 110 mm, respectively) as required. Please also ensure that all lettering will be clear and easy to read at the final reproduction size, i.e. no labels should be too large or too small. Avoid using tints if possible; if they are essential to the understanding of the figure, try to make them coarse. No artwork should be incorporated into the text files.
+
+In the full-text online edition of the journal, figure legends may be truncated in abbreviated links to the full-screen version. Therefore, the first 100 characters of any legend should inform the reader of key aspects of the figure.
+
+Supporting Information
+
+Supporting Information can be a useful way for an author to include important but ancillary information with the article. Examples of Supporting Information include additional tables, data sets, figures, movie files, audio clips, 3D structures, and other related nonessential multimedia files. Supporting Information should be cited within the article text, and a descriptive legend should be included. It is published as supplied by the author, and a proof is not made available prior to publication; for these reasons, authors should provide any Supporting Information in the desired final format. For further information on recommended file types and requirements for submission, please visit: https://authorservices.wiley.com/home.html.
+
+4. Editorial Policies and Ethical Considerations
+Author contributions (CRediT)
+
+This journal requires details of all authors’ contributions to the work by providing CRediT (Contribution Roles Taxonomy) information during submission.
+
+This information provided will be used to automatically generate an author contribution statement that will be published with the final article.
+
+You can learn more about CRediT and read an explanation of contribution roles on Wiley’s CRediT information page.
+
+ORCID iD
+
+This journal requires ORCID for corresponding authors and is preferred for other authors. Please refer to Wiley’s resources on ORCID.
+
+Deposit of data sets in public repositories
+
+MBT requires that all data be accessible via a public database at the time of manuscript submission. In the event that public data release is not possible, authors must 1) justify in both the cover letter and the manuscript text why the data are not yet public, and 2) describe in both the cover letter and manuscript text how the data can be accessed by the reviewers and editors (e.g., via a password accessed website). The suggested wording for referring to accession number information is: "These sequence data have been submitted to the DDBJ/EMBL/GenBank databases under accession number U12345".
+
+For Microarray experimental data, next-generation sequencing, and other high-throughput functional genomics data the information should be deposited in one of the principal public data bases such as [Gene Expression Omnibus (GEO), ArrayExpress, Center for Information Biology gene EXpression database (CIBEX)]; macromolecular structures as determined by X-ray crystallography or cryo-electron microscopy [Worldwide Protein Data Bank (wwPDB)]. For the case of amplicon, meta-'omic, and genomic nucleic acid data, raw sequence reads should be made available in the Sequence Read Archive. Authors are encouraged to comply with community metadata standards, such as the "Minimal Information about any (X) Sequence" (MIxS) checklist, when submitting to GenBank, SRA, ENA, or DDBJ.
+
+For new software and/or computer algorithms, authors must deposit the associated source code, documentation for running and installing software, and a test data set with control parameter settings in an appropriate repository. Such repositories should have a proven track record for hosting similar projects, preferably for a number of years. Examples include: CRAN, SourceForge, Bioinformatics.org, and GitHub. Authors may refer to https://opensource.org/licenses for further guidance.
+
+Unstructured repositories, such as Dryad and figshare, are suitable alternatives for the deposition of large data sets if no structured public repositories exist. Regardless of the field, authors are encouraged to select credible, trustworthy digital repositories with guarantees of long-term archiving of data. If the selected repositories have licensing policies, the policies should be no more restrictive than the Creative Commons Attribution (CC BY) license.
+
+Distribution of Strains
+
+The publication of an article in Microbial Biotechnology is subject to the understanding that authors will distribute freely any strains, clones, antibodies or other reagents not readily available described therein, for use in academic research.
+
+Mathematics
+
+In-line equations should be typed as text. The use of graphics programs and aftermarket 'equation editors' should be avoided. Displayed equations are rekeyed by our typesetter.
+
+Standard abbreviations should be as recommended in Quantities, Units, and Symbols (The Royal Society, 1988). Abbreviations of non-standard terms should follow, in parentheses, their first full usage.
+
+External URLs
+
+As web site content and addresses are constantly changing, we would prefer that authors, wherever possible, do not include external URLs in the main body of the manuscript. If possible please include necessary URLs as references as shown above.
+
+Genetic Nomenclature
+
+Standard genetic nomenclature should be used. For more detailed information, authors should consult Bachman (Microbiol Rev47: 180-230, 1983) for E. coli K-12; Sanderson and Roth (Microbiol Rev47: 310-453, 1983) for Salmonella typhimurium; Holloway et al. (Microbiol Rev43: 73-102, 1979) for Bacillus subtilis; Perkins et al. (Microbiol Rev46: 426-570, 1982) for Neurospora crassa; and the Handbook of Genetics Vol. 1 (R. C. King, ed., Plenum Press, 1974) for Saccharomyces cerevisiae.
+
+Restriction Enzymes
+
+Microbial Biotechnology has adopted the revised convention of naming restriction enzymes without italics. The previous style was EcoRI, KpnI, HindIII, SacII, etc. These should now be written EcoRI, KpnI, HindIII, SacII. For more information on the updated guidelines to naming restriction enzymes please consult Roberts et al. (Nucleic Acids Res 31: 1805-1812).
+
+Word 2007
+
+A document created in Word 2007 can result in compatibility problems with typesetting systems. Authors who are using Word 2007 to create their documents should follow the instructions to ensure their article is processed as efficiently: You should not use the 'Insert Equation'‚ feature on the Ribbon as this renders maths in a format that is unsuitable for typesetting. Instead, click Insert->Object->Microsoft Equation 3.0‚. After clicking on 'Object'‚ you will be shown a drop-down menu from which you must select 'Microsoft Equation 3.0'‚ to create your equation in the usual way.
+
+Conflict of Interest
+
+MBT requires that all authors disclose any potential sources of conflict of interest. Any interest or relationship, financial or otherwise, that might be perceived as influencing an author’s objectivity is considered a potential source of conflict of interest. These must be disclosed when directly relevant or indirectly related to the work that the authors describe in their manuscript. Potential sources of conflict of interest include but are not limited to patent or stock ownership, membership of a company board of directors, membership of an advisory board or committee for a company, and consultancy for or receipt of speaker’s fees from a company. The existence of a conflict of interest does not preclude publication in this journal.
+
+If the authors have no conflict of interest to declare, they must also state this at submission. It is the responsibility of the corresponding author to review this policy with all authors and to collectively list in the cover letter to the Editor, in the manuscript (under the Acknowledgment section), and in the online submission system ALL pertinent commercial and other relationships.
+
+Acknowledgments
+
+Authors should list all funding sources relevant to the work reported in the Acknowledgments section only. Authors are responsible for the accuracy of their funder designation. If in doubt, please check the Open Funder Registry for the correct nomenclature.
+
+Contributions from anyone who does not meet the criteria for authorship should be listed, with permission from the contributor, in an Acknowledgments section. Financial and material support should also be mentioned. Thanks to anonymous reviewers are not appropriate.
+
+Peer Review
+
+This journal operates under a single-blind peer review model. Papers will only be sent to review if the Editor-in-Chief determines that the paper meets the appropriate quality and relevance requirements. In-house submissions, i.e. papers authored by Editors or Editorial Board members of the title, will be sent to Editors unaffiliated with the author or institution and monitored carefully to ensure there is no peer review bias.
+
+Wiley's policy on the confidentiality of the review process is available here.
+
+Refer and Transfer Program
+
+Wiley believes that no valuable research should go unshared. This journal participates in Wiley’s Refer & Transfer program. If your manuscript is not accepted, you may receive a recommendation to transfer your manuscript to another suitable Wiley journal, either through a referral from the journal’s editor or through our Transfer Desk Assistant.
+
+Guidelines on Publishing and Research Ethics in Journal Articles
+
+The journal requires that you include in the manuscript details IRB approvals, ethical treatment of human and animal research participants, and gathering of informed consent, as appropriate. Please review Wiley’s policies surrounding human studies, animal studies, clinical trial registration, biosecurity, and research reporting guidelines.
+
+This journal follows the core practices of the Committee on Publication Ethics (COPE) and handles cases of research and publication misconduct accordingly (https://publicationethics.org/core-practices).
+
+This journal uses iThenticate’s CrossCheck software to detect instances of overlapping and similar text in submitted manuscripts. Read Wiley’s Top 10 Publishing Ethics Tips for Authors and Wiley’s Publication Ethics Guidelines.
+
+Data Sharing and Data Availability
+
+This journal expects data sharing. Review Wiley’s Data Sharing policy where you will be able to see and select the data availability statement that is right for your submission.
+
+5. Accepted Manuscripts
+Authors must ensure that all sections of their paper are submitted in editable formats. The main text, excluding figures, should be provided in a single Word or Rich Text Format file, updated to incorporate all revisions. Accepted manuscripts are transmitted by the Editor to the Production Office, which deals with all subsequent enquiries related to publication.
+
+Open Access Agreement
+
+You will be prompted to sign the Open Access Agreement electronically after manuscript review and acceptance. We have introduced a convenient new process for signing your Open Access Agreement electronically (eOAA) that will save you considerable time and effort. If your paper is accepted, the author identified as the formal corresponding author for the paper will receive an email prompting them to login into Author Services, where via the Wiley Author Licensing Service (WALS) they will be able to complete the Creative Commons Attribution License OAA agreement on behalf of all authors on the paper. You may preview the copyright terms and conditions here.
+
+For more information on this journal’s APCs, please see the Open Access Page.
+
+Online production tracking is available for your article through Wiley's Author Services
+
+Author Services enables authors to track their accepted article through the production process to publication online and in print. Authors can check the status of their articles online and choose to receive automated e-mails at key stages of production so they don't need to contact the production editor to check on progress. On receipt of the article at the publisher, the author will receive an e-mail with a unique link that enables them to register and have their article automatically added to the system. Please ensure that a complete e-mail address is provided when submitting the manuscript. Visit https://authorservices.wiley.com/home.html for more details on online production tracking and for a wealth of resources including FAQs and tips on article preparation, submission and more.
+
+Proofs
+
+Authors will receive an e-mail notification with a link and instructions for accessing HTML page proofs online. Page proofs should be carefully proofread for any copyediting or typesetting errors. Online guidelines are provided within the system. No special software is required, all common browsers are supported. Authors should also make sure that any renumbered tables, figures, or references match text citations and that figure legends correspond with text citations and actual figures. Proofs must be returned within 48 hours of receipt of the email.

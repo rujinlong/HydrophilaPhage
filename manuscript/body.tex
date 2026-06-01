@@ -128,8 +128,8 @@ The lytic capability of Hp3 was monitored in a 96-well plate format.
 MS01 cultures were infected with Hp3 at different MOIs (0.01 to 100).
 The optical density at 600 nm (\(\mathrm{OD}_{600}\)) of the cultures
 was recorded every 20 minutes for 48 hours using an automated microplate
-reader. Each MOI was assayed in three replicate wells and the uninfected
-negative control in six wells.
+reader. Each MOI was assayed in three independent biological replicates and the
+uninfected negative control in six.
 
 \subsection{Whole Genome Analysis}\label{whole-genome-analysis}
 
@@ -173,18 +173,17 @@ because family-level resolution is known to be weak for distant
 prokaryotic viruses in VICTOR and, in our calibration panel, merged
 several ICTV-recognized families.
 
-For phylogenetic analysis, the amino acid sequence of the terminase
-large subunit was used as a marker. Homologous sequences were identified
-across the \emph{Aeromonas} phage genome set, aligned with MAFFT
-\citep{2013-MAFFT_Katoh}, and used to infer a maximum-likelihood tree in
-IQ-TREE 2 \citep{2020-IQTREE_Minh} under the best-fit substitution model
-selected by ModelFinder \citep{2017-ModelFinder_Kalyaanamoorthy}, with
-branch support from 1,000 ultrafast bootstrap replicates. Comparative
+Comparative
 genome map was generated using clinker \citep{2021-Clinker_Gilchrist},
 displaying homologous gene pairs sharing \textgreater30\% identity at
 the amino acid level. Potential antibiotic-resistance and virulence
 genes were screened against the CARD \citep{2020-CARD_Alcock} and VFDB
-\citep{2019-VFDB_Liu} databases, respectively.
+\citep{2019-VFDB_Liu} databases, respectively. The replication lifestyle
+(virulent versus temperate) was predicted with BACPHLIP
+\citep{2021-BACPHLIP_Hockenberry}, which infers lifestyle from a set of
+conserved lifestyle-associated protein domains, and was cross-checked by
+manual inspection of the genome annotation for lysogeny-associated genes
+(a site-specific integrase and a lysogenic-maintenance repressor).
 
 \subsection{\texorpdfstring{\emph{In Vivo} Therapeutic Efficacy in
 Largemouth
@@ -246,15 +245,16 @@ described in the Discussion.
 \subsection{Statistical analysis}\label{statistical-analysis}
 
 Unless otherwise specified in the figure legends, all quantitative data
-from experiments with multiple replicates are presented as the mean ±
+from experiments with multiple biological replicates are presented as the mean ±
 standard deviation (SD). The Kaplan-Meier method was used to plot
 survival curves. Survival differences were first assessed using an
 overall k-sample Log-rank (Mantel-Cox) test across the PBS, phage-only,
 bacterial, and treatment groups. Pairwise Log-rank comparisons were then
 performed with Benjamini-Hochberg adjustment for multiple testing. The
-treatment effect relative to the bacterial group was additionally
-estimated using a Cox proportional-hazards model with the bacterial group
-as the reference. For bacterial growth (in
+treatment effect was additionally estimated using a Cox
+proportional-hazards model fitted to the bacterial and treatment groups
+(with the bacterial group as the reference); the phage-only and PBS
+groups were excluded from this model as they recorded no deaths. For bacterial growth (in
 vitro lysis) assays, differences in optical density between groups at
 the experimental endpoint (48 h) were analyzed using one-way analysis of
 variance (ANOVA) followed by Tukey's honestly significant difference (HSD)
@@ -452,7 +452,7 @@ supporting its lytic activity against the strain.
 \caption{\label{fig-lysis-curve}48h lysis curve of Hp3. five MOI values
 (0.01, 0.1, 1.0, 10 and 100) were incubated with the control group at
 37°C. The phage titer was determined by measuring the
-\(\mathrm{OD}_{600}\) absorbance. The data are presented as the mean ± SD (n = 3 per MOI group; n = 6 for the
+\(\mathrm{OD}_{600}\) absorbance. The data are presented as the mean ± SD (n = 3 biological replicates per MOI group; n = 6 for the
 untreated control).
 Statistical analysis indicated significant differences in optical
 density between groups at the 48-hour endpoint (One-way ANOVA, F(5, 15)
@@ -465,21 +465,18 @@ density between groups at the 48-hour endpoint (One-way ANOVA, F(5, 15)
 Genus}\label{genomic-analysis-reveals-hp3-represents-a-putative-novel-viral-family}
 
 Whole-genome sequencing revealed that phage Hp3 possesses a
-double-stranded DNA genome of 84,750 bp with a GC content of 59\%
-(Figure~\ref{fig-genomics} A). Bioinformatic analysis predicted a total
+double-stranded DNA genome of 84,750 bp (GenBank accession PX754746.1)
+with a GC content of 59\% (Figure~\ref{fig-genomics} A). Bioinformatic analysis predicted a total
 of 105 open reading frames (ORFs), of which 89 were assigned putative
 functions, while 16 were annotated as hypothetical proteins.
 
 To determine the taxonomic position of Hp3, we integrated
-nucleotide-level, single-gene, and whole-proteome analyses. At the
+nucleotide-level and whole-proteome analyses. At the
 nucleotide level, VIRIDIC placed Hp3 and \emph{Aeromonas} phage HJ05
 (GenBank accession OQ594355) within a single genus, sharing 83.65\%
 intergenomic similarity---above the 70\% genus threshold but below the
 95\% species threshold---indicating that the two are distinct species of
-the same genus. This relationship was strongly supported by a
-maximum-likelihood phylogeny of the terminase large subunit, in which
-Hp3 and HJ05 formed an exclusive, fully supported clade (ultrafast
-bootstrap = 100; Supplementary Figure S2). Across all 200 complete
+the same genus. Across all 200 complete
 \emph{Aeromonas} phage genomes in GenBank, Hp3 showed appreciable
 similarity to HJ05 alone (Mash distance = 0.12), whereas the Mash
 distance to every other \emph{Aeromonas} phage was 1.0 (no shared
@@ -514,7 +511,7 @@ demarcation in \emph{Caudoviricetes} has no universal quantitative
 threshold and formal family creation generally requires multiple genera
 plus core-gene and phylogenetic criteria
 \citep{2021-Roadmap_Turner,2023-Abolishment_Turner}, we interpret the
-ViPTree, terminase, and vConTACT3 evidence as supporting a putative
+ViPTree and vConTACT3 evidence as supporting a putative
 family-level lineage pending broader sampling and formal ICTV
 evaluation, rather than an established family.
 
@@ -545,12 +542,37 @@ await experimental validation; the enzymatic activity, substrate
 specificity, and physiological role of hp3\_0002 during infection remain
 unknown.
 
+Consistent with the rapid lysis observed \emph{in vitro}, the Hp3 genome
+carries the hallmarks of a virulent (lytic) rather than a temperate
+lifestyle. It encodes a complete lysis cassette---two holins (hp3\_0069 and
+hp3\_0099) and an amidase-family endolysin (hp3\_0070)---alongside a
+T4-like homologous-recombination and replication system, including a
+UvsX-like recombinase (hp3\_0091) and RuvC-like Holliday-junction
+resolvases. Conversely, it lacks the core machinery required to establish
+and maintain lysogeny: no tyrosine- or serine-family site-specific
+integrase and no CI-like lysogenic-maintenance repressor or immunity
+region. The single annotation falling in the integration-and-excision
+category is one open reading frame at the extreme 3' terminus of the
+genome (hp3\_0105), assigned as a transposase only by low-confidence remote
+structural homology (Phold/Foldseek structural identity = 0.24, with no
+significant sequence-homology hit from Pharokka) and most parsimoniously
+interpreted as a horizontally acquired mobile-element remnant rather than a
+functional prophage-integration system; a solitary transposase-like gene
+does not confer lysogenic capacity. Concordantly, BACPHLIP classified Hp3
+as virulent with high confidence (lytic probability = 0.97)
+\citep{2021-BACPHLIP_Hockenberry}. We therefore designate Hp3 a lytic phage
+on the basis of converging genomic and phenotypic evidence.
+
 Finally, a genomic safety screen detected no antibiotic-resistance genes
-and no high-confidence virulence determinants---the sole
-virulence-database match was a weak, low-identity hit unlikely to
-reflect a functional virulence factor---supporting Hp3 as a candidate
-for therapeutic evaluation while leaving uncharacterized proteins,
-including hp3\_0002, for future functional validation.
+(CARD). The only virulence-database flag, hp3\_0022, arose solely from
+distant structural homology---a Phold/Foldseek match to VFDB entry
+VFG047113 at 16\% amino-acid identity (fident = 0.16)---with no
+corresponding sequence-homology hit in the Pharokka VFDB screen, and is
+therefore unlikely to represent a functional virulence determinant.
+Together with the absence of lysogeny machinery described above, this
+genomic-safety profile supports Hp3 as a candidate for therapeutic
+evaluation, while uncharacterized proteins, including hp3\_0002 and
+hp3\_0022, remain for future functional validation.
 
 \begin{figure}
 
@@ -567,9 +589,15 @@ Functional gene categories are based on the PHROGS database
 content, and GC skew. (B) Amino-acid genome-BLAST distance phylogeny
 (VICTOR, GBDP formula D6) of Hp3, HJ05, their nearest ViPTree
 neighbours, and the type species of eight major \emph{Caudoviricetes}
-families; node values are pseudo-bootstrap support and the coloured
-columns show OPTSIL clusters at the species, genus, subfamily, and
-family ranks. Hp3 and HJ05 form an exclusive, fully supported genus
+families (\emph{Peduoviridae}, P2; \emph{Ackermannviridae}, CBA120;
+\emph{Straboviridae}, T4; \emph{Demerecviridae}, T5; \emph{Herelleviridae},
+SPO1; \emph{Autographiviridae}, T7; \emph{Schitoviridae}, N4; and
+\emph{Drexlerviridae}, T1; for compactness the \emph{Ackermannviridae}
+representative is shown by strain name only, CBA120, in the panel). Node
+values are pseudo-bootstrap support, the coloured columns show OPTSIL
+clusters at the family, subfamily, genus, and species ranks (left to
+right), and the grey bars at the right give the total amino-acid sequence
+length of each genome's proteome (range 10,111--52,048 aa). Hp3 and HJ05 form an exclusive, fully supported genus
 (pseudo-bootstrap = 100). The family-rank OPTSIL partition is shown for
 completeness but is unreliable in this saturated-divergence panel---it
 merges the recognized families \emph{Straboviridae},
@@ -676,7 +704,9 @@ groups \citep{2023-Abolishment_Turner,2022-Characterization_Bujak}. Hp3
 also possesses several attributes favorable for further evaluation as an
 antibiotic alternative in aquaculture, including a lytic cycle of
 approximately 90 minutes, stability across temperature and pH ranges
-relevant to aquaculture, and a genomic profile with no known
+relevant to aquaculture, and a genomic profile consistent with a lytic
+lifestyle---lacking lysogeny-associated integrase and repressor genes and
+classified as virulent by BACPHLIP---with no known
 antimicrobial-resistance genes or high-confidence virulence
 determinants, providing a preliminary genomic safety basis for
 therapeutic assessment.
@@ -806,7 +836,8 @@ European Research Council Starting grant (ERC StG 803077) awarded to LD.
 
 All raw sequencing data and assembled genomes generated in this project
 can be found in the NCBI BioProject database under the accession number
-PRJNA1348731. The supplementary dataset supporting the findings of this
+PRJNA1348731; the complete genome of Hp3 is available under GenBank
+accession PX754746.1. The supplementary dataset supporting the findings of this
 study, including the raw numerical data for all figures, is openly
 available in Figshare under the Creative Commons Attribution 4.0 (CC-BY
 4.0) license at: \url{https://doi.org/10.6084/m9.figshare.30500525}. The
