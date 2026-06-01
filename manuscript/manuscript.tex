@@ -66,6 +66,15 @@
 % ---- line numbers for peer review ----
 \usepackage{lineno}\linenumbers
 
+% ---- running head (running title, <= 50 characters) ----
+\usepackage{fancyhdr}
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\small\textit{Aeromonas} phage Hp3 rescues largemouth bass}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
 % ---- authors / affiliations ----
 \usepackage{authblk}
 \renewcommand\Authands{, }
