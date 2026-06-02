@@ -1,0 +1,50 @@
+Cell Reports / Information for authors / Submit your manuscript
+
+Submit your manuscript
+These sections detail the information required at submission for the initial editorial evaluation of your manuscript. Formatting requirements listed in other sections do not need to be met during the initial submission.
+
+What to prepare
+Manuscript
+For initial submissions, your manuscript does not need to follow a specific format. We do ask that you include the following:
+
+Title
+Author list, author affiliations and footnotes, and contact info
+A summary/abstract
+Sufficient experimental information for us to interpret the results in context
+Please note that submissions must be written in English.
+
+Cover letter
+The cover letter is only available to the editors and will not be seen by reviewers. The cover letter should explain:
+
+What was previously known (the background)
+The conceptual advance provided by your work
+The significance of the work and its potential impact
+If your paper is part of a consortium
+You may also use the cover letter to:
+
+Suggest appropriate reviewers and request reviewer exclusions
+Share information about related work, time constraints, and/or competition
+Note if you have communicated about the paper with one of the journal's editors
+Other files
+A completed declaration of interests form (PDF)   is required. Additional items may also be required; please refer to the Editorial Manager (EM) submissions page for complete details.
+
+How to submit
+Using Editorial Manager
+For initial submission, you can upload your manuscript either as a PDF (containing the text and all related material) or as a Word file (with the related material uploaded as separate files). If your manuscript was prepared with LaTeX, you must upload a PDF version for readability.
+
+Please note that although PDFs are OK (and, for LaTeX manuscripts, required) at initial submission, if your paper is accepted, your final materials must be in an editable format, preferably Microsoft Word.
+
+For initial submission, please keep figures and other files small (1–2 MB) so that editors and reviewers can more easily work with them. Your initial submission materials should be no larger than 20 MB (total). If your article is accepted for publication, we will request higher-quality figure files for production if necessary.
+
+Submit your paper Opens in new window
+Additional information
+When you submit your manuscript in EM, you will be asked to provide the name and email address of an alternate contact. You might also be asked for additional information, including your preference for publishing options (open access or subscription). Your answer is not binding this stage; it is not shown to editors or reviewers and does not influence the editorial process.
+
+EM will build a composite PDF of the submitted files. This composite PDF will contain links that editors and reviewers can use to download high-resolution figure files (for figures submitted in JPEG, TIFF, or EPS format). The version that is shared with reviewers will not include the cover letter or any reviewer preferences.
+
+When the submission process is complete, you will receive an email confirmation, which will include your manuscript ID number. Please keep this information for future correspondence.
+
+All communication will be sent to the email address associated with the EM account that was used to submit the manuscript. If you want to specify a different author for correspondence, please contact the journal.
+
+Cell Press Multi-Journal Submission
+If you think your paper might be suitable for two or more Cell Press journals, you now have the opportunity for simultaneous consideration at multiple journals using Cell Press Multi-Journal Submission (MJS). With MJS, all the participating Cell Press journals of your choice provide unified consideration of your manuscript via one handling editor who works closely with you, your chosen journals’ editorial teams, and expert reviewers from the field to help you navigate a path to publication with Cell Press. To take advantage of this unique opportunity, please submit directly to the MJS site. For more information, view the MJS information for authors and MJS FAQ pages, or reach out to us at multi-journal@cell.com with any questions.

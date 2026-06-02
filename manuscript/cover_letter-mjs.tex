@@ -1,0 +1,122 @@
+% Cover letter — Hp3 manuscript, Cell Press MULTI-JOURNAL SUBMISSION (Cell Reports + iScience)
+% Build:  latexmk -pdfxe cover_letter-mjs.tex   (xelatex)
+% Supersedes cover_letter-cr.tex (single-CR) per DEC-D027. Differs in addressee
+% (Multi-Journal Submission) and a paragraph framing fit for BOTH Cell Reports
+% (broad interest) and iScience (rigorous, multidisciplinary, sound science).
+\documentclass[11pt,a4paper]{article}
+\usepackage{iftex}
+\ifPDFTeX\usepackage[T1]{fontenc}\usepackage[utf8]{inputenc}
+\else\usepackage{fontspec}\setmainfont{Times New Roman}\fi
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{parskip}
+\usepackage{hyperref}\hypersetup{hidelinks}
+\pagestyle{empty}
+
+\begin{document}
+
+\noindent Jinlong Ru, on behalf of all authors\\
+Technical University of Munich \& Helmholtz Centre Munich\\
+\href{mailto:jinlong.ru@tum.de}{jinlong.ru@tum.de}
+
+\bigskip
+\noindent The Editors\\
+\emph{Cell Press Multi-Journal Submission}
+
+\bigskip
+\noindent Dear Editors,
+
+We are submitting our manuscript, \textbf{``A novel lytic \emph{Aeromonas}
+bacteriophage rescues largemouth bass from lethal \emph{Aeromonas hydrophila}
+infection,''} through \emph{Cell Press Multi-Journal Submission}, and we ask
+that it be considered by \emph{Cell Reports} and \emph{iScience}.
+
+\emph{Aeromonas hydrophila}, a leading pathogen of global freshwater
+aquaculture, is increasingly multidrug-resistant, eroding antibiotic control
+and intensifying the search for sustainable alternatives such as phage therapy.
+Our study connects three findings:
+
+\begin{enumerate}
+\item \textbf{A deeply divergent new viral genus.} Integrating nucleotide-level
+(VIRIDIC, 83.65\% intergenomic similarity), whole-proteome (ViPTree),
+amino-acid genome-BLAST distance phylogeny (VICTOR), and protein-sharing
+network (vConTACT3) analyses, Hp3 and its closest relative HJ05 form a new,
+deeply divergent genus within the class \emph{Caudoviricetes}---with no more
+than $S_G = 0.073$ whole-proteome similarity to any classified virus and clear
+separation from all established families. This places Hp3 in an under-explored
+region of viral sequence space and indicates that the phages of a globally
+important aquaculture pathogen remain substantially undersampled.
+
+\item \textbf{Demonstrated \emph{in vivo} efficacy and host safety.} A single
+administration (MOI 1.0) increased the seven-day survival of largemouth bass
+from 15\% to 85\% under lethal challenge, while fish receiving phage alone
+showed 100\% survival with no histopathology.
+
+\item \textbf{A genomically safe, well-defined biocontrol candidate.} Hp3
+carries no antibiotic-resistance genes and no high-confidence virulence
+determinants, and exhibits rapid lytic kinetics with broad temperature and pH
+stability.
+
+\end{enumerate}
+
+We believe the work suits both journals. Its combination of a deeply divergent
+new viral lineage and a clear \emph{in vivo} therapeutic outcome offers the
+broad, cross-disciplinary interest sought by \emph{Cell Reports}; and its
+rigorous, multi-method genomic and \emph{in vivo} characterization---linking
+the discovery of a genomically distinct virus to a measurable survival
+benefit---fits the technically sound, multidisciplinary scope of
+\emph{iScience}. We are happy to be routed to whichever journal the editors
+judge the best fit.
+
+The manuscript is original, has not been published previously, and is not under
+consideration elsewhere. As corresponding author, I consent to its publication
+and confirm that the content and authorship of this manuscript have been
+approved by all authors; the authors declare no competing interests. All raw
+sequencing data and assembled genomes are openly available in NCBI BioProject
+\textbf{PRJNA1348731} (Hp3 genome under GenBank \textbf{PX754746.1}); figure
+source data are deposited in Figshare
+(\href{https://doi.org/10.6084/m9.figshare.30500525}{10.6084/m9.figshare.30500525})
+and the analysis code is archived in Zenodo
+(\href{https://doi.org/10.5281/zenodo.17454899}{10.5281/zenodo.17454899}).
+All animal experiments followed the ARRIVE guidelines and were approved by the
+Institutional Animal Care and Use Committee (approval no. NWAFU-314020038).
+
+% --------------------------------------------------------------------------
+% Suggested reviewers — five experts covering the three pillars of the paper.
+% Substitute bench: Dann Turner (UWE Bristol, Dann2.Turner@uwe.ac.uk).
+% --------------------------------------------------------------------------
+\medskip
+\noindent\textbf{Suggested reviewers} (none has a conflict of interest; none is a
+recent collaborator or co-author of the authors):
+\begin{itemize}
+\item \textbf{Evelien M. Adriaenssens}, Quadram Institute Bioscience, Norwich, UK
+(\href{mailto:evelien.adriaenssens@quadram.ac.uk}{evelien.adriaenssens@quadram.ac.uk})
+--- bacteriophage genomics and prokaryotic virus taxonomy; Chair of the ICTV
+Bacterial Viruses Subcommittee (\emph{Caudoviricetes} classification framework).
+\item \textbf{Andrew D. Millard}, University of Leicester, UK
+(\href{mailto:adm39@leicester.ac.uk}{adm39@leicester.ac.uk}) --- bacteriophage
+comparative genomics, reference-genome curation, and therapeutic phages.
+\item \textbf{Mao Lin}, Fisheries College, Jimei University, Xiamen, China
+(\href{mailto:linmao@jmu.edu.cn}{linmao@jmu.edu.cn}) --- \emph{Aeromonas} and
+aquaculture bacteriophage genomics and phage therapy (host-range and genome
+characterization).
+\item \textbf{Jianguo Su}, College of Fisheries, Huazhong Agricultural University,
+Wuhan, China (\href{mailto:sujianguo@mail.hzau.edu.cn}{sujianguo@mail.hzau.edu.cn})
+--- fish antibacterial immunity and \emph{A.~hydrophila} \emph{in vivo} challenge
+models.
+\item \textbf{Lingbing Zeng}, Yangtze River Fisheries Research Institute, Chinese
+Academy of Fishery Sciences, Wuhan, China
+(\href{mailto:zenglingbing@gmail.com}{zenglingbing@gmail.com}) --- fish pathology
+and largemouth bass (\emph{Micropterus salmoides}) disease models.
+\end{itemize}
+
+\medskip
+\noindent We thank you for considering our work and look forward to your
+response.
+
+\bigskip
+\noindent Sincerely,\\[1ex]
+Jinlong Ru, Li Deng, and Gaoxue Wang\\
+\emph{(corresponding authors)}\\
+on behalf of all authors
+
+\end{document}

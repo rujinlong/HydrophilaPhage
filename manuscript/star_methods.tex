@@ -1,0 +1,199 @@
+% STAR Methods for Cell Reports / iScience (Cell Press) — \input by body-cr.tex.
+% Converted from the narrative Experimental Procedures + Statistical analysis of
+% body.tex (DEC-D027). In-text refs are author-year (natbib), matching the
+% manuscript-cr.tex preamble. NOT used by the MBT build (manuscript.tex/body.tex).
+
+\section{STAR$\star$Methods}\label{star-methods}
+
+\subsection*{Key resources table}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.40}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.32}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.28}}@{}}
+\toprule
+\textbf{REAGENT or RESOURCE} & \textbf{SOURCE} & \textbf{IDENTIFIER} \\
+\midrule
+\endhead
+\multicolumn{3}{@{}l}{\textit{Bacterial and virus strains}}\\
+\emph{Aeromonas hydrophila} MS01 (host) & This study & NCBI BioProject PRJNA1348731 \\
+\emph{A. hydrophila} host-range panel (19 strains) & This study & Table~\ref{tbl-host-range} \\
+Bacteriophage vB\_AhyM\_Hp3 (Hp3) & This study & GenBank PX754746.1 \\
+\emph{Aeromonas} phage HJ05 (reference) & GenBank & OQ594355 \\
+\multicolumn{3}{@{}l}{\textit{Chemicals, peptides, and recombinant proteins}}\\
+Uranyl acetate (3\% w/v) & Commercial & N/A \\
+Tricaine methanesulfonate (MS-222) & Shanghai Aladdin Bio-Chem & N/A \\
+Paraformaldehyde (4\%) & Commercial & N/A \\
+\multicolumn{3}{@{}l}{\textit{Critical commercial assays}}\\
+Norgen phage DNA kit & Norgen Biotek & cat.\ 46800 \\
+\multicolumn{3}{@{}l}{\textit{Deposited data}}\\
+Raw reads and assembled genomes & This study & NCBI BioProject PRJNA1348731 \\
+Hp3 complete genome & This study & GenBank PX754746.1 \\
+Figure source data & This study & Figshare: 10.6084/m9.figshare.30500525 \\
+Original analysis code & This study & Zenodo: 10.5281/zenodo.17454899 \\
+\multicolumn{3}{@{}l}{\textit{Experimental models: Organisms/strains}}\\
+Largemouth bass (\emph{Micropterus salmoides}) & Commercial farm, Guangzhou & N/A \\
+\multicolumn{3}{@{}l}{\textit{Software and algorithms}}\\
+fastp & \citet{2018-Fastp_Chen} & github.com/OpenGene/fastp \\
+Unicycler v0.5.1 & Wick et al. & github.com/rrwick/Unicycler \\
+Pharokka v1.3.2 & \citet{2022-Pharokka_Bouras} & N/A \\
+Phold v0.2 & \citet{2026-Protein_Bouras} & N/A \\
+Phynteny v0.1.13 & \citet{2024-Susiegriggo_SusieGrigson} & N/A \\
+vConTACT3 & MAVERICLab & bitbucket.org/MAVERICLab/vcontact3 \\
+VIRIDIC & \citet{2020-VIRIDIC_Moraru} & N/A \\
+Mash & \citet{2016-Mash_Ondov} & N/A \\
+ViPTree & \citet{2017-ViPTree_Nishimura} & N/A \\
+VICTOR & \citet{2017-VICTOR_Meier-Kolthoff} & N/A \\
+clinker & \citet{2021-Clinker_Gilchrist} & N/A \\
+CARD & \citet{2020-CARD_Alcock} & N/A \\
+VFDB & \citet{2019-VFDB_Liu} & N/A \\
+BACPHLIP & \citet{2021-BACPHLIP_Hockenberry} & N/A \\
+Cytoscape & \citet{2003-Cytoscape_Shannon} & N/A \\
+R v4.5.1 & R Core Team & r-project.org \\
+\bottomrule
+\end{longtable}
+
+\subsection*{Resource availability}
+
+\subsubsection*{Lead contact}
+Further information and requests for resources and reagents should be directed to
+and will be fulfilled by the lead contact, Jinlong Ru (jinlong.ru@tum.de).
+
+\subsubsection*{Materials availability}
+The bacterial strains and the phage isolate generated in this study are available
+from the lead contact on reasonable request.
+
+\subsubsection*{Data and code availability}
+\begin{itemize}\tightlist
+\item All raw sequencing data and assembled genomes have been deposited at NCBI
+under BioProject PRJNA1348731; the complete Hp3 genome is available under GenBank
+accession PX754746.1. Figure source data are openly available in Figshare
+(https://doi.org/10.6084/m9.figshare.30500525). These data are publicly available
+as of the date of publication.
+\item All original code has been archived at Zenodo
+(https://doi.org/10.5281/zenodo.17454899) and is maintained at
+https://github.com/rujinlong/HydrophilaPhage. It is publicly available as of the
+date of publication.
+\item Any additional information required to reanalyze the data reported in this
+paper is available from the lead contact upon request.
+\end{itemize}
+
+\subsection*{Experimental model and study participant details}
+
+\subsubsection*{Bacterial strains}
+The host bacterium, \emph{Aeromonas hydrophila} strain MS01, was isolated in our
+laboratory from a diseased largemouth bass (\emph{Micropterus salmoides}), and its
+species identity was confirmed by whole-genome sequencing. For host-range
+analysis, nineteen additional \emph{A. hydrophila} strains isolated from diseased
+fish in different geographical regions (Table~\ref{tbl-host-range}) were retrieved
+from $-80$\,\textdegree C storage. All strains were routinely cultured in
+Luria-Bertani (LB) broth at 37\,\textdegree C with shaking (180\,rpm).
+
+\subsubsection*{Largemouth bass}
+Healthy largemouth bass (\emph{Micropterus salmoides}) were purchased from a
+commercial fish farm in Guangzhou (Guangdong Province, China; average length
+$5.62 \pm 0.52$\,cm; average weight $2.38 \pm 0.31$\,g). Fish were acclimatized for
+two weeks in aerated, recirculating tanks at 25\,\textdegree C, pH 6.8--8.0, and
+dissolved oxygen $>5.7$\,mg/L, and fed a commercial diet (Maoming Hailong Feed
+Co., Ltd.) twice daily. All animal procedures were approved by the Institutional
+Animal Care and Use Committee of Northwest A\&F University (approval no.\
+NWAFU-314020038) and adhered to the AVMA Guidelines for the Euthanasia of Animals
+(2020); the \emph{in vivo} study is reported with reference to the ARRIVE
+guidelines.
+
+\subsection*{Method details}
+
+\subsubsection*{Phage isolation and purification}
+Phage Hp3 was isolated from municipal sewage by enrichment: a logarithmic-phase
+culture of MS01 ($\mathrm{OD}_{600} \approx 0.5$) was incubated overnight with an
+equal volume of 0.22\,\textmu m-filtered sewage, centrifuged (4000\,$\times$\,g,
+20\,min, 4\,\textdegree C), and the supernatant filter-sterilized. A single plaque
+was purified through three successive rounds of the double-layer agar method, and
+high-titer stocks were stored at 4\,\textdegree C.
+
+\subsubsection*{Transmission electron microscopy}
+A high-titer suspension ($\sim$10\textsuperscript{9}\,PFU/mL) was adsorbed onto a
+carbon-coated copper grid, negatively stained with 3\% (w/v) uranyl acetate,
+air-dried, and examined on a Hitachi HT7800 microscope.
+
+\subsubsection*{Host range}
+The host range was determined against 19 \emph{A. hydrophila} strains
+(Table~\ref{tbl-host-range}) using a standard spot assay after resuscitation in LB
+at 37\,\textdegree C, 180\,rpm.
+
+\subsubsection*{Optimal multiplicity of infection}
+Late-logarithmic MS01 was infected with Hp3 at MOIs of 0.001, 0.01, 0.1, 1.0, 10,
+100, and 1000 (37\,\textdegree C, 3\,h), then centrifuged (4000\,$\times$\,g,
+20\,min) and 0.22\,\textmu m-filtered; titers were determined by the double-layer
+agar method, and the MOI giving the highest titer was taken as optimal.
+
+\subsubsection*{One-step growth curve}
+Hp3 was adsorbed to MS01 (37\,\textdegree C, 10\,min), centrifuged
+(4000\,$\times$\,g, 20\,min), the supernatant discarded, and the pellet resuspended
+in fresh medium (37\,\textdegree C, 180\,rpm). Samples (200\,\textmu L) were taken
+at intervals and titered by the double-layer agar method.
+
+\subsubsection*{Environmental stability}
+Thermal stability was assessed after 1\,h at 4, 28, 37, 45, 60, and
+80\,\textdegree C; pH stability after 1\,h at 37\,\textdegree C in SM buffer
+adjusted to pH 4.0--12.0. Surviving titers were determined by the double-layer agar
+method, in triplicate.
+
+\subsubsection*{In vitro lysis assay}
+In a 96-well format, MS01 was infected with Hp3 at MOIs of 0.01--100, and
+$\mathrm{OD}_{600}$ was recorded every 20\,min for 48\,h on an automated microplate
+reader. Each MOI was assayed in three biological replicates and the uninfected
+control in six.
+
+\subsubsection*{Genome sequencing, assembly, and annotation}
+Phage DNA was extracted with the Norgen phage DNA kit (cat.\ 46800); concentration
+and purity were checked by Nanodrop and 1\% agarose gel. DNA was sequenced on an
+Illumina NovaSeq 6000. Reads were quality-controlled with fastp
+\citep{2018-Fastp_Chen} and assembled with Unicycler v0.5.1. The genome was
+annotated with Pharokka v1.3.2 \citep{2022-Pharokka_Bouras}, Phold v0.2
+\citep{2026-Protein_Bouras}, and Phynteny v0.1.13
+\citep{2024-Susiegriggo_SusieGrigson}.
+
+\subsubsection*{Taxonomic and comparative analysis}
+A vConTACT3 protein-sharing network was built against NCBI viral RefSeq (v230) and
+visualized in Cytoscape \citep{2003-Cytoscape_Shannon}. Intergenomic similarity was
+computed with VIRIDIC \citep{2020-VIRIDIC_Moraru} (genus/species thresholds 70\% and
+95\%); relatedness to all 200 complete \emph{Aeromonas} phage genomes in GenBank was
+screened with Mash \citep{2016-Mash_Ondov}. Hp3 was placed in a whole-proteome tree
+of 5,633 reference prokaryotic dsDNA viruses with ViPTree
+\citep{2017-ViPTree_Nishimura}, and genome-BLAST distance phylogeny was computed
+with VICTOR \citep{2017-VICTOR_Meier-Kolthoff} (amino-acid GBDP, formula D6) for Hp3,
+HJ05, their nearest ViPTree neighbours, and the type species of eight major
+\emph{Caudoviricetes} families. Comparative maps were drawn with clinker
+\citep{2021-Clinker_Gilchrist} ($>$30\% amino-acid identity). Resistance and
+virulence genes were screened against CARD \citep{2020-CARD_Alcock} and VFDB
+\citep{2019-VFDB_Liu}; lifestyle was predicted with BACPHLIP
+\citep{2021-BACPHLIP_Hockenberry} and cross-checked by manual inspection for
+lysogeny-associated genes.
+
+\subsubsection*{In vivo therapeutic efficacy}
+The LD\textsubscript{50} (4.47\,$\times$\,10\textsuperscript{7}\,CFU/mL; modified
+K\"arber method) informed a challenge dose of 9\,$\times$\,10\textsuperscript{7}\,CFU/mL.
+Eighty fish were randomized into four groups of 20: phage-only (0.1\,mL PBS, then
+0.1\,mL Hp3 at 9\,$\times$\,10\textsuperscript{8}\,PFU/mL 1\,h later); bacterial
+(0.1\,mL \emph{A. hydrophila} at 9\,$\times$\,10\textsuperscript{7}\,CFU/mL, then
+0.1\,mL PBS); PBS control; and treatment (0.1\,mL \emph{A. hydrophila} at
+9\,$\times$\,10\textsuperscript{7}\,CFU/mL, then 0.1\,mL Hp3 at
+9\,$\times$\,10\textsuperscript{7}\,PFU/mL 1\,h later). All injections were
+intraperitoneal. Fish were held at $25 \pm 1$\,\textdegree C and survival recorded
+for 7\,days. Three days post-infection, fish were anesthetized with MS-222
+(50\,mg/L) and euthanized (350\,mg/L); liver and spleen were fixed in 4\%
+paraformaldehyde, paraffin-embedded, sectioned (3\,\textmu m), and stained with
+hematoxylin-eosin for histopathology.
+
+\subsection*{Quantification and statistical analysis}
+Unless stated otherwise, quantitative data are presented as mean\,$\pm$\,SD.
+Survival was plotted by the Kaplan-Meier method and compared first by an overall
+$k$-sample Log-rank (Mantel-Cox) test across the PBS, phage-only, bacterial, and
+treatment groups, then by pairwise Log-rank tests with Benjamini-Hochberg
+adjustment. The treatment effect was additionally estimated with a Cox
+proportional-hazards model fitted to the bacterial and treatment groups (bacterial
+group as reference; phage-only and PBS groups excluded as they recorded no deaths).
+For the \emph{in vitro} lysis assay, endpoint (48\,h) $\mathrm{OD}_{600}$ was
+compared by one-way ANOVA with Tukey's HSD post-hoc test. $p < 0.05$ was considered
+significant. All analyses used R v4.5.1.

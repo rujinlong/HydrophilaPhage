@@ -1,0 +1,127 @@
+% Cover letter — Hp3 manuscript, Cell Reports (Cell Press)
+% Build:  latexmk -pdfxe cover_letter-cr.tex   (xelatex)
+% Variant of cover_letter.tex (Microbial Biotechnology); differs in addressee,
+% journal-fit framing (broad significance for Cell Reports), and submission line.
+% Suggested-reviewer panel reused verbatim (all are phage-genomics / Aeromonas /
+% fish-in-vivo experts equally appropriate for Cell Reports).
+\documentclass[11pt,a4paper]{article}
+\usepackage{iftex}
+\ifPDFTeX\usepackage[T1]{fontenc}\usepackage[utf8]{inputenc}
+\else\usepackage{fontspec}\setmainfont{Times New Roman}\fi
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{parskip}
+\usepackage{hyperref}\hypersetup{hidelinks}
+\pagestyle{empty}
+
+\begin{document}
+
+\noindent Jinlong Ru, on behalf of all authors\\
+Technical University of Munich \& Helmholtz Centre Munich\\
+\href{mailto:jinlong.ru@tum.de}{jinlong.ru@tum.de}
+
+\bigskip
+\noindent The Editors\\
+\emph{Cell Reports}
+
+\bigskip
+\noindent Dear Editors,
+
+We are pleased to submit our manuscript, \textbf{``A novel lytic
+\emph{Aeromonas} bacteriophage rescues largemouth bass from lethal
+\emph{Aeromonas hydrophila} infection,''} for consideration as an Article in
+\emph{Cell Reports}.
+
+\emph{Aeromonas hydrophila}, a leading pathogen of global freshwater
+aquaculture, is increasingly multidrug-resistant, eroding antibiotic control
+and intensifying the search for sustainable alternatives such as phage therapy.
+Our study connects three findings that we believe are of broad interest across
+microbiology, viral evolution, and translational phage biology:
+
+\begin{enumerate}
+\item \textbf{A deeply divergent new viral genus.} Integrating nucleotide-level
+(VIRIDIC, 83.65\% intergenomic similarity), whole-proteome (ViPTree),
+amino-acid genome-BLAST distance phylogeny (VICTOR), and protein-sharing
+network (vConTACT3) analyses, Hp3 and its closest relative HJ05 form a new,
+deeply divergent genus within the class \emph{Caudoviricetes}---with no more
+than $S_G = 0.073$ whole-proteome similarity to any classified virus and clear
+separation from all established families. This places Hp3 in an
+under-explored region of viral sequence space and indicates that the phages of
+a globally important aquaculture pathogen remain substantially undersampled.
+
+\item \textbf{Demonstrated \emph{in vivo} efficacy and host safety.} A single
+administration (MOI 1.0) increased the seven-day survival of largemouth bass
+from 15\% to 85\% under lethal challenge, while fish receiving phage alone
+showed 100\% survival with no histopathology.
+
+\item \textbf{A genomically safe, well-defined biocontrol candidate.} Hp3
+carries no antibiotic-resistance genes and no high-confidence virulence
+determinants, and exhibits rapid lytic kinetics with broad temperature and pH
+stability.
+
+\end{enumerate}
+
+Together, these results link the discovery of a genomically distinct virus to a
+measurable therapeutic outcome and frame Hp3 as a rigorously characterized,
+genomically defined candidate for phage-based biocontrol---and as a tractable
+starting point for the mechanistic and formulation studies that phage therapy
+against \emph{A.~hydrophila} now requires. We believe the combination of a
+deeply divergent new lineage, a defined genomic-safety profile, and an
+\emph{in vivo} survival benefit will interest the broad readership of
+\emph{Cell Reports}.
+
+The manuscript is original, has not been published previously, and is not under
+consideration elsewhere. As corresponding author, I consent to its publication
+and confirm that the content and authorship of this manuscript have been
+approved by all authors; the authors declare no competing interests. All raw
+sequencing data and assembled genomes are openly available in NCBI BioProject
+\textbf{PRJNA1348731} (Hp3 genome under GenBank \textbf{PX754746.1}); figure
+source data are deposited in Figshare
+(\href{https://doi.org/10.6084/m9.figshare.30500525}{10.6084/m9.figshare.30500525})
+and the analysis code is archived in Zenodo
+(\href{https://doi.org/10.5281/zenodo.17454899}{10.5281/zenodo.17454899}).
+All animal experiments followed the ARRIVE guidelines and were approved by the
+Institutional Animal Care and Use Committee (approval no. NWAFU-314020038).
+
+% --------------------------------------------------------------------------
+% Suggested reviewers — five experts covering the three pillars of the paper
+% (phage genomics/taxonomy; Aeromonas/aquaculture phage therapy; fish in-vivo
+% disease models). None are collaborators or co-authors of the authors.
+% Substitute bench: Dann Turner (UWE Bristol, Dann2.Turner@uwe.ac.uk) for a
+% pillar-1 decline.
+% --------------------------------------------------------------------------
+\medskip
+\noindent\textbf{Suggested reviewers} (none has a conflict of interest; none is a
+recent collaborator or co-author of the authors):
+\begin{itemize}
+\item \textbf{Evelien M. Adriaenssens}, Quadram Institute Bioscience, Norwich, UK
+(\href{mailto:evelien.adriaenssens@quadram.ac.uk}{evelien.adriaenssens@quadram.ac.uk})
+--- bacteriophage genomics and prokaryotic virus taxonomy; Chair of the ICTV
+Bacterial Viruses Subcommittee (\emph{Caudoviricetes} classification framework).
+\item \textbf{Andrew D. Millard}, University of Leicester, UK
+(\href{mailto:adm39@leicester.ac.uk}{adm39@leicester.ac.uk}) --- bacteriophage
+comparative genomics, reference-genome curation, and therapeutic phages.
+\item \textbf{Mao Lin}, Fisheries College, Jimei University, Xiamen, China
+(\href{mailto:linmao@jmu.edu.cn}{linmao@jmu.edu.cn}) --- \emph{Aeromonas} and
+aquaculture bacteriophage genomics and phage therapy (host-range and genome
+characterization).
+\item \textbf{Jianguo Su}, College of Fisheries, Huazhong Agricultural University,
+Wuhan, China (\href{mailto:sujianguo@mail.hzau.edu.cn}{sujianguo@mail.hzau.edu.cn})
+--- fish antibacterial immunity and \emph{A.~hydrophila} \emph{in vivo} challenge
+models.
+\item \textbf{Lingbing Zeng}, Yangtze River Fisheries Research Institute, Chinese
+Academy of Fishery Sciences, Wuhan, China
+(\href{mailto:zenglingbing@gmail.com}{zenglingbing@gmail.com}) --- fish pathology
+and largemouth bass (\emph{Micropterus salmoides}) disease models.
+\end{itemize}
+
+\medskip
+\noindent We thank you for considering our work and look forward to your
+response.
+
+\bigskip
+\noindent Sincerely,\\[1ex]
+Jinlong Ru, Li Deng, and Gaoxue Wang\\
+\emph{(corresponding authors)}\\
+on behalf of all authors
+
+\end{document}

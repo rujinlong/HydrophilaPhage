@@ -1,0 +1,170 @@
+% ============================================================
+%  Hp3 manuscript -- Cell Reports (Cell Press) submission VARIANT
+% ------------------------------------------------------------
+%  This is a Cell-Reports-flavoured build that REUSES body.tex verbatim.
+%  Differences vs manuscript.tex (the Microbial Biotechnology build):
+%    1. References  : numbered (Cell style) via natbib[numbers] + unsrtnat
+%    2. Front matter : Highlights + In Brief (eTOC blurb) + Summary,
+%                      replacing the plain abstract (Cell Reports layout).
+%    3. Significance : Summary/Highlights foreground novelty + in-vivo outcome.
+%
+%  Cell Press allows FLEXIBLE / format-free INITIAL submission, so:
+%    - Methods stay as the narrative "Experimental Procedures" in body.tex
+%      (kept before Results for now); convert to STAR Methods at revision.
+%    - A PDF is accepted at initial submission.
+%
+%  Build:  latexmk manuscript-cr      (uses .latexmkrc -> xelatex + bibtex)
+%  Body :  body.tex   (SHARED with the MBT build -- edit once, both rebuild)
+%  Figs :  ../analyses/data/121-figs/figN.png
+%  Refs :  bibliography.bib  (symlink -> Zotero export)
+%
+%  REFS = author-year (Cell Press style) -- reused AS-IS for iScience and any
+%  other Cell Press Multi-Journal Submission target (all author-year + STAR
+%  Methods), so co-submitting CR + iScience needs only ONE format.
+%  FALLBACK (only if the whole Cell Press route fails) -- Communications Biology
+%  (Nature Portfolio) uses NUMBERED refs: switch to
+%  \usepackage[numbers,sort&compress]{natbib}\bibliographystyle{unsrtnat},
+%  delete the Highlights/In Brief blocks, move Methods after Discussion.
+% ============================================================
+\documentclass[11pt,a4paper]{article}
+
+% ---- engine / fonts (xelatex; Times New Roman) ----
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}\usepackage[utf8]{inputenc}\usepackage{textcomp}
+\else
+  \usepackage{fontspec}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \setmainfont{Times New Roman}
+\fi
+
+% ---- layout ----
+\usepackage[a4paper,margin=1in]{geometry}
+\IfFileExists{microtype.sty}{\usepackage{microtype}}{}
+\usepackage{setspace}\onehalfspacing
+\setlength{\parindent}{0pt}\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}
+\setcounter{secnumdepth}{5}
+
+% ---- math / graphics / tables (dependencies of body.tex) ----
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{longtable,booktabs,array,calc,etoolbox}
+\usepackage{caption,subcaption}
+\usepackage{xcolor}
+
+% ---- pandoc helper macros required by body.tex ----
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scale image to fit text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}\fi}
+\def\fps@figure{htbp}
+\makeatother
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% ---- references: author-year Harvard (Cell Press / Cell Reports style) ----
+%   VERIFIED vs Cell Reports author guidelines (2026-06): Cell Press uses
+%   author-year in-text citations (e.g. Smith et al., 2010), NOT numbered.
+%   apalike approximates Cell's Harvard list; swap to cell.bst at final
+%   submission if the production team requests it.
+\usepackage[round,authoryear]{natbib}
+\bibliographystyle{apalike}
+
+% ---- line numbers for peer review ----
+\usepackage{lineno}\linenumbers
+
+% ---- authors / affiliations ----
+\usepackage{authblk}
+\renewcommand\Authands{, }
+\renewcommand\Authsep{, }
+\newcommand\blfootnote[1]{\begingroup\renewcommand\thefootnote{}%
+  \footnotetext{#1}\addtocounter{footnote}{-1}\endgroup}
+
+\usepackage{hyperref}
+\hypersetup{unicode=true,colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,
+  pdftitle={A novel lytic Aeromonas bacteriophage rescues largemouth bass from lethal Aeromonas hydrophila infection},
+  pdfauthor={Liang C; Zhang Y; Xue J; Zhang H; Chen Z; Ling F; Deng L; Wang G; Ru J}}
+
+\title{\bfseries A novel lytic \emph{Aeromonas} bacteriophage
+rescues largemouth bass from lethal \emph{Aeromonas hydrophila} infection}
+
+\author[1,2]{Changshuai Liang}
+\author[1,2]{YiLin Zhang}
+\author[3,4]{Jinling Xue}
+\author[1,2]{Haowei Zhang}
+\author[3]{Zhangsendi Chen}
+\author[1,2]{Fei Ling}
+\author[3,4]{Li Deng\textsuperscript{*}}
+\author[1,2]{Gaoxue Wang\textsuperscript{*}}
+\author[3,4]{Jinlong Ru\textsuperscript{*}}
+
+\affil[1]{Hainan Institute of Northwest A\&F University, Sanya, Hainan Province, 572024, China}
+\affil[2]{College of Animal Science and Technology, Northwest A\&F University, Xinong Road 22nd, Yangling, Shaanxi, 712100, China}
+\affil[3]{Technical University of Munich; Prevention of Microbial Diseases, TUM School of Life Sciences; Central Institute of Infection Prevention (ZIP), Freising, 85354, Germany}
+\affil[4]{Research unit of Microbial Diseases Prevention, Institute of Virology, Helmholtz Centre Munich -- German Research Centre for Environmental Health, Neuherberg, 85764, Germany}
+
+\date{}
+
+\begin{document}
+\maketitle
+\blfootnote{\textsuperscript{*}Corresponding authors:
+  li.deng@tum.de (L.D.); wanggaoxue@126.com (G.W.); jinlong.ru@tum.de (J.R.).
+  ORCID (J.R.): 0000-0002-6757-6018}
+
+% ============================================================
+%  Cell Reports front matter
+% ============================================================
+
+\section*{Highlights}
+\begin{itemize}\tightlist
+\item Lytic \emph{Aeromonas hydrophila} phage Hp3 forms a deeply divergent, unclassified genus
+\item Its 84.7-kb genome carries no resistance or high-confidence virulence genes
+\item A single phage dose raised 7-day survival from 15\% to 85\% under lethal challenge
+\item Hp3 is a genetically distinct candidate for aquaculture phage biocontrol
+\end{itemize}
+
+% eTOC blurb: Cell Reports limit = 40 words. This is 39.
+\section*{In Brief}
+Liang et al.\ isolate Hp3, a lytic phage of \emph{Aeromonas hydrophila} that
+defines a deeply divergent, unclassified viral genus. Lacking resistance and
+virulence genes, Hp3 rescues largemouth bass from lethal infection, offering a
+distinct candidate for aquaculture phage biocontrol.
+
+\section*{Summary}
+\noindent
+Antimicrobial resistance in \emph{Aeromonas hydrophila}, a leading pathogen of
+freshwater aquaculture, is eroding antibiotic control and motivating
+bacteriophage-based alternatives. Here we isolate and characterize
+vB\_AhyM\_Hp3 (Hp3), a lytic phage of \emph{A.~hydrophila}. Integrated
+nucleotide- and proteome-level analyses place Hp3 and its only close relative
+in a deeply divergent, currently unclassified \emph{Caudoviricetes} genus,
+indicating that aquaculture-associated \emph{Aeromonas} phages harbour
+substantial unsampled diversity. Hp3 completes a rapid (\textasciitilde90-min)
+lytic cycle, remains stable across the temperature and pH ranges typical of
+aquaculture, and carries an 84.75-kb genome with the hallmarks of a virulent
+lifestyle but no antimicrobial-resistance genes and no high-confidence
+virulence determinants. In a lethal largemouth bass (\emph{Micropterus
+salmoides}) challenge, a single dose of Hp3 raised seven-day survival from
+15\% to 85\% and markedly reduced liver and spleen pathology, while phage
+alone caused no detectable harm. Hp3 is therefore a genetically distinct,
+genomically defined candidate for aquaculture biocontrol and a tractable
+starting point for mechanistic and formulation studies of phage therapy
+against \emph{A.~hydrophila}.
+
+\bigskip
+% INITIAL submission: narrative Methods (body.tex) + the single Data-availability
+% statement in Declarations. Cell Reports does NOT require a specific format at
+% initial submission (official guidelines), so STAR Methods is deferred to revision
+% and the Data-availability redundancy is avoided.
+% REVISION: switch to \input{body-cr} (drops narrative Methods; loads
+% star_methods.tex = Key Resources Table + Data and code availability).
+\input{body}
+
+\bibliography{bibliography}
+
+\end{document}
