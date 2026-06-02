@@ -1,0 +1,80 @@
+{
+  // All tasks run inside manuscript/ (where the Makefile + .latexmkrc live).
+  // PDF live-preview is handled by LaTeX Workshop on save; these tasks cover
+  // the things LaTeX Workshop does NOT do: the Makefile pipeline (Word/anon/
+  // wordcount/flatten) and an explicit CR-variant build.
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "MBT: PDF (make)",
+      "type": "shell",
+      "command": "make",
+      "options": { "cwd": "${workspaceFolder}/manuscript" },
+      "group": { "kind": "build", "isDefault": true },
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "MBT: Word docx (make docx)",
+      "type": "shell",
+      "command": "make docx",
+      "options": { "cwd": "${workspaceFolder}/manuscript" },
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "MBT: anonymized PDF (make anonymize)",
+      "type": "shell",
+      "command": "make anonymize",
+      "options": { "cwd": "${workspaceFolder}/manuscript" },
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "MBT: word count (make wordcount)",
+      "type": "shell",
+      "command": "make wordcount",
+      "options": { "cwd": "${workspaceFolder}/manuscript" },
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "MBT: flatten (make flat)",
+      "type": "shell",
+      "command": "make flat",
+      "options": { "cwd": "${workspaceFolder}/manuscript" },
+      "problemMatcher": []
+    },
+    {
+      "label": "CR: PDF (latexmk manuscript-cr)",
+      "type": "shell",
+      "command": "latexmk -xelatex -synctex=1 -interaction=nonstopmode -bibtex manuscript-cr.tex",
+      "options": { "cwd": "${workspaceFolder}/manuscript" },
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "CR: PDF force rebuild (-gg)",
+      "type": "shell",
+      "command": "latexmk -gg -xelatex -synctex=1 -interaction=nonstopmode -bibtex manuscript-cr.tex",
+      "options": { "cwd": "${workspaceFolder}/manuscript" },
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "MBT: PDF force rebuild (-gg)",
+      "type": "shell",
+      "command": "latexmk -gg -xelatex -synctex=1 -interaction=nonstopmode -bibtex manuscript.tex",
+      "options": { "cwd": "${workspaceFolder}/manuscript" },
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "cover letter (MJS): PDF",
+      "type": "shell",
+      "command": "latexmk -xelatex -interaction=nonstopmode cover_letter-mjs.tex",
+      "options": { "cwd": "${workspaceFolder}/manuscript" },
+      "problemMatcher": []
+    }
+  ]
+}

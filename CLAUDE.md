@@ -79,10 +79,10 @@ There are no unit tests (`testthat/edition: 3` is configured in DESCRIPTION but 
 
 **As of 2026-05 the manuscript is authored in LaTeX under `manuscript/` in this repo and built with `latexmk` (xelatex) — not Quarto.** Layout:
 
-- `manuscript/manuscript.tex` — frontmatter (article class + `authblk`, author-year via `natbib`+`apalike`) and `\input{body.tex}`.
-- `manuscript/body.tex` — the sections (Introduction … Declarations).
+- `manuscript/manuscript-cr.tex` + `body-cr.tex` — **Cell Reports version (current primary target)**: Cell Press front matter (Highlights, 4 bullets; In Brief eTOC blurb ≤40 words, third-person "Liang et al." author-supplied). Build with `latexmk manuscript-cr.tex`.
+- `manuscript/manuscript.tex` + `body.tex` — **Microbial Biotechnology version (fallback)**: article class + `authblk`, author-year via `natbib`+`apalike`; `manuscript.tex` does `\input{body.tex}` (the sections Introduction … Declarations).
 - `manuscript/bibliography.bib` — symlink to the Zotero export (same keys as everywhere).
 - Figures are referenced by **relative path** `../analyses/data/121-figs/figN.png` (the gitignored Dropbox symlink tree); figure generation still lives in `analyses/*.qmd` (Quarto).
 - Build: `cd manuscript && latexmk` (or `make`). `make anonymize` flattens + scrubs authors/affiliations/funding/identifying URLs → `manuscript-anon.pdf` for NotebookLM double-blind adversarial review (`make flat` / `make wordcount` / `make clean` also available).
 
-Target journal: **Microbial Biotechnology** (Wiley; no journal-specific `.cls`, so the build is article-based with an upgrade path to `WileyNJD-v2` noted at the top of `manuscript.tex`; Wiley accepts a PDF at initial submission). The legacy Quarto source (`~/Dropbox/.../manuscript.qmd`, `elsarticle`) is archived — **manuscript edits now happen in `manuscript/`**. Analyses/figures stay in `analyses/`.
+**Submission ladder (see pm DEC-D029):** (1) **Cell Reports** (Cell Press) — current primary target; edit the `*-cr.tex` pair (`manuscript-cr.tex` + `body-cr.tex`), which carries the Highlights + In Brief front matter. (2) **Microbial Biotechnology** (Wiley; no journal-specific `.cls`, so article-based with an upgrade path to `WileyNJD-v2` noted at the top of `manuscript.tex`; accepts a PDF at initial submission) if Cell Reports rejects. (3) **Fish & Shellfish Immunology** (Elsevier; would need an `elsarticle`/numbered-reference reformat when reached) as final fallback. Keep wording edits in sync across the `*-cr.tex` and base `.tex` pairs. The legacy Quarto source (`~/Dropbox/.../manuscript.qmd`, `elsarticle`) is archived — **manuscript edits now happen in `manuscript/`**. Analyses/figures stay in `analyses/`.

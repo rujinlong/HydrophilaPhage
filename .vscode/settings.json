@@ -1,0 +1,79 @@
+{
+  // ============================================================
+  //  LaTeX Workshop — build
+  //  Compile runs in the ROOT file's directory (manuscript/), so it picks up
+  //  manuscript/.latexmkrc AND the relative paths it needs: ../analyses figures,
+  //  \input{body}, and the bibliography.bib symlink. %DOC% = the active root
+  //  (manuscript.tex for MBT, manuscript-cr.tex for Cell Reports).
+  // ============================================================
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk-xe",
+      "command": "latexmk",
+      "args": [
+        "-xelatex",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-bibtex",
+        "%DOC%"
+      ]
+    }
+  ],
+  "latex-workshop.latex.recipes": [
+    { "name": "xelatexmk", "tools": ["latexmk-xe"] }
+  ],
+  "latex-workshop.latex.recipe.default": "first",
+
+  // Build whenever you save a .tex. Saving body.tex rebuilds the ACTIVE root,
+  // because LaTeX Workshop watches \input children (more reliable than bare
+  // latexmk, which sometimes reports "up-to-date" after an \input edit).
+  "latex-workshop.latex.autoBuild.run": "onSave",
+
+  // Keep aux files so latexmk does fast incremental rebuilds (all gitignored).
+  "latex-workshop.latex.autoClean.run": "never",
+  "latex-workshop.latex.autoBuild.cleanAndRetry.enabled": false,
+  "latex-workshop.latex.outDir": "%DIR%",
+
+  // Only treat the real top-level manuscripts as candidate roots; ignore the
+  // generated/derived sources so the root picker stays clean.
+  "latex-workshop.latex.search.rootFiles.include": ["manuscript/*.tex"],
+  "latex-workshop.latex.search.rootFiles.exclude": [
+    "manuscript/manuscript-flat.tex",
+    "manuscript/manuscript-anon.tex",
+    "manuscript/manuscript-docx.tex"
+  ],
+
+  // ============================================================
+  //  Viewer / SyncTeX  (Cmd+click source <-> PDF)
+  // ============================================================
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.synctex.afterBuild.enabled": true,
+
+  // ============================================================
+  //  Editing aids (intellisense for \cite / \ref / packages)
+  // ============================================================
+  "latex-workshop.intellisense.package.enabled": true,
+  "latex-workshop.intellisense.citation.label": "bibtex key",
+  "latex-workshop.message.badbox.show": false,
+  "latex-workshop.message.update.show": false,
+
+  // ============================================================
+  //  TeXpresso — true live (type-to-render) preview
+  //  Binary built from source at ~/github/texpresso (make texpresso + texpresso-xetex).
+  //  Start on the active root file: Cmd+Shift+P -> "TeXpresso: Start Document".
+  //  Uses the system TeX Live (kpsewhich/xetex) you already have.
+  // ============================================================
+  "texpresso.command": "/Users/allen/github/texpresso/build/texpresso",
+  "texpresso.syncTeXForwardOnSelection": true,
+  "texpresso.useEditorTheme": true,
+
+  // ============================================================
+  //  Per-language editor behaviour for .tex
+  // ============================================================
+  "[latex]": {
+    "editor.wordWrap": "on",
+    "editor.formatOnSave": false,
+    "editor.tabSize": 2
+  }
+}

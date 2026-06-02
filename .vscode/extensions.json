@@ -1,0 +1,10 @@
+{
+  // Workspace-recommended extensions for the manuscript workflow.
+  // (You said these are already installed; this just makes the recommendation
+  //  explicit for collaborators / a fresh clone.)
+  "recommendations": [
+    "James-Yu.latex-workshop",     // LaTeX build + live PDF preview + SyncTeX + intellisense
+    "DominikPeters.texpresso-basic", // optional: true live (type-to-render) preview; needs the texpresso BINARY installed separately
+    "cweijan.vscode-office"        // preview manuscript.docx inside VS Code (Office Viewer)
+  ]
+}
