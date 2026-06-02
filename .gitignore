@@ -32,3 +32,4 @@ manuscript/*.pdf
 manuscript/*.synctex.gz
 manuscript/*.xdv
 manuscript/manuscript-anon.*
+manuscript/reference*.docx

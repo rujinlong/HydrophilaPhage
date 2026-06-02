@@ -58,7 +58,7 @@ wordcount:
 clean:
 	-latexmk -c >/dev/null 2>&1
 	-latexmk -c $(MAIN)-anon.tex >/dev/null 2>&1
-	rm -f $(MAIN)-anon-raw.tex $(MAIN)-docx.tex
+	rm -f $(MAIN)-anon-raw.tex $(MAIN)-docx.tex reference-default.docx
 
 ## Full clean incl. generated PDFs and derived sources
 distclean: clean
@@ -90,11 +90,23 @@ distclean: clean
 ## symlink and carry stale mtimes (2025), so a file-target + timestamp check
 ## would wrongly report "Nothing to be done for docx" after the images change.
 ## Rebuilding is only a few seconds; the flat.tex prereq still triggers a
-## re-flatten when body.tex / manuscript.tex change.
-docx: $(MAIN)-flat.tex $(BIB) prep_docx.py
+## re-flatten when body.tex / manuscript.tex change. --reference-doc applies the
+## Times New Roman / all-black-heading academic house style (see reference.docx).
+docx: $(MAIN)-flat.tex $(BIB) prep_docx.py reference.docx
 	python3 prep_docx.py $(MAIN)-flat.tex > $(MAIN)-docx.tex
 	pandoc $(MAIN)-docx.tex --bibliography=$(BIB) --citeproc \
 	  -M link-citations=true -t docx+native_numbering \
+	  --reference-doc=reference.docx --no-highlight \
 	  --resource-path=.:../analyses/data/121-figs -o $(MAIN).docx
 	@rm -f $(MAIN)-docx.tex
-	@echo ">> Word version: $(MAIN).docx (figures numbered, citations linked, affiliations restored)"
+	@echo ">> Word version: $(MAIN).docx (Times New Roman, black headings, numbered figures, linked citations)"
+
+## Academic reference template (Times New Roman + all-black headings) for the
+## docx build. Derived from pandoc's default by make_reference_docx.py; it is
+## gitignored. Delete reference.docx to force a rebuild (e.g. after editing the
+## script); `make clean` removes the temp file.
+reference.docx: make_reference_docx.py
+	pandoc --print-default-data-file reference.docx > reference-default.docx
+	python3 make_reference_docx.py reference-default.docx reference.docx
+	@rm -f reference-default.docx
+	@echo ">> reference.docx (Times New Roman, black headings)"
