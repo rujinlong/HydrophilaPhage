@@ -86,8 +86,12 @@ distclean: clean
 ## NOTE: figures live under the gitignored Dropbox symlink tree; if that subtree
 ## is offline/unreadable the images drop out (pandoc warns "Could not fetch
 ## resource") but every other fix still applies.
-docx: $(MAIN).docx
-$(MAIN).docx: $(MAIN)-flat.tex $(BIB) prep_docx.py
+## `docx` is .PHONY (always rebuilds): the figures sit behind a gitignored
+## symlink and carry stale mtimes (2025), so a file-target + timestamp check
+## would wrongly report "Nothing to be done for docx" after the images change.
+## Rebuilding is only a few seconds; the flat.tex prereq still triggers a
+## re-flatten when body.tex / manuscript.tex change.
+docx: $(MAIN)-flat.tex $(BIB) prep_docx.py
 	python3 prep_docx.py $(MAIN)-flat.tex > $(MAIN)-docx.tex
 	pandoc $(MAIN)-docx.tex --bibliography=$(BIB) --citeproc \
 	  -M link-citations=true -t docx+native_numbering \
