@@ -33,3 +33,19 @@ manuscript/*.synctex.gz
 manuscript/*.xdv
 manuscript/manuscript-anon.*
 manuscript/reference*.docx
+
+# same build artifacts inside manuscript/ subfolders (e.g. supplementary/)
+manuscript/**/*.aux
+manuscript/**/*.bbl
+manuscript/**/*.blg
+manuscript/**/*.fdb_latexmk
+manuscript/**/*.fls
+manuscript/**/*.log
+manuscript/**/*.out
+manuscript/**/*.pdf
+manuscript/**/*.synctex.gz
+manuscript/**/*.xdv
+
+# Data S1 source workbook: lives in Dropbox (data-outside-repo); kept in the
+# supplementary/ folder on disk for upload, but not committed.
+manuscript/**/*.xlsx

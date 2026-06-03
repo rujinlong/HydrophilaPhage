@@ -1,0 +1,241 @@
+% ============================================================
+%  Hp3 manuscript -- Supplementary Information   (self-contained upload folder)
+% ------------------------------------------------------------
+%  This folder (manuscript/supplementary/) is the complete SI upload package:
+%    supplementary.pdf            <- build product, upload this
+%    SupplementalData.xlsx        <- Data S1 (copy of the source-data workbook)
+%    si_table_orf.tex/.._sg.tex   <- auto-generated tables (make_si_tables.py)
+%    si_fig_phrog/.._viptree_sg.png <- auto-generated figures (make_si_figures.R)
+%  Regenerate tables/figures:
+%      python3 make_si_tables.py        # Table S1, Table S4
+%      Rscript  make_si_figures.R       # Figure S2, Figure S3
+%  Build (self-contained; .latexmkrc here sets xelatex):
+%      latexmk supplementary.tex
+%  Figure S1 path reaches the gitignored Dropbox tree two levels up
+%  (../../analyses/data/121-figs/).
+% ============================================================
+\documentclass[11pt,a4paper]{article}
+
+% ---- engine / fonts (xelatex; Times New Roman, matching the main text) ----
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}\usepackage[utf8]{inputenc}\usepackage{textcomp}
+\else
+  \usepackage{fontspec}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \setmainfont{Times New Roman}
+\fi
+
+\usepackage[a4paper,margin=1in]{geometry}
+\IfFileExists{microtype.sty}{\usepackage{microtype}}{}
+\usepackage{setspace}\onehalfspacing
+\setlength{\parindent}{0pt}\setlength{\parskip}{6pt plus 2pt minus 1pt}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{longtable,booktabs,array,calc}
+\usepackage{hyperref}\hypersetup{hidelinks}
+\captionsetup{labelfont=bf,font=small}
+
+% ---- supplementary figure/table numbering: S1, S2, ... ----
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\thetable}{S\arabic{table}}
+
+\title{\bfseries Supplementary Information\\[4pt]
+\large A novel lytic \emph{Aeromonas} bacteriophage rescues
+largemouth bass from lethal \emph{Aeromonas hydrophila} infection}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent This file contains the supplementary figures, tables, and data
+supporting the main text.
+
+\medskip
+\noindent\textbf{Contents}
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item \textbf{Figure S1.} Protein-sharing network of Hp3 and reference viruses (vConTACT3).
+\item \textbf{Figure S2.} Functional-category distribution of the 105 Hp3 ORFs (PHROG).
+\item \textbf{Figure S3.} Whole-proteome similarity ($S_G$) of Hp3 to 5,632 reference viruses (ViPTree).
+\item \textbf{Table S1.} Genome annotation of Hp3 (105 ORFs).
+\item \textbf{Table S2.} Antibiotic-resistance and virulence-gene screening.
+\item \textbf{Table S3.} Survival analysis statistics (\emph{in vivo} challenge).
+\item \textbf{Table S4.} Closest reference viruses to Hp3 by whole-proteome similarity ($S_G$).
+\item \textbf{Table S5.} Nucleotide-level intergenomic similarity (VIRIDIC).
+\item \textbf{Data S1.} Source data for the \emph{in vitro} and \emph{in vivo} experiments (Excel).
+\end{itemize}
+
+\clearpage
+% ============================================================
+%  Figure S1 -- vConTACT3 protein-sharing network (cited in main text)
+% ============================================================
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth,keepaspectratio]{../../analyses/data/121-figs/vc3.png}
+\caption{\textbf{Protein-sharing network of phage Hp3 and reference
+prokaryotic viruses (vConTACT3).} Each node is a viral genome; nodes are
+joined when they share at least one protein cluster, and only viruses
+connected to Hp3 are shown. Hp3 (green) groups closely with
+\emph{Aeromonas} phage HJ05 (linked by a red edge) and, more distantly,
+with \emph{Rhizobium} phage vB\_RleS\_L338C, together forming the highly
+distinct Hp3--HJ05 genus. This cluster is clearly separated from
+established families, including its nearest neighbours in the
+\emph{Peduoviridae} and \emph{Straboviridae}. Node colour denotes the
+family-level assignment given in the legend; ``Other unclassified''
+(grey) marks genomes that currently lack a family-level classification.
+The network was computed with vConTACT3 against the NCBI viral RefSeq
+database (v230) and visualized in Cytoscape.}
+\label{fig-vc3-network}
+\end{figure}
+
+\clearpage
+% ============================================================
+%  Figure S2 -- PHROG functional-category distribution (make_si_figures.R)
+% ============================================================
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\linewidth,keepaspectratio]{si_fig_phrog.png}
+\caption{\textbf{Functional-category distribution of the Hp3 genome.}
+The 105 predicted ORFs (Table~S1) grouped by PHROG functional category
+after annotation with Pharokka, Phold, and Phynteny. Beyond the
+structural modules typical of \emph{Caudoviricetes} (head and packaging,
+connector, tail), the genome is notably enriched in DNA/RNA and
+nucleotide-metabolism genes ($n=26$), consistent with a replication-
+focused virulent lifestyle. A single ORF falls in the
+integration-and-excision category (a transposase-like remnant; see
+Table~S2 and main text), and no lysogeny-control module is present.}
+\label{fig-phrog}
+\end{figure}
+
+\clearpage
+% ============================================================
+%  Figure S3 -- ViPTree S_G distribution (make_si_figures.R)
+% ============================================================
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\linewidth,keepaspectratio]{si_fig_viptree_sg.png}
+\caption{\textbf{Hp3 occupies an isolated region of viral sequence space.}
+Whole-proteome genomic similarity ($S_G$, ViPTree) of Hp3 to each of the
+5,632 reference prokaryotic dsDNA viruses, ranked in descending order. The
+maximum $S_G$ is only 0.073 (red point; the unclassified \emph{Rhizobium}
+phage vB\_RleS\_L338C), and only six references exceed $S_G=0.02$. The
+rapid decay to near-zero similarity illustrates the deeply branching,
+unclassified position of Hp3 reported in the main text and listed in
+Table~S4.}
+\label{fig-viptree-sg}
+\end{figure}
+
+\clearpage
+% ============================================================
+%  Table S1 -- full ORF annotation (auto-generated: make_si_tables.py)
+% ============================================================
+\input{si_table_orf}
+
+\clearpage
+% ============================================================
+%  Table S2 -- resistance / virulence screen
+% ============================================================
+\begin{table}[H]\centering
+\caption{\textbf{Antibiotic-resistance and virulence-gene screening of the
+Hp3 genome.} Sequence-homology screens (Pharokka) against CARD and VFDB
+returned no hits. The only flags arose from remote \emph{structural}
+homology (Phold/Foldseek) at low identity and without any corresponding
+sequence-homology hit, and are therefore not interpreted as functional
+determinants (see main text).}\label{tbl-si-safety}
+\begin{small}
+\begin{tabular}{@{}l l l l@{}}
+\toprule
+\textbf{Screen} & \textbf{Method} & \textbf{Database} & \textbf{Result}\\
+\midrule
+Antibiotic resistance & Sequence homology (Pharokka) & CARD & No hits \\
+Virulence (sequence)  & Sequence homology (Pharokka) & VFDB & No hits \\
+Virulence (structure) & Structural homology (Phold/Foldseek) & VFDB & hp3\_0022 vs VFG047113, \\
+ & & & \quad fident $=0.16$; no sequence hit \\
+Integrase / mobility  & Structural homology (Phold/Foldseek) & --- & hp3\_0105 transposase-like, \\
+ & & & \quad structural id.\ $=0.24$; no sequence hit \\
+Lifestyle             & BACPHLIP & --- & Virulent ($P_{\mathrm{lytic}}=0.97$) \\
+\bottomrule
+\end{tabular}
+\end{small}
+\end{table}
+
+% ============================================================
+%  Table S3 -- survival statistics
+% ============================================================
+\begin{table}[H]\centering
+\caption{\textbf{Survival analysis for the largemouth bass challenge
+(Figure 5B).} Seven-day survival per group, pairwise Log-rank
+(Mantel--Cox) tests with Benjamini--Hochberg adjustment, and a Cox
+proportional-hazards estimate of the treatment effect. The PBS and
+phage-only groups recorded no deaths and were excluded from the Cox
+model.}\label{tbl-si-survival}
+\begin{small}
+\begin{tabular}{@{}l l@{}}
+\toprule
+\multicolumn{2}{@{}l}{\textit{Seven-day survival (n = 20 per group)}}\\
+PBS control & 100\% \\
+Phage-only & 100\% \\
+\emph{A. hydrophila} (bacterial) & 15\% \\
+Treatment (\emph{A. hydrophila} + Hp3, MOI 1.0) & 85\% \\
+\midrule
+\multicolumn{2}{@{}l}{\textit{Overall Log-rank test}}\\
+$k$-sample (4 groups) & $\chi^2 = 64.6$, df $= 3$, $p = 6.2\times10^{-14}$ \\
+\midrule
+\multicolumn{2}{@{}l}{\textit{Pairwise Log-rank (Benjamini--Hochberg-adjusted)}}\\
+Treatment vs.\ bacterial & $\chi^2 = 20.474$, $p_{\mathrm{adj}} = 1.2\times10^{-5}$ \\
+Treatment vs.\ PBS & $p_{\mathrm{adj}} = 0.09$ \\
+Treatment vs.\ phage-only & $p_{\mathrm{adj}} = 0.09$ \\
+\midrule
+\multicolumn{2}{@{}l}{\textit{Cox proportional-hazards (bacterial = reference)}}\\
+Treatment hazard ratio & HR $= 0.091$, 95\% CI $0.026$--$0.320$, $p = 1.8\times10^{-4}$ \\
+\bottomrule
+\end{tabular}
+\end{small}
+\end{table}
+
+\clearpage
+% ============================================================
+%  Table S4 -- ViPTree S_G top hits (auto-generated: make_si_tables.py)
+% ============================================================
+\input{si_table_sg}
+
+% ============================================================
+%  Table S5 -- VIRIDIC nucleotide-level intergenomic similarity
+% ============================================================
+\begin{table}[H]\centering
+\caption{\textbf{Nucleotide-level intergenomic similarity (VIRIDIC).}
+Pairwise intergenomic similarity among Hp3, its closest relative
+\emph{Aeromonas} phage HJ05, and the protein-network-linked \emph{Rhizobium}
+phage vB\_RleS\_L338C. Hp3 and HJ05 fall within one genus (VIRIDIC genus
+threshold $\geq$70\%, species threshold $\geq$95\%), whereas the
+vConTACT3 protein-sharing link to L338C corresponds to negligible
+nucleotide identity.}\label{tbl-si-viridic}
+\begin{small}
+\begin{tabular}{@{}l r p{0.42\linewidth}@{}}
+\toprule
+\textbf{Genome pair} & \textbf{Similarity (\%)} & \textbf{Interpretation}\\
+\midrule
+Hp3 vs.\ HJ05 (OQ594355) & 83.65 & Same genus ($\geq$70\%), different species ($<$95\%) \\
+Hp3 vs.\ vB\_RleS\_L338C (NC\_023502) & 3.00 & Unrelated at nucleotide level (vConTACT3 artifact) \\
+HJ05 vs.\ vB\_RleS\_L338C & 3.22 & Unrelated at nucleotide level \\
+\bottomrule
+\end{tabular}
+\end{small}
+\end{table}
+
+% ============================================================
+%  Data S1 -- source-data workbook
+% ============================================================
+\bigskip
+\noindent\textbf{Data S1. Source data for the \emph{in vitro} and
+\emph{in vivo} experiments.} An Excel workbook (\texttt{SupplementalData.xlsx},
+provided as a separate file in this folder) containing the raw measurements
+underlying the one-step growth curve, thermal- and pH-stability assays,
+optimal-MOI determination, 48-h lysis curves, and the seven-day survival
+experiment. Figure source data are additionally archived in Figshare
+(\href{https://doi.org/10.6084/m9.figshare.30500525}{10.6084/m9.figshare.30500525}).
+
+\end{document}

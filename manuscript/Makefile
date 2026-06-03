@@ -1,5 +1,5 @@
 # ============================================================
-#  Makefile — Hp3 manuscript (Microbial Biotechnology / Wiley build)
+#  Makefile — Hp3 manuscript (PRIMARY: Cell Reports; fallback: Microbial Biotechnology)
 # ------------------------------------------------------------
 #  Engine: xelatex via latexmk (see .latexmkrc). Frontmatter in
 #  manuscript.tex; sections in body.tex (\input). Bibliography:
@@ -18,8 +18,11 @@
 #  Deps: TeX Live (xelatex, latexmk, latexpand, texcount), python3.
 #        latexpand/texcount: `tlmgr install latexpand texcount` if missing.
 # ============================================================
-MAIN = manuscript
-BODY = body.tex
+# MAIN = primary build target. Cell Reports (manuscript-cr) is primary per pm
+# DEC-D026/D027 (Cell Press Multi-Journal Submission: CR + iScience). Build the
+# Microbial Biotechnology fallback instead with:  make MAIN=manuscript
+MAIN = manuscript-cr
+BODY = body.tex          # CR initial submission uses \input{body} (DEC-D028)
 BIB  = bibliography.bib
 
 .PHONY: all pdf flat anonymize wordcount docx clean distclean
@@ -29,7 +32,7 @@ all: pdf
 ## Build manuscript.pdf (latexmk handles xelatex+bibtex passes)
 pdf: $(MAIN).pdf
 $(MAIN).pdf: $(MAIN).tex $(BODY) $(BIB)
-	latexmk
+	latexmk $(MAIN).tex
 
 ## Flatten \input{body} into one self-contained source (journals wanting single .tex)
 flat: $(MAIN)-flat.tex
