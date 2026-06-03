@@ -25,7 +25,7 @@ MAIN = manuscript-cr
 BODY = body.tex          # CR initial submission uses \input{body} (DEC-D028)
 BIB  = bibliography.bib
 
-.PHONY: all pdf flat anonymize wordcount docx clean distclean
+.PHONY: all pdf submit-pdf flat anonymize wordcount docx clean distclean
 
 all: pdf
 
@@ -33,6 +33,22 @@ all: pdf
 pdf: $(MAIN).pdf
 $(MAIN).pdf: $(MAIN).tex $(BODY) $(BIB)
 	latexmk $(MAIN).tex
+
+## Submission PDF = $(MAIN).pdf itself (just copied to a -submit name). Figures
+## are optimized AT THE SOURCE by prepare-submission-figs.sh (flatten PNG alpha
+## onto white + downsample to ~2000 px), so the plain xelatex build already
+## yields a compact (~6-7 MB) DeviceRGB PDF within Cell's <=20 MB total.
+##
+## DO NOT post-process with Ghostscript. gs pdfwrite rewrites images into an
+## ICCBased colorspace, which renders the large figures (fig1/4/5) BLANK in
+## Apple Preview / Quartz and several Editorial Manager viewers — while poppler
+## (pdfimages, the Read tool, most Linux viewers) still shows them and HIDES the
+## bug. A leftover PNG alpha channel (-> PDF SMask) caused the same blank
+## rendering before flattening. See pm EL-007/EL-008. ALWAYS verify a submission
+## PDF in Apple Preview, not only with pdfimages.
+submit-pdf: $(MAIN).pdf
+	cp -f $(MAIN).pdf $(MAIN)-submit.pdf
+	@echo ">> $(MAIN)-submit.pdf (DeviceRGB, no Ghostscript; verify in Apple Preview)"
 
 ## Flatten \input{body} into one self-contained source (journals wanting single .tex)
 flat: $(MAIN)-flat.tex

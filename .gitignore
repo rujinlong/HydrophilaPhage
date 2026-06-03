@@ -49,3 +49,8 @@ manuscript/**/*.xdv
 # Data S1 source workbook: lives in Dropbox (data-outside-repo); kept in the
 # supplementary/ folder on disk for upload, but not committed.
 manuscript/**/*.xlsx
+
+# Assembled submission package (product-only aggregation for upload / sharing
+# with collaborators; every file is a copy rebuilt from tracked sources).
+manuscript/cell-reports-submission/
+manuscript/cell-reports-submission*.zip
