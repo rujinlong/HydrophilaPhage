@@ -1,0 +1,49 @@
+manuscript----------------------------------------------------------------------------------------------
+
+86 大小写，应该是Determination of Optimal Multiplicity of Infection (MOI)
+
+87 表达可能有误，as the test concentration表达的是“把suspension悬浮液等同于一个浓度”，或改成at the test concentration，表达“悬浮液配制在某个浓度下”
+
+88 多个 MOI应该用MOIs？我不确定，因为107行是用的MOIs
+
+95 curve不搭配perform，或改成A one-step growth assay was performed
+
+112 缺少格，改成manufacturer's instructions；大小写错误，改成NanoDrop
+
+152 缺少be，改成The LD50 was calculated
+
+156 这种表达不自然，改成an Hp3 phage suspension或a suspension of phage Hp3
+
+169 表达不自然，或改成sectioned at 3μm
+
+172-175 双重with表达不自然，AI痕迹明显
+
+190 形容词语序错误；时态不自然（展示实验结果用过去式？）；with no不自然。改成Hp3 formed small, round, transparent plaques without...
+
+192-193 尾部描写多次is about不自然，或改成：..., and the tail was approximately 143 nm long and 23 nm wide.
+
+197 标题少value，或改成...Temperatures and pH Values
+
+201 可改成被动更符合英文习惯：Seven MOIs were tested...
+
+202 等号两边缺空格
+
+224 同样或改成MOIs？
+
+Figure3 five首句大写；其次were incubated with the control group是和对照组一起incubated了吗，如果没有或许修改表达；
+
+注意全文的P大写斜体
+
+302 表达不自然，或改成under this dose and observation period？
+
+375 analysed与全文拼写不统一，改为analyzed 
+
+supplementary--------------------------------------------------------------------------------------
+
+Figure S2 The 105 predicted ORFs grouped by缺少be，或改成were grouped by
+
+
+
+
+
+
