@@ -1,0 +1,25 @@
+/*-- scss:defaults --*/
+$body-bg: #ffffff;
+$body-color: #15324a;
+$link-color: #0e7c86;
+$presentation-heading-color: #0b5e66;
+$presentation-heading-font-weight: 600;
+$presentation-font-size-root: 30px;
+
+/*-- scss:rules --*/
+.reveal .slides section { text-align: left; }
+.reveal h1, .reveal h2 { letter-spacing: -0.01em; line-height: 1.1; }
+.reveal .columns { align-items: center; }
+.reveal strong { color: #0b5e66; }
+.reveal em { color: #51606e; }
+.reveal section img {
+  border-radius: 6px;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.10);
+  margin: 0.2em auto;
+}
+.reveal figure figcaption { font-size: 0.48em; color: #5a6b7a; text-align: center; }
+.bigstat { font-size: 1.5em; font-weight: 700; color: #0e7c86; line-height: 1.15; }
+.lead { color: #0b5e66; font-weight: 600; }
+.reveal ul { margin-left: 0.2em; }
+.reveal .footer { color: #8a99a8; font-size: 0.4em; }
+.tag { display:inline-block; background:#e0f2f1; color:#0b5e66; border-radius:5px; padding:0 .35em; font-weight:600; }

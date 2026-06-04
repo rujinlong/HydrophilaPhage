@@ -52,5 +52,5 @@ manuscript/**/*.xlsx
 
 # Assembled submission package (product-only aggregation for upload / sharing
 # with collaborators; every file is a copy rebuilt from tracked sources).
-manuscript/cell-reports-submission/
-manuscript/cell-reports-submission*.zip
+manuscript/iscience-submission/
+manuscript/iscience-submission*.zip
