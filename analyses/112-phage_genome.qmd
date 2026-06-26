@@ -1,0 +1,122 @@
+---
+title: "112-phage_genome"
+date: today
+params:
+  name: "112-phage_genome"
+---
+
+**Updated: `r format(Sys.time(), '%Y-%m-%d %H:%M:%S', tz = 'CET')` CET.**
+
+```{r}
+#| label: params
+#| eval: !expr interactive()
+#| include: false
+params <- list(name = "112-phage_genome")
+```
+
+```{r}
+#| label: setup
+#| include: false
+#| message: false
+#| warning: false
+#| cache: false
+wd <- "analyses"
+if (basename(getwd()) != wd) {
+    setwd(here::here(wd))
+}
+here::i_am(paste0(params$name, ".qmd"), uuid = "e776e5a8-f390-41be-a235-1dd1ab20043e")
+qproj::proj_create_dir_target(params$name, clean = FALSE)
+
+# convenience helpers
+path_target <- qproj::proj_path_target(params$name)
+path_source <- qproj::proj_path_source(params$name)
+path_raw <- path_source("00-raw")
+path_resource <- here::here(path_raw, "d00-resource")
+path_data <- here::here(path_raw, paste0("d", params$name))
+dir.create(path_raw, recursive = TRUE, showWarnings = FALSE)
+dir.create(path_data, recursive = TRUE, showWarnings = FALSE)
+dir.create(path_resource, recursive = TRUE, showWarnings = FALSE)
+```
+
+```{r}
+#| label: packages
+#| message: false
+#| warning: false
+#| cache: false
+suppressPackageStartupMessages({
+  library(here)
+  library(conflicted)
+  library(tidyverse)
+  library(data.table)
+  library(geneviewer)
+  devtools::load_all()
+})
+# Resolve common dplyr / data.table / stats name clashes up front.
+# Add more `conflicts_prefer()` calls below as needed.
+conflicted::conflicts_prefer(
+  dplyr::filter,
+  dplyr::lag,
+  dplyr::first,
+  dplyr::last,
+  dplyr::between,
+  .quiet = TRUE
+)
+```
+
+## Tasks
+
+1. The genome of vB_AhyM_Hp3 was assembled using [Unicycler](https://github.com/rrwick/Unicycler). 
+
+2. Assembled genome was annotated using [Pharokka](https://github.com/gbouras13/pharokka), [Phold](https://github.com/gbouras13/phold), and [phynteny](https://github.com/susiegriggo/Phynteny).
+
+3. [vConTACT3](https://bitbucket.org/MAVERICLab/vcontact3) was used to cluster vB_AhyM_Hp3 with NCBI viral RefSeq genomes.
+
+```{r}
+#| label: gbk-to-tsv
+
+file_gbk <- here(path_data, "phynteny.gbk")
+gbk <- read_gbk(file_gbk)
+
+# update the gbk file: if the`function` == "unknown function" and phynteny exists but not equal to "other", then update the `function` with phynteny
+gbk$phynteny$FEATURES$CDS <- purrr::map(gbk$phynteny$FEATURES$CDS, ~ {
+
+  phynteny    <- purrr::pluck(.x, "phynteny",  .default = "other")
+  func_value  <- purrr::pluck(.x, "function",  .default = NA_character_)
+  if (func_value == "unknown function" && phynteny != "other") {
+    .x[["function"]] <- phynteny
+  }
+  return(.x)
+})
+
+df_cds <- gbk$phynteny$FEATURES$CDS %>%
+  purrr::map_dfr(~ {
+    list(
+      locus_tag   = purrr::pluck(.x, "locus_tag",   .default = NA_character_),
+      translation = purrr::pluck(.x, "translation", .default = NA_character_),
+      region      = purrr::pluck(.x, "region",      .default = NA_character_),
+      `function`  = purrr::pluck(.x, "function",    .default = NA_character_),
+      product     = purrr::pluck(.x, "product",     .default = NA_character_)
+    )
+  }) %>%
+  tidyr::separate(
+    region,
+    into = c("region_start", "region_end"),
+    sep = "\\.\\.",
+    convert = TRUE,
+    fill = "right",
+    extra = "merge"
+  ) %>%
+  dplyr::mutate(locus_tag = stringr::str_replace(locus_tag, "_CDS", ""))
+
+
+fwrite(df_cds, path_target("phage_cds.tsv"), sep = "\t")
+```
+
+## Files written
+
+These files have been written to the target directory, `r paste0("data/", params$name)`:
+
+```{r}
+#| label: list-files-target
+knitr::kable(qproj::proj_dir_info(path_target(), tz = "CET"))
+```

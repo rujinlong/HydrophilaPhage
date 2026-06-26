@@ -1,15 +1,47 @@
-Icon
-.here
-.Rproj.user
+# R / RStudio
+.Rproj.user/
 .Rhistory
+.RData
 .Rdata
-.httr-oauth
+.Ruserdata
+.here
+*.Rproj
+
+# OS / editor files
 .DS_Store
-.quarto
-inst/doc
-analyses/data
+Icon
+.vscode/
 
-/.luarc.json
-
-/.quarto/
+# Quarto render/cache outputs
+.quarto/
+**/.quarto/
+**/*_files/
 **/*.quarto_ipynb
+analyses/*.html
+analyses/*.pdf
+analyses/*.docx
+analyses/*.md
+!analyses/README.md
+
+# Project-local data and generated analysis outputs are intentionally not
+# tracked in the public code repository.
+analyses/data/
+
+# Internal/private working material that should not be added to the public repo.
+analyses/manuscript/
+meeting-palic-*/
+.claude/
+.qproj/
+docs/
+dev/
+HANDOFF*
+CLAUDE.md
+
+# Common generated manuscript/submission artifacts.
+*submission*
+*review*
+*reviewer*
+*cover_letter*
+*.zip
+*.docx
+*.pdf

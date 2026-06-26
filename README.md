@@ -1,61 +1,34 @@
-
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 # HydrophilaPhage
 
-<!-- badges: start -->
+This repository contains the public analysis code associated with the
+manuscript:
 
-[![License: GPL
-v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![R](https://img.shields.io/badge/Language-R-blue.svg)](https://www.r-project.org/)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17454899.svg)](https://doi.org/10.5281/zenodo.17454899)
-[![R-package](https://img.shields.io/github/r-package/v/rujinlong/HydrophilaPhage)](https://github.com/rujinlong/HydrophilaPhage)
-<!-- badges: end -->
+> A novel lytic *Aeromonas* bacteriophage rescues largemouth bass from lethal
+> *Aeromonas hydrophila* infection
 
-This repository contains source code for the manuscript titled “**A
-novel bacteriophage representing a putative new viral family rescues
-largemouth bass from lethal *Aeromonas hydrophila* infection**”. This
-project is structured as an R package to ensure reproducibility.
+The project is organized as a lightweight R package so that the Quarto
+analysis notebooks can use shared helper functions and a declared dependency
+set.
 
-## Project Summary
+## Repository Contents
 
-*Aeromonas hydrophila* is a significant pathogen in aquaculture, causing
-substantial economic losses. Bacteriophage therapy presents a promising
-alternative to antibiotics for controlling this pathogen. This project
-characterizes a novel phage, `vB_AhyM_Hp3`, isolated for its lytic
-activity against *A. hydrophila*.
+- `R/`: helper functions used by the analysis notebooks.
+- `analyses/`: Quarto notebooks for genome post-processing, phylogenetic
+  visualization, and manuscript figure generation.
+- `DESCRIPTION`: R package metadata and dependency declarations.
 
-The repository includes the analyses for:
+## Analysis Notebooks
 
-- **Biological Characterization**:
-  - One-step growth curve to determine latent period and burst size.
-  - Stability assays across different temperatures and pH levels.
-  - Determination of the optimal Multiplicity of Infection (MOI).
-  - In vitro bacterial lysis dynamics.
-- **Therapeutic Potential**: An in vivo survival study in largemouth
-  bass model to evaluate the phage’s efficacy as a biocontrol agent.
+The public notebooks are:
 
-## Repository Structure
+- `analyses/111-bacterial_genome.qmd`
+- `analyses/112-phage_genome.qmd`
+- `analyses/113-tree.qmd`
+- `analyses/121-figs.qmd`
 
-- `R/`: Contains the source code for the R package, including utility
-  functions used in the analyses.
-- `analyses/`: Contains Quarto documents (`.qmd`) for each step of the
-  analysis. These documents are the core of the project, generating
-  figures and results from raw data.
-- `DESCRIPTION`: R package description file, listing dependencies and
-  metadata.
-
-## Citation
-
-If you use the code or data from this repository in your research,
-please cite our publication (details to be added upon publication).
+They are intended to document the analysis logic and figure-generation code
+used for the manuscript.
 
 ## License
 
-This project is licensed under the GPL-3.0 License. See the
-[LICENSE.md](LICENSE.md) file for details.
-
-## Contact
-
-For any questions or feedback regarding this project, please contact:
-Dr. Jinlong Ru Email: jinlong.ru\[@\]gmail.com
+This project is licensed under GPL-3.0. See [LICENSE.md](LICENSE.md).

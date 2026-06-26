@@ -1,45 +1,35 @@
 ---
-title: "21-figs"
-title-block-banner: true
-author:
-  - name: Jinlong Ru
-    orcid: 0000-0002-6757-6018
-date: 2025-10-23
-toc: true
-toc-depth: 4
-number-sections: true
-code-fold: true
-code-line-numbers: true
-code-tools: true
-format: 
-  html:
-    embed-resources: true
-    smooth-scroll: true
-    page-layout: full
-reference-location: section
-citation-location: document
+title: "121-figs"
+date: today
 params:
-  name: "21-figs"
+  name: "121-figs"
 ---
 
 **Updated: `r format(Sys.time(), '%Y-%m-%d %H:%M:%S', tz = 'CET')` CET.**
 
-The purpose of this document is to create figures based on the bacteriophage infection experiments.
+```{r}
+#| label: params
+#| eval: !expr interactive()
+#| include: false
+params <- list(name = "121-figs")
+```
 
 ```{r}
 #| label: setup
-#| message: false
 #| include: false
+#| message: false
 #| warning: false
+#| cache: false
 wd <- "analyses"
 if (basename(getwd()) != wd) {
-  setwd(here::here(wd))
+    setwd(here::here(wd))
 }
-params <- list(name = "21-figs")
-here::i_am(paste0(params$name, ".qmd"), uuid = "a439e682-f799-4817-8772-5adc8157c4dd")
-projthis::proj_create_dir_target(params$name, clean = FALSE)
-path_target <- projthis::proj_path_target(params$name)
-path_source <- projthis::proj_path_source(params$name)
+here::i_am(paste0(params$name, ".qmd"), uuid = "1ff377c0-5958-402d-90cf-59485dbe0588")
+qproj::proj_create_dir_target(params$name, clean = FALSE)
+
+# convenience helpers
+path_target <- qproj::proj_path_target(params$name)
+path_source <- qproj::proj_path_source(params$name)
 path_raw <- path_source("00-raw")
 path_resource <- here::here(path_raw, "d00-resource")
 path_data <- here::here(path_raw, paste0("d", params$name))
@@ -51,6 +41,8 @@ dir.create(path_resource, recursive = TRUE, showWarnings = FALSE)
 ```{r}
 #| label: packages
 #| message: false
+#| warning: false
+#| cache: false
 suppressPackageStartupMessages({
   library(here)
   library(conflicted)
@@ -62,6 +54,16 @@ suppressPackageStartupMessages({
   library(survival)
   devtools::load_all()
 })
+# Resolve common dplyr / data.table / stats name clashes up front.
+# Add more `conflicts_prefer()` calls below as needed.
+conflicted::conflicts_prefer(
+  dplyr::filter,
+  dplyr::lag,
+  dplyr::first,
+  dplyr::last,
+  dplyr::between,
+  .quiet = TRUE
+)
 
 update_figure_theme <- function(plot) {
   plot + theme_classic(base_size = 13)
@@ -261,8 +263,12 @@ df_num <- summary_anova[[1]][["Df"]][1]
 df_den <- summary_anova[[1]][["Df"]][2]
 p_val_anova <- summary_anova[[1]][["Pr(>F)"]][1]
 
-cat(sprintf("Lysis ANOVA (48h): F(%d, %d) = %f, p-value = %f\n", 
+cat(sprintf("Lysis ANOVA (48h): F(%d, %d) = %f, p-value = %f\n",
             df_num, df_den, f_value, p_val_anova))
+
+# Tukey HSD post-hoc (pairwise comparisons), sorted by adjusted p
+tukey_res <- TukeyHSD(anova_res)$treatment
+print(round(tukey_res[order(tukey_res[, "p adj"]), c("diff", "p adj")], 4))
 ```
 
 
@@ -311,8 +317,8 @@ plt_survival <- ggplot(df_survival, aes(x = time, y = survival_rate, group = Gro
     x = "Time (days)",
     y = "Survival rate (%)"
   ) +
-  annotate("text", x = 0, y = 10, label = "Log-rank test, p < 0.001", 
-           hjust = 0, size = 4, fontface = "italic") +
+  annotate("text", x = 0, y = 10, label = "Overall Log-rank p < 0.001; treatment HR 0.091",
+           hjust = 0, size = 3.5, fontface = "italic") +
   theme_classic(base_size = 13) +
   theme(
     legend.position = c(0.7, 0.45),
@@ -333,9 +339,8 @@ reconstruct_survival_data <- function(df_counts) {
   # Total fish per group = 20
   total_n <- 20
   
-  # Filter only the groups we want to compare (e.g., Treatment vs Bacterial)
-  target_groups <- c("bacterial_group", "treatment_group")
-  df_sub <- df_counts %>% dplyr::filter(Group %in% target_groups)
+  # Use all four groups (overall test); pairwise/Cox subsets are taken below
+  df_sub <- df_counts
   
   all_data <- data.frame()
   
@@ -378,16 +383,40 @@ reconstruct_survival_data <- function(df_counts) {
 }
 
 surv_data_for_stats <- reconstruct_survival_data(df_survival)
+surv_data_for_stats$group <- factor(
+  surv_data_for_stats$group,
+  levels = c("PBS_group", "phage_group", "bacterial_group", "treatment_group")
+)
 
-# Log-rank test (Mantel-Cox)
+# Overall k-sample log-rank (Mantel-Cox) across all four groups
 surv_diff <- survdiff(Surv(time, status) ~ group, data = surv_data_for_stats)
-
 print(surv_diff)
+overall_df <- length(surv_diff$n) - 1
+overall_p <- 1 - pchisq(surv_diff$chisq, overall_df)
+cat(sprintf("Overall log-rank: Chi-sq = %.3f, df = %d, p = %.3g\n",
+            surv_diff$chisq, overall_df, overall_p))
 
-p_val_surv <- 1 - pchisq(surv_diff$chisq, length(surv_diff$n) - 1)
-cat(sprintf("Survival Log-rank Test: Chi-sq = %f, df = %d, p-value = %f\n", 
-            surv_diff$chisq, length(surv_diff$n) - 1, p_val_surv))
+# Pairwise log-rank with Benjamini-Hochberg adjustment for multiple testing
+pair_list <- combn(levels(surv_data_for_stats$group), 2, simplify = FALSE)
+pw <- do.call(rbind, lapply(pair_list, function(pr) {
+  sub <- surv_data_for_stats %>% dplyr::filter(group %in% pr)
+  sub$group <- droplevels(sub$group)
+  sd <- survdiff(Surv(time, status) ~ group, data = sub)
+  data.frame(pair = paste(pr, collapse = " vs "),
+             chisq = round(sd$chisq, 3),
+             p_raw = 1 - pchisq(sd$chisq, 1))
+}))
+pw$p_BH <- p.adjust(pw$p_raw, method = "BH")
+print(pw, row.names = FALSE)
+
+# Cox proportional-hazards model: treatment vs bacterial (reference = bacterial)
+sub_tb <- surv_data_for_stats %>%
+  dplyr::filter(group %in% c("bacterial_group", "treatment_group"))
+sub_tb$group <- relevel(droplevels(sub_tb$group), ref = "bacterial_group")
+cox_tb <- survival::coxph(Surv(time, status) ~ group, data = sub_tb)
+print(summary(cox_tb)$conf.int)
 ```
+
 
 ## Files written
 
@@ -395,5 +424,5 @@ These files have been written to the target directory, `r paste0("data/", params
 
 ```{r}
 #| label: list-files-target
-projthis::proj_dir_info(path_target(), tz = "CET")
+knitr::kable(qproj::proj_dir_info(path_target(), tz = "CET"))
 ```

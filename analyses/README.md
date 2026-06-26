@@ -1,16 +1,19 @@
 # Analysis Workflow
 
-This directory contains the Quarto notebooks (`.qmd`) that form the
-complete analysis workflow for the `HydrophilaPhage` project. The
-notebooks are numbered to indicate the logical order of execution.
+This directory contains the public Quarto notebooks for the
+`HydrophilaPhage` manuscript analysis workflow.
 
-The primary analysis files are:
+The notebooks are:
 
-- `11-bacterial_genome.qmd`: Genome analyses of *Aeromonas hydrophila*
+- `111-bacterial_genome.qmd`: genome-analysis notes for *Aeromonas hydrophila*
   MS01.
-- `12-phage_genome.qmd`: Genome analyses of vB_AhyM_Hp3.
-- `13-tree.qmd`: Phylogenetic analysis of terminase large subunit of
-  vB_AhyM_Hp3.
-- `21-figs.qmd`: Generates the primary figures for the manuscript based
-  on wet-lab experimental data, including stability assays, growth
-  curves, and in vivo experiments.
+- `112-phage_genome.qmd`: genome-analysis notes for phage vB_AhyM_Hp3.
+- `113-tree.qmd`: terminase large-subunit phylogenetic visualization.
+- `121-figs.qmd`: figure-generation code for the experimental assays and
+  in-vivo survival analysis.
+
+Render individual notebooks with:
+
+```bash
+quarto render analyses/121-figs.qmd
+```
